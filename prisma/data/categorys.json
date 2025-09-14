@@ -1,0 +1,44 @@
+{
+  "categorys": [
+    {
+      "id": 1,
+      "name": "Baño",
+      "description": "Accesorios, organización y productos."
+    },
+    {
+      "id": 2,
+      "name": "Dormitorio",
+      "description": "Ropa de cama, almohadas y decoración."
+    },
+    {
+      "id": 3,
+      "name": "Herramientas",
+      "description": "Las mejores herramientas para tus proyectos."
+    },
+    {
+      "id": 4,
+      "name": "Otros",
+      "description": "Descubre una variedad de productos."
+    },
+    {
+      "id": 5,
+      "name": "Cuidado Personal",
+      "description": "Productos para tu bienestar y belleza."
+    },
+    {
+      "id": 6,
+      "name": "Hogar",
+      "description": "Todo lo que necesitas para tu casa."
+    },
+    {
+      "id": 7,
+      "name": "Cocina",
+      "description": "Electrodomésticos, utensilios y accesorios."
+    },
+    {
+      "id": 8,
+      "name": "Tecnologia",
+      "description": "Lo último en tecnología y gadgets."
+    }
+  ]
+}
