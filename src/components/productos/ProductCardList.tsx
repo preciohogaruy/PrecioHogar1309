@@ -87,7 +87,7 @@ export function ProductCardList({ product, formatPrice, handleAddToCart }: Produ
                 ))}
               </div>
               <span className="text-sm text-gray-600 ml-2">
-                {product.rating} ({product.reviews} reseñas)
+                {product.rating} ({product.reviews})
               </span>
             </div>
           </div>
