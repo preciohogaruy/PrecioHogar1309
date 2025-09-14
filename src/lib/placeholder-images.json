@@ -1,64 +1,64 @@
 {
   "placeholderImages": [
     {
-      "id": "hero",
-      "description": "A bright, modern living room with yellow and blue accents.",
-      "imageUrl": "https://picsum.photos/seed/ph-hero/1920/1080",
+      "id": "hero-living-room",
+      "description": "Modern living room for hero section",
+      "imageUrl": "https://picsum.photos/seed/hero-living-room/1920/1080",
       "imageHint": "modern living room"
     },
     {
-      "id": "sofa-1",
-      "description": "A stylish blue sofa.",
-      "imageUrl": "https://picsum.photos/seed/ph-sofa1/500/500",
-      "imageHint": "blue sofa"
-    },
-    {
-      "id": "chair-1",
-      "description": "A comfortable yellow armchair.",
-      "imageUrl": "https://picsum.photos/seed/ph-chair1/500/500",
-      "imageHint": "yellow armchair"
-    },
-    {
-      "id": "table-1",
-      "description": "A minimalist wooden coffee table.",
-      "imageUrl": "https://picsum.photos/seed/ph-table1/500/500",
-      "imageHint": "coffee table"
-    },
-    {
       "id": "bed-1",
-      "description": "A modern bed with a wooden frame.",
-      "imageUrl": "https://picsum.photos/seed/ph-bed1/500/500",
-      "imageHint": "modern bed"
+      "description": "Luxury bedding set",
+      "imageUrl": "https://picsum.photos/seed/bed1/600/600",
+      "imageHint": "luxury bedding"
     },
     {
       "id": "dresser-1",
-      "description": "A white bedroom dresser.",
-      "imageUrl": "https://picsum.photos/seed/ph-dresser1/500/500",
-      "imageHint": "white dresser"
+      "description": "Oak wood dresser",
+      "imageUrl": "https://picsum.photos/seed/dresser1/600/600",
+      "imageHint": "oak dresser"
     },
     {
       "id": "lamp-1",
-      "description": "A sleek bedside lamp.",
-      "imageUrl": "https://picsum.photos/seed/ph-lamp1/500/500",
-      "imageHint": "bedside lamp"
+      "description": "Modern bedside lamp",
+      "imageUrl": "https://picsum.photos/seed/lamp1/600/600",
+      "imageHint": "modern lamp"
     },
     {
-      "id": "cutlery-1",
-      "description": "A set of golden cutlery.",
-      "imageUrl": "https://picsum.photos/seed/ph-cutlery1/500/500",
-      "imageHint": "golden cutlery"
+      "id": "cookware-1",
+      "description": "Non-stick cookware set",
+      "imageUrl": "https://picsum.photos/seed/cookware1/600/600",
+      "imageHint": "non-stick cookware"
     },
     {
-      "id": "plate-1",
-      "description": "A set of ceramic plates.",
-      "imageUrl": "https://picsum.photos/seed/ph-plate1/500/500",
-      "imageHint": "ceramic plates"
+      "id": "utensils-1",
+      "description": "Set of chef knives",
+      "imageUrl": "https://picsum.photos/seed/utensils1/600/600",
+      "imageHint": "chef knives"
     },
     {
-      "id": "pot-1",
-      "description": "A modern cooking pot.",
-      "imageUrl": "https://picsum.photos/seed/ph-pot1/500/500",
-      "imageHint": "cooking pot"
+      "id": "mixer-1",
+      "description": "Red stand mixer",
+      "imageUrl": "https://picsum.photos/seed/mixer1/600/600",
+      "imageHint": "red stand-mixer"
+    },
+    {
+      "id": "sofa-1",
+      "description": "Grey sectional sofa",
+      "imageUrl": "https://picsum.photos/seed/sofa1/600/600",
+      "imageHint": "grey sectional sofa"
+    },
+    {
+      "id": "coffeetable-1",
+      "description": "Glass top coffee table",
+      "imageUrl": "https://picsum.photos/seed/coffeetable1/600/600",
+      "imageHint": "glass coffee-table"
+    },
+    {
+      "id": "bookshelf-1",
+      "description": "Industrial style bookshelf",
+      "imageUrl": "https://picsum.photos/seed/bookshelf1/600/600",
+      "imageHint": "industrial bookshelf"
     }
   ]
 }

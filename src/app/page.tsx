@@ -1,17 +1,30 @@
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
-import { HeroSection } from '@/components/hero-section';
-import { ProductShowcase } from '@/components/product-showcase';
 
-export default function Home() {
+"use client"
+
+import { Navbar } from "@/components/layout/Navbar"
+import { HeroSection } from "@/components/inicio/HeroSection"
+import { FeaturesSection } from "@/components/inicio/FeaturesSection"
+import { CtaSection } from "@/components/inicio/CtaSection"
+import { ProductShowcaseSection } from "@/components/inicio/ProductShowcaseSection"
+import { CategoriesSection } from "@/components/inicio/CategoriesSection"
+// import { FinalCtaSection } from "@/components/inicio/FinalCtaSection"
+import { NewsletterSection } from "@/components/inicio/NewsletterSection"
+import { Footer } from "@/components/layout/Footer"
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <Header />
-      <main className="flex-1">
+    <div className="min-h-screen bg-white overflow-x-hidden">
+      <Navbar />
+      <main>
         <HeroSection />
-        <ProductShowcase />
+        <FeaturesSection />
+        <CtaSection />
+        <ProductShowcaseSection />
+        <CategoriesSection />
+        {/* <FinalCtaSection /> */}
+        <NewsletterSection />
       </main>
       <Footer />
     </div>
-  );
+  )
 }

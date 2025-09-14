@@ -1,31 +1,38 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
+import type React from "react"
+import type { Metadata } from "next"
+import { CartProvider } from "@/contexts/CartContext"
+import { CartSidebar } from "@/components/CartSidebar"
+import { Suspense } from "react"
+import "./globals.css"
 
 export const metadata: Metadata = {
-  title: 'PrecioHogar',
-  description: 'Your home for affordable and stylish goods.',
-};
+  title: "PrecioHogar - Los mejores productos para tu hogar",
+  description: "Descubre nuestra amplia gama de productos para el hogar con los mejores precios del mercado.",
+  generator: "v0.app",
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
+        <style>{`
+html {
+  font-family: sans-serif;
+}
+        `}</style>
       </head>
-      <body className="font-body antialiased">
-        {children}
-        <Toaster />
+      <body>
+        <Suspense fallback={null}>
+          <CartProvider>
+            {children}
+            <CartSidebar />
+          </CartProvider>
+        </Suspense>
       </body>
     </html>
-  );
+  )
 }
