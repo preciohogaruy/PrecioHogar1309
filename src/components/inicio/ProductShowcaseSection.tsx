@@ -42,11 +42,11 @@ export function ProductShowcaseSection() {
           <div className="space-y-8 order-1 lg:order-2">
             <div className="space-y-4">
               <p className="text-primary text-sm uppercase tracking-wider font-medium">Nuestra Historia</p>
-              <h2 className="section-title text-left">Más de 10 años equipando hogares</h2>
+              <h2 className="section-title text-left">Más de 5 años equipando hogares</h2>
             </div>
 
             <p className="text-gray-600 text-lg leading-relaxed">
-              Desde 2014, nos dedicamos a ofrecer los mejores productos para el hogar con precios increíbles. Nuestra
+              Desde 2020, nos dedicamos a ofrecer los mejores productos para el hogar con precios increíbles. Nuestra
               misión es hacer que cada hogar sea un lugar especial y funcional.
             </p>
 

@@ -18,6 +18,7 @@ type Product = {
   isBestSeller: boolean
   description: string
   inStock: boolean
+  stockQuantity: number
 }
 
 interface ProductCardListProps {
