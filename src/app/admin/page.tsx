@@ -13,7 +13,7 @@ import { ProductTable } from "@/components/admin/ProductTable"
 import { ProductModal } from "@/components/admin/ProductModal"
 
 // Initial products data from JSON file
-const initialProducts = productsData.products.map((p) => ({
+const initialProducts = productsData.products.map((p, index) => ({
   id: p.id,
   slug: p.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
   name: p.title,
@@ -22,9 +22,9 @@ const initialProducts = productsData.products.map((p) => ({
   originalPrice: null, // JSON doesn't have originalPrice
   image: p.image,
   rating: p.rating,
-  reviews: Math.floor(Math.random() * 200), // JSON doesn't have reviews
-  isNew: Math.random() > 0.8, // JSON doesn't have isNew
-  isBestSeller: Math.random() > 0.8, // JSON doesn't have isBestSeller
+  reviews: (p.id.charCodeAt(0) % 50) + 10, // Consistent random-like number
+  isNew: p.badge === 'Nuevo',
+  isBestSeller: p.badge === 'Más Vendido',
   description: p.description,
   inStock: p.quantity > 0,
   stockQuantity: p.quantity,

@@ -26,7 +26,7 @@ import { useCart } from "@/contexts/CartContext"
 import { Navbar } from "@/components/layout/Navbar"
 import productsData from "@/contexts/productos.json"
 
-const mappedProducts = productsData.products.map((p) => ({
+const allProducts = productsData.products.map((p) => ({
   id: p.id,
   slug: p.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
   name: p.title,
@@ -35,7 +35,7 @@ const mappedProducts = productsData.products.map((p) => ({
   originalPrice: null, // JSON doesn't have originalPrice
   images: [p.image, p.image, p.image, p.image], // JSON only has one image
   rating: p.rating,
-  reviews: Math.floor(Math.random() * 200), // JSON doesn't have reviews
+  reviews: 0, // Will be set on client
   isNew: p.badge === "Nuevo",
   isBestSeller: p.badge === "Más Vendido",
   shortDescription: p.description,
@@ -55,7 +55,8 @@ const mappedProducts = productsData.products.map((p) => ({
   inStock: p.quantity > 0,
   stockQuantity: p.quantity,
   sku: p.id,
-}))
+}));
+
 
 const sampleReviews = [
   {
@@ -87,14 +88,20 @@ const sampleReviews = [
 export default function ProductDetailPage() {
   const params = useParams()
   const slug = params.slug as string
-
+  
+  const [product, setProduct] = useState(() => allProducts.find((p) => p.slug === slug));
   const [selectedImage, setSelectedImage] = useState(0)
   const [quantity, setQuantity] = useState(1)
   const [activeTab, setActiveTab] = useState<"description" | "specifications" | "reviews">("description")
 
   const { addItem, toggleCart } = useCart()
 
-  const product = mappedProducts.find((p) => p.slug === slug)
+  useEffect(() => {
+    if (product) {
+        setProduct(p => p ? { ...p, reviews: Math.floor(Math.random() * 200) } : undefined);
+    }
+  }, [product?.id]);
+
 
   if (!product) {
     return (
@@ -498,7 +505,7 @@ export default function ProductDetailPage() {
           <h2 className="text-3xl font-bold text-gray-800 text-center mb-12">Productos Relacionados</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {mappedProducts
+            {allProducts
               .filter((p) => p.category === product.category && p.id !== product.id)
               .slice(0, 4)
               .map((relatedProduct) => (

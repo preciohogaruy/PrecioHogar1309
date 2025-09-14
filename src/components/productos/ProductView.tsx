@@ -1,14 +1,14 @@
 
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Grid3X3, List, Search, Package } from "lucide-react"
 import { useCart } from "@/contexts/CartContext"
 import productsData from "@/contexts/productos.json"
 import { ProductCardGrid } from "./ProductCardGrid"
 import { ProductCardList } from "./ProductCardList"
 
-const mappedProducts = productsData.products.map((p) => ({
+const initialProducts = productsData.products.map((p) => ({
   id: p.id,
   slug: p.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
   name: p.title,
@@ -17,7 +17,7 @@ const mappedProducts = productsData.products.map((p) => ({
   originalPrice: null,
   image: p.image,
   rating: p.rating,
-  reviews: Math.floor(Math.random() * 200),
+  reviews: 0, // Default to 0, will be set on client
   isNew: p.badge === "Nuevo",
   isBestSeller: p.badge === "Más Vendido",
   description: p.description,
@@ -27,16 +27,26 @@ const mappedProducts = productsData.products.map((p) => ({
 
 const categories = ["Todos", ...Array.from(new Set(productsData.products.map((p) => p.category)))]
 
-type Product = typeof mappedProducts[0]
+type Product = typeof initialProducts[0]
 
 export function ProductView() {
   const [selectedCategory, setSelectedCategory] = useState("Todos")
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [searchTerm, setSearchTerm] = useState("")
+  const [products, setProducts] = useState(initialProducts)
 
   const { addItem } = useCart()
 
-  const filteredProducts = mappedProducts.filter((product) => {
+  useEffect(() => {
+    // This runs only on the client
+    setProducts(initialProducts.map(p => ({
+        ...p,
+        reviews: Math.floor(Math.random() * 200)
+    })));
+  }, []);
+
+
+  const filteredProducts = products.filter((product) => {
     const matchesCategory = selectedCategory === "Todos" || product.category === selectedCategory
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
     return matchesCategory && matchesSearch
@@ -138,7 +148,7 @@ export function ProductView() {
         <div className="container mx-auto px-6">
           <div className="mb-8">
             <p className="text-gray-600">
-              Mostrando {filteredProducts.length} de {mappedProducts.length} productos
+              Mostrando {filteredProducts.length} de {products.length} productos
               {selectedCategory !== "Todos" && ` en ${selectedCategory}`}
             </p>
           </div>
