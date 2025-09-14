@@ -8,10 +8,11 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   experimental: {
-    allowedDevOrigins: [
-      "https://*.cloudworkstations.dev", // Allow any subdomain from cloudworkstations.dev
-    ],
+    
   },
+  allowedDevOrigins: [
+    "https://*.cloudworkstations.dev", // Allow any subdomain from cloudworkstations.dev
+  ],
   images: {
     remotePatterns: [
       {
