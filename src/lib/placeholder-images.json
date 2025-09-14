@@ -1,3 +1,64 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "A bright, modern living room with yellow and blue accents.",
+      "imageUrl": "https://picsum.photos/seed/ph-hero/1920/1080",
+      "imageHint": "modern living room"
+    },
+    {
+      "id": "sofa-1",
+      "description": "A stylish blue sofa.",
+      "imageUrl": "https://picsum.photos/seed/ph-sofa1/500/500",
+      "imageHint": "blue sofa"
+    },
+    {
+      "id": "chair-1",
+      "description": "A comfortable yellow armchair.",
+      "imageUrl": "https://picsum.photos/seed/ph-chair1/500/500",
+      "imageHint": "yellow armchair"
+    },
+    {
+      "id": "table-1",
+      "description": "A minimalist wooden coffee table.",
+      "imageUrl": "https://picsum.photos/seed/ph-table1/500/500",
+      "imageHint": "coffee table"
+    },
+    {
+      "id": "bed-1",
+      "description": "A modern bed with a wooden frame.",
+      "imageUrl": "https://picsum.photos/seed/ph-bed1/500/500",
+      "imageHint": "modern bed"
+    },
+    {
+      "id": "dresser-1",
+      "description": "A white bedroom dresser.",
+      "imageUrl": "https://picsum.photos/seed/ph-dresser1/500/500",
+      "imageHint": "white dresser"
+    },
+    {
+      "id": "lamp-1",
+      "description": "A sleek bedside lamp.",
+      "imageUrl": "https://picsum.photos/seed/ph-lamp1/500/500",
+      "imageHint": "bedside lamp"
+    },
+    {
+      "id": "cutlery-1",
+      "description": "A set of golden cutlery.",
+      "imageUrl": "https://picsum.photos/seed/ph-cutlery1/500/500",
+      "imageHint": "golden cutlery"
+    },
+    {
+      "id": "plate-1",
+      "description": "A set of ceramic plates.",
+      "imageUrl": "https://picsum.photos/seed/ph-plate1/500/500",
+      "imageHint": "ceramic plates"
+    },
+    {
+      "id": "pot-1",
+      "description": "A modern cooking pot.",
+      "imageUrl": "https://picsum.photos/seed/ph-pot1/500/500",
+      "imageHint": "cooking pot"
+    }
+  ]
 }
