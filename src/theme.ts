@@ -14,10 +14,10 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#5c6bc0', // Using primary color from globals.css
+      main: '#FFB703', // Amarillo Selectivo
     },
     secondary: {
-      main: '#ab47bc', // Using secondary color from globals.css
+      main: '#023047', // Azul Prusiano
     },
     background: {
       default: '#ffffff',
@@ -30,7 +30,7 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '0.75rem', // Matching --radius from globals.css
+          borderRadius: '0.75rem', 
         },
       },
     },

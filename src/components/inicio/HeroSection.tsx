@@ -29,7 +29,7 @@ export function HeroSection() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
       <div
@@ -39,7 +39,7 @@ export function HeroSection() {
         }}
       >
         <div className="absolute top-20 left-10 w-32 h-32 bg-primary/30 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-secondary/30 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-20 right-10 w-48 h-48 bg-accent/30 rounded-full blur-2xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-primary/20 rounded-full blur-xl animate-pulse delay-500"></div>
       </div>
 
@@ -49,13 +49,13 @@ export function HeroSection() {
             className={`space-y-8 transform transition-all duration-1000 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"}`}
           >
             <div className="space-y-6">
-              <p className="text-primary-foreground/80 text-sm uppercase tracking-wider font-medium">
+              <p className="text-white/80 text-sm uppercase tracking-wider font-medium">
                 Los mejores precios para tu hogar
               </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Equipamos tu
                 <br />
-                <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text relative">
+                <span className="text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text relative">
                   Hogar Ideal
                   <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 300 12" fill="none">
                     <path
@@ -67,7 +67,7 @@ export function HeroSection() {
                     <defs>
                       <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" stopColor="hsl(var(--primary))" />
-                        <stop offset="100%" stopColor="hsl(var(--secondary))" />
+                        <stop offset="100%" stopColor="hsl(var(--accent))" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -80,13 +80,13 @@ export function HeroSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/productos">
-                <Button className="btn-primary group">
+                <Button className="btn-primary group bg-primary text-primary-foreground hover:bg-primary/90">
                   VER PRODUCTOS
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
               </Link>
               <Link href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                <Button className="btn-secondary bg-white/10 text-white hover:bg-white/20 border-white/20">
+                <Button className="btn-secondary bg-accent text-accent-foreground hover:bg-accent/90">
                   CONTACTAR
                 </Button>
               </Link>
@@ -94,7 +94,7 @@ export function HeroSection() {
             <div className="flex items-center space-x-6 pt-4">
               <div className="flex items-center space-x-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  <Star key={i} className="w-4 h-4 text-primary" fill="hsl(var(--primary))" />
                 ))}
               </div>
               <p className="text-sm text-gray-300">Más de 5,000+ clientes satisfechos</p>
@@ -119,10 +119,10 @@ export function HeroSection() {
             </div>
 
             <div className="floating-element -top-4 -right-4 bg-white/20 backdrop-blur-sm">
-              <Home className="w-6 h-6 text-primary-foreground/80" />
+              <Home className="w-6 h-6 text-white/80" />
             </div>
             <div className="floating-element -bottom-4 -left-4 animation-delay-500 bg-white/20 backdrop-blur-sm">
-              <Zap className="w-6 h-6 text-secondary" />
+              <Zap className="w-6 h-6 text-primary" />
             </div>
           </div>
         </div>
