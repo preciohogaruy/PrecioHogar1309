@@ -7,8 +7,26 @@ import { useCart } from "@/contexts/CartContext"
 import productsData from "@/contexts/productos.json"
 import { ProductCardGrid } from "./ProductCardGrid"
 import { ProductCardList } from "./ProductCardList"
+import { ProductHero } from "./ProductHero"
 
-const initialProducts = productsData.products.map((p) => ({
+type Product = {
+  id: string
+  slug: string
+  name: string
+  category: string
+  price: number
+  originalPrice: number | null
+  image: string
+  rating: number
+  reviews: number
+  isNew: boolean
+  isBestSeller: boolean
+  description: string
+  inStock: boolean
+  stockQuantity: number
+}
+
+const initialProducts: Product[] = productsData.products.map((p) => ({
   id: p.id,
   slug: p.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
   name: p.title,
@@ -17,7 +35,7 @@ const initialProducts = productsData.products.map((p) => ({
   originalPrice: null,
   image: p.image,
   rating: p.rating,
-  reviews: 0, // Default to 0, will be set on client
+  reviews: (p.id.charCodeAt(0) % 50) + 10, // Consistent random-like number
   isNew: p.badge === "Nuevo",
   isBestSeller: p.badge === "Más Vendido",
   description: p.description,
@@ -27,8 +45,6 @@ const initialProducts = productsData.products.map((p) => ({
 
 const categories = ["Todos", ...Array.from(new Set(productsData.products.map((p) => p.category)))]
 
-type Product = typeof initialProducts[0]
-
 export function ProductView() {
   const [selectedCategory, setSelectedCategory] = useState("Todos")
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
@@ -36,15 +52,6 @@ export function ProductView() {
   const [products, setProducts] = useState(initialProducts)
 
   const { addItem } = useCart()
-
-  useEffect(() => {
-    // This runs only on the client
-    setProducts(initialProducts.map(p => ({
-        ...p,
-        reviews: Math.floor(Math.random() * 200)
-    })));
-  }, []);
-
 
   const filteredProducts = products.filter((product) => {
     const matchesCategory = selectedCategory === "Todos" || product.category === selectedCategory
@@ -78,21 +85,10 @@ export function ProductView() {
 
   return (
     <>
-      <section className="pt-32 pb-16 bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50">
+      <ProductHero />
+      <section className="py-16 bg-gray-50 -mt-8 rounded-t-3xl relative z-10">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Nuestros{" "}
-              <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
-                Productos
-              </span>
-            </h1>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Descubre nuestra amplia selección de productos para el hogar con los mejores precios del mercado.
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-6">
+          <div className="max-w-4xl mx-auto space-y-6 mb-12">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
@@ -141,11 +137,7 @@ export function ProductView() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="py-16">
-        <div className="container mx-auto px-6">
           <div className="mb-8">
             <p className="text-gray-600">
               Mostrando {filteredProducts.length} de {products.length} productos
