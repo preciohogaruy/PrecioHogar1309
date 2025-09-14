@@ -20,16 +20,27 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50 min-h-screen flex items-center pt-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden text-white">
+      <div className="absolute inset-0 z-[-1]">
+        <Image
+          src="/banners/banner_1.png"
+          alt="Banner de productos para el hogar"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/50"></div>
+      </div>
+
       <div
         className="absolute inset-0 opacity-20"
         style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
+          transform: `translateY(${scrollY * 0.2}px)`,
         }}
       >
-        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-400/40 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-purple-400/40 rounded-full blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-indigo-300/30 rounded-full blur-lg animate-pulse delay-500"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-400/30 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-48 h-48 bg-purple-400/30 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-indigo-300/20 rounded-full blur-xl animate-pulse delay-500"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -38,13 +49,13 @@ export function HeroSection() {
             className={`space-y-8 transform transition-all duration-1000 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"}`}
           >
             <div className="space-y-6">
-              <p className="text-blue-600 text-sm uppercase tracking-wider font-medium">
+              <p className="text-blue-300 text-sm uppercase tracking-wider font-medium">
                 Los mejores precios para tu hogar
               </p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Equipamos tu
                 <br />
-                <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text relative">
+                <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text relative">
                   Hogar Ideal
                   <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 300 12" fill="none">
                     <path
@@ -55,15 +66,15 @@ export function HeroSection() {
                     />
                     <defs>
                       <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#2563eb" />
-                        <stop offset="100%" stopColor="#9333ea" />
+                        <stop offset="0%" stopColor="#60a5fa" />
+                        <stop offset="100%" stopColor="#c084fc" />
                       </linearGradient>
                     </defs>
                   </svg>
                 </span>
               </h1>
             </div>
-            <p className="text-gray-600 text-lg leading-relaxed max-w-md">
+            <p className="text-gray-200 text-lg leading-relaxed max-w-md">
               Descubre nuestra amplia gama de productos para el hogar con los mejores precios del mercado. Desde
               electrodomésticos hasta decoración, todo lo que necesitas en un solo lugar.
             </p>
@@ -75,7 +86,9 @@ export function HeroSection() {
                 </Button>
               </Link>
               <Link href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                <Button className="btn-secondary">CONTACTAR</Button>
+                <Button className="btn-secondary bg-white/10 text-white hover:bg-white/20 border-white/20">
+                  CONTACTAR
+                </Button>
               </Link>
             </div>
             <div className="flex items-center space-x-6 pt-4">
@@ -84,7 +97,7 @@ export function HeroSection() {
                   <Star key={i} className="w-4 h-4 fill-blue-400 text-blue-400" />
                 ))}
               </div>
-              <p className="text-sm text-gray-600">Más de 5,000+ clientes satisfechos</p>
+              <p className="text-sm text-gray-300">Más de 5,000+ clientes satisfechos</p>
             </div>
           </div>
 
@@ -98,18 +111,18 @@ export function HeroSection() {
                   alt="Productos para el hogar con los mejores precios"
                   width={600}
                   height={600}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 bg-white/10"
                   priority
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
 
-            <div className="floating-element -top-4 -right-4">
-              <Home className="w-6 h-6 text-blue-600" />
+            <div className="floating-element -top-4 -right-4 bg-white/20 backdrop-blur-sm">
+              <Home className="w-6 h-6 text-blue-300" />
             </div>
-            <div className="floating-element -bottom-4 -left-4 animation-delay-500">
-              <Zap className="w-6 h-6 text-purple-600" />
+            <div className="floating-element -bottom-4 -left-4 animation-delay-500 bg-white/20 backdrop-blur-sm">
+              <Zap className="w-6 h-6 text-purple-300" />
             </div>
           </div>
         </div>
