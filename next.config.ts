@@ -7,6 +7,11 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    allowedDevOrigins: [
+      "https://*.cloudworkstations.dev", // Allow any subdomain from cloudworkstations.dev
+    ],
+  },
   images: {
     remotePatterns: [
       {
