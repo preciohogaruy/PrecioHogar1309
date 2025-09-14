@@ -38,9 +38,9 @@ export function HeroSection() {
           transform: `translateY(${scrollY * 0.2}px)`,
         }}
       >
-        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-400/30 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-purple-400/30 rounded-full blur-2xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-indigo-300/20 rounded-full blur-xl animate-pulse delay-500"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary/30 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-48 h-48 bg-secondary/30 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-primary/20 rounded-full blur-xl animate-pulse delay-500"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -49,13 +49,13 @@ export function HeroSection() {
             className={`space-y-8 transform transition-all duration-1000 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"}`}
           >
             <div className="space-y-6">
-              <p className="text-blue-300 text-sm uppercase tracking-wider font-medium">
+              <p className="text-primary-foreground/80 text-sm uppercase tracking-wider font-medium">
                 Los mejores precios para tu hogar
               </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Equipamos tu
                 <br />
-                <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text relative">
+                <span className="text-transparent bg-gradient-to-r from-primary to-secondary bg-clip-text relative">
                   Hogar Ideal
                   <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 300 12" fill="none">
                     <path
@@ -66,8 +66,8 @@ export function HeroSection() {
                     />
                     <defs>
                       <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#60a5fa" />
-                        <stop offset="100%" stopColor="#c084fc" />
+                        <stop offset="0%" stopColor="hsl(var(--primary))" />
+                        <stop offset="100%" stopColor="hsl(var(--secondary))" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -94,7 +94,7 @@ export function HeroSection() {
             <div className="flex items-center space-x-6 pt-4">
               <div className="flex items-center space-x-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-blue-400 text-blue-400" />
+                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
               <p className="text-sm text-gray-300">Más de 5,000+ clientes satisfechos</p>
@@ -115,14 +115,14 @@ export function HeroSection() {
                   priority
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
 
             <div className="floating-element -top-4 -right-4 bg-white/20 backdrop-blur-sm">
-              <Home className="w-6 h-6 text-blue-300" />
+              <Home className="w-6 h-6 text-primary-foreground/80" />
             </div>
             <div className="floating-element -bottom-4 -left-4 animation-delay-500 bg-white/20 backdrop-blur-sm">
-              <Zap className="w-6 h-6 text-purple-300" />
+              <Zap className="w-6 h-6 text-secondary" />
             </div>
           </div>
         </div>
