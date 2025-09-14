@@ -6,7 +6,7 @@ import Image from "next/image"
 export function ProductHero() {
   return (
     <section className="relative pt-40 pb-20 text-center text-white overflow-hidden">
-      <div className="absolute inset-0 z-[-1]">
+      <div className="absolute inset-0 z-0">
         <Image
           src="/banners/banner_2.png"
           alt="Banner de la sección de productos"
