@@ -10,6 +10,17 @@ import { CategoriesSection } from "@/components/inicio/CategoriesSection"
 // import { FinalCtaSection } from "@/components/inicio/FinalCtaSection"
 import { NewsletterSection } from "@/components/inicio/NewsletterSection"
 import { Footer } from "@/components/layout/Footer"
+import dynamic from "next/dynamic"
+import { CircularProgress } from "@mui/material"
+
+const DynamicHeavyMap = dynamic(() => import("@/components/HeavyMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex justify-center items-center h-96">
+      <CircularProgress />
+    </div>
+  ),
+})
 
 export default function HomePage() {
   return (
@@ -19,6 +30,7 @@ export default function HomePage() {
         <HeroSection />
         <FeaturesSection />
         <CtaSection />
+        <DynamicHeavyMap />
         <ProductShowcaseSection />
         <CategoriesSection />
         {/* <FinalCtaSection /> */}
