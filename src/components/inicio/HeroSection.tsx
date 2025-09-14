@@ -55,7 +55,7 @@ export function HeroSection() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Equipamos tu
                 <br />
-                <span className="text-transparent bg-gradient-to-r from-primary to-secondary bg-clip-text relative">
+                <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text relative">
                   Hogar Ideal
                   <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 300 12" fill="none">
                     <path

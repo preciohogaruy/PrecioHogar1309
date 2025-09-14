@@ -29,7 +29,7 @@ export function ProductShowcaseSection() {
           <div className="relative group order-2 lg:order-1">
             <div className="aspect-square overflow-hidden rounded-3xl shadow-primary-lg">
               <Image
-                src="https://ik.imagekit.io/precioahorro/TiendaPrecioHogar/tr:w-600,h-600/product-flat-lay.jpg"
+                src="/banners/logo_horizontal.png"
                 alt="Productos modernos para el hogar con diseño elegante"
                 width={600}
                 height={600}
