@@ -23,7 +23,7 @@ export function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden text-white">
       <div className="absolute inset-0 z-[-1]">
         <Image
-          src="https://picsum.photos/seed/home-background/1920/1080"
+          src="/banners/banner_1.png"
           alt="Banner de productos para el hogar"
           fill
           className="object-cover"
@@ -116,13 +116,6 @@ export function HeroSection() {
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
-
-            <div className="floating-element hidden md:flex -top-4 -right-4 bg-white/20 backdrop-blur-sm">
-              <Home className="w-6 h-6 text-white/80" />
-            </div>
-            <div className="floating-element hidden md:flex -bottom-4 -left-4 animation-delay-500 bg-white/20 backdrop-blur-sm">
-              <Zap className="w-6 h-6 text-yellow-400" />
             </div>
           </div>
         </div>
