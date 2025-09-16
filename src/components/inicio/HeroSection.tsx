@@ -23,7 +23,7 @@ export function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden text-white">
       <div className="absolute inset-0 z-[-1]">
         <Image
-          src="/banners/banner_1.png"
+          src="https://picsum.photos/seed/hero-banner/1920/1080"
           alt="Banner de productos para el hogar"
           fill
           className="object-cover"

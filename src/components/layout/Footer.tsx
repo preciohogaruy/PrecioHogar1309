@@ -84,7 +84,7 @@ export function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2024 PrecioHogar. Todos los derechos reservados. Hecho con ❤️ para tu hogar.
+              © 2024 PrecioHogar. Todos los derechos reservados. Hecho por MAPRE.
             </p>
             <Link href="/admin" className="text-gray-500 hover:text-gray-300 text-xs transition-colors duration-300">
               Administración
