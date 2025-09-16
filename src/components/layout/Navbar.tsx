@@ -76,8 +76,8 @@ export function Navbar() {
               <Image
                 src="/logotienda_blanco.svg"
                 alt="PrecioHogar Logo"
-                width={20}
-                height={20}
+                width={40}
+                height={40}
                 className="w-5 h-5"
               />
             </div>
