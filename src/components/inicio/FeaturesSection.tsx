@@ -1,13 +1,11 @@
 
-import { Shield, Truck, CreditCard, Clock, Headphones, Heart } from "lucide-react"
+import { Shield, Truck, CreditCard, Clock } from "lucide-react"
 
 const features = [
   { icon: Shield, title: "CALIDAD\nGARANTIZADA", delay: "0ms" },
   { icon: Truck, title: "ENVÍO\nGRATIS", delay: "100ms" },
   { icon: CreditCard, title: "PAGO\nSEGURO", delay: "200ms" },
   { icon: Clock, title: "ENTREGA\nRÁPIDA", delay: "300ms" },
-  { icon: Headphones, title: "SOPORTE\n24/7", delay: "400ms" },
-  { icon: Heart, title: "HECHO CON\nAMOR", delay: "500ms" },
 ]
 
 export function FeaturesSection() {
@@ -23,7 +21,7 @@ export function FeaturesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {features.map((feature, index) => (
             <div
               key={index}
