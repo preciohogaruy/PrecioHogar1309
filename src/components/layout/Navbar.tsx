@@ -108,7 +108,7 @@ export function Navbar() {
               </button>
 
               <div
-                className={`absolute top-full left-0 mt-2 w-80 bg-white/98 backdrop-blur-xl rounded-2xl shadow-xl shadow-blue-500/10 border border-blue-100/50 transition-all duration-300 ${
+                className={`absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl shadow-blue-500/10 border border-blue-100/50 transition-all duration-300 ${
                   productsDropdownOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                 }`}
                 onMouseEnter={() => setProductsDropdownOpen(true)}
@@ -232,3 +232,5 @@ export function Navbar() {
     </nav>
   )
 }
+
+    
