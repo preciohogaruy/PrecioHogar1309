@@ -1,17 +1,14 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-model Category {
-  id          Int       @id @default(autoincrement())
-  name        String    @unique
-  description String
-  products    Product[]
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model Product {
@@ -21,9 +18,20 @@ model Product {
   description String
   price       Float
   quantity    Int
-  image       String
+  image       String?
   rating      Float
   badge       String
   category    Category @relation(fields: [categoryId], references: [id])
   categoryId  Int
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  description String?
+  tag         String    @unique
+  products    Product[]
 }

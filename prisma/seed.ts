@@ -16,11 +16,13 @@ async function main() {
       update: {
         name: category.name,
         description: category.description,
+        tag: category.tag,
       },
       create: {
         id: category.id,
         name: category.name,
         description: category.description,
+        tag: category.tag,
       },
     });
   }

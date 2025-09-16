@@ -1,0 +1,7 @@
+{
+    "IDX.agenticWorkspace": true,
+    "IDX.aI.enableInlineCompletion": true,
+    "IDX.aI.enableCodebaseIndexing": true,
+    "npm.packageManager": "bun",
+    "npm.scriptRunner": "bun"
+}

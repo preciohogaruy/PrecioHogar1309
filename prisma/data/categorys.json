@@ -3,42 +3,50 @@
     {
       "id": 1,
       "name": "Baño",
-      "description": "Accesorios, organización y productos."
+      "description": "Accesorios, organización y productos.",
+      "tag": "bano"
     },
     {
       "id": 2,
       "name": "Dormitorio",
-      "description": "Ropa de cama, almohadas y decoración."
+      "description": "Ropa de cama, almohadas y decoración.",
+      "tag": "dormitorio"
     },
     {
       "id": 3,
       "name": "Herramientas",
-      "description": "Las mejores herramientas para tus proyectos."
+      "description": "Las mejores herramientas para tus proyectos.",
+      "tag": "herramientas"
     },
     {
       "id": 4,
       "name": "Otros",
-      "description": "Descubre una variedad de productos."
+      "description": "Descubre una variedad de productos.",
+      "tag": "otros"
     },
     {
       "id": 5,
       "name": "Cuidado Personal",
-      "description": "Productos para tu bienestar y belleza."
+      "description": "Productos para tu bienestar y belleza.",
+      "tag": "cuidado-personal"
     },
     {
       "id": 6,
       "name": "Hogar",
-      "description": "Todo lo que necesitas para tu casa."
+      "description": "Todo lo que necesitas para tu casa.",
+      "tag": "hogar"
     },
     {
       "id": 7,
       "name": "Cocina",
-      "description": "Electrodomésticos, utensilios y accesorios."
+      "description": "Electrodomésticos, utensilios y accesorios.",
+      "tag": "cocina"
     },
     {
       "id": 8,
       "name": "Tecnologia",
-      "description": "Lo último en tecnología y gadgets."
+      "description": "Lo último en tecnología y gadgets.",
+      "tag": "tecnologia"
     }
   ]
 }
