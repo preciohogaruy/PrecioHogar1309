@@ -74,7 +74,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center space-x-2 group cursor-pointer">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 shadow-lg">
               <Image
-                src="/logotienda.png"
+                src="/logotienda_blanco.svg"
                 alt="PrecioHogar Logo"
                 width={20}
                 height={20}
