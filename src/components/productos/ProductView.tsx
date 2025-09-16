@@ -5,7 +5,6 @@ import { ProductCardList } from "./ProductCardList"
 import { getProducts } from "@/lib/products"
 import { ProductFilters } from "./ProductFilters"
 import { PaginationComponent } from "./PaginationComponent"
-import type { Category } from "@prisma/client"
 
 export type SearchParams = {
   page?: string
