@@ -1,5 +1,7 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+
+import type {NextConfig} from 'next';
+
+const nextConfig: NextConfig = {
   /* config options here */
   typescript: {
     ignoreBuildErrors: true,
@@ -7,12 +9,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  experimental: {
-    
-  },
-  allowedDevOrigins: [
-    "https://*.cloudworkstations.dev", // Allow any subdomain from cloudworkstations.dev
-  ],
   images: {
     remotePatterns: [
       {
@@ -38,9 +34,11 @@ const nextConfig = {
         hostname: 'ik.imagekit.io',
         port: '',
         pathname: '/**',
-      },
+      }
     ],
   },
+  allowedDevOrigins: ['https://*.cloudworkstations.dev'],
+  serverExternalPackages: ['@genkit-ai/core', '@genkit-ai/googleai'],
 };
 
 export default nextConfig;

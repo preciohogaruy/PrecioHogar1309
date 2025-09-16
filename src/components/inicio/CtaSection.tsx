@@ -1,28 +1,17 @@
 
-"use client"
-
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ShoppingBag, Star } from "lucide-react"
 
 import { getProducts } from "@/lib/products"
 import { Button } from "@/components/ui/button"
-import { useEffect, useState } from "react"
 import type { Product, Category } from "@prisma/client"
 
 type ProductWithCategory = Product & { category: Category }
 
-export function CtaSection() {
-  const [products, setProducts] = useState<ProductWithCategory[]>([])
-
-  useEffect(() => {
-    async function fetchProducts() {
-      const productsData = await getProducts()
-      const duplicatedProducts = [...productsData, ...productsData] as ProductWithCategory[]
-      setProducts(duplicatedProducts)
-    }
-    fetchProducts()
-  }, [])
+export async function CtaSection() {
+  const productsData = await getProducts()
+  const products = [...productsData, ...productsData] as ProductWithCategory[]
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("es-AR", {
