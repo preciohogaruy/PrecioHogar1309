@@ -1,9 +1,11 @@
 
+"use client"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ShoppingBag, Star, Heart, ArrowRight } from "lucide-react"
 import type { Product as ProductType, Category } from "@prisma/client"
+import { useCart } from "@/contexts/CartContext"
 
 type Product = ProductType & { category: Category, reviews?: number, originalPrice?: number | null }
 
@@ -32,10 +34,26 @@ const getBadgeClass = (badge: string) => {
     }
   };
 
-export function ProductCardGrid({ product, formatPrice, handleAddToCart }: ProductCardGridProps) {
+export function ProductCardGrid({ product, formatPrice }: ProductCardGridProps) {
     const slug = product.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
     const reviews = product.reviews || Math.floor(Math.random() * 200);
     const isInStock = product.quantity > 0;
+    const { addItem } = useCart()
+
+    const handleAddToCart = () => {
+      if (!isInStock) return
+      addItem({
+        id: product.productId,
+        slug: slug,
+        name: product.title,
+        price: product.price,
+        image: product.image || '',
+        category: product.category.name,
+        inStock: isInStock,
+        stockQuantity: product.quantity,
+      })
+    }
+
   return (
     <div className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl shadow-blue-200/50 transition-all duration-500 overflow-hidden">
       <div className="relative">
@@ -73,7 +91,7 @@ export function ProductCardGrid({ product, formatPrice, handleAddToCart }: Produ
         <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
           <Button
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
-            onClick={() => handleAddToCart(product)}
+            onClick={handleAddToCart}
             disabled={!isInStock}
           >
             <ShoppingBag className="w-4 h-4 mr-2" />

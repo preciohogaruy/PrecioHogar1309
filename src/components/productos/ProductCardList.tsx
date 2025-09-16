@@ -1,9 +1,11 @@
 
+"use client"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ShoppingBag, Star, ArrowRight } from "lucide-react"
 import type { Product as ProductType, Category } from "@prisma/client"
+import { useCart } from "@/contexts/CartContext"
 
 type Product = ProductType & { category: Category, reviews?: number, originalPrice?: number | null }
 
@@ -32,10 +34,26 @@ const getBadgeClass = (badge: string) => {
     }
   };
 
-export function ProductCardList({ product, formatPrice, handleAddToCart }: ProductCardListProps) {
+export function ProductCardList({ product, formatPrice }: ProductCardListProps) {
     const slug = product.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
     const reviews = product.reviews || Math.floor(Math.random() * 200);
     const isInStock = product.quantity > 0;
+    const { addItem } = useCart()
+
+    const handleAddToCart = () => {
+      if (!isInStock) return
+      addItem({
+        id: product.productId,
+        slug: slug,
+        name: product.title,
+        price: product.price,
+        image: product.image || '',
+        category: product.category.name,
+        inStock: isInStock,
+        stockQuantity: product.quantity,
+      })
+    }
+
   return (
     <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
       <div className="flex flex-col md:flex-row">
@@ -109,7 +127,7 @@ export function ProductCardList({ product, formatPrice, handleAddToCart }: Produ
             <div className="flex gap-3">
               <Button
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
-                onClick={() => handleAddToCart(product)}
+                onClick={handleAddToCart}
                 disabled={!isInStock}
               >
                 <ShoppingBag className="w-4 h-4 mr-2" />
