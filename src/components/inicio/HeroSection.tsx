@@ -55,19 +55,19 @@ export function HeroSection() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Equipamos tu
                 <br />
-                <span className="text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text relative">
+                <span className="text-transparent bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text relative">
                   Hogar Ideal
                   <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 300 12" fill="none">
                     <path
                       d="M0 6C50 2 100 10 150 6C200 2 250 10 300 6"
-                      stroke="url(#gradient)"
+                      stroke="url(#gradient-hero)"
                       strokeWidth="2"
                       className="animate-draw"
                     />
                     <defs>
-                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="hsl(var(--primary))" />
-                        <stop offset="100%" stopColor="hsl(var(--accent))" />
+                      <linearGradient id="gradient-hero" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="hsl(var(--accent))" />
+                        <stop offset="100%" stopColor="#FB8500" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -80,13 +80,13 @@ export function HeroSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/productos">
-                <Button className="btn-primary group bg-primary text-primary-foreground hover:bg-primary/90">
+                <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold group">
                   VER PRODUCTOS
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
               </Link>
               <Link href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                <Button className="btn-secondary bg-accent text-accent-foreground hover:bg-accent/90">
+                <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold">
                   CONTACTAR
                 </Button>
               </Link>
@@ -94,7 +94,7 @@ export function HeroSection() {
             <div className="flex items-center space-x-6 pt-4">
               <div className="flex items-center space-x-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-primary" fill="hsl(var(--primary))" />
+                  <Star key={i} className="w-4 h-4 text-yellow-400" fill="hsl(var(--accent))" />
                 ))}
               </div>
               <p className="text-sm text-gray-300">Más de 5,000+ clientes satisfechos</p>
@@ -122,7 +122,7 @@ export function HeroSection() {
               <Home className="w-6 h-6 text-white/80" />
             </div>
             <div className="floating-element -bottom-4 -left-4 animation-delay-500 bg-white/20 backdrop-blur-sm">
-              <Zap className="w-6 h-6 text-primary" />
+              <Zap className="w-6 h-6 text-accent" />
             </div>
           </div>
         </div>

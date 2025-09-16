@@ -49,24 +49,24 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navLinkClasses = "nav-link group flex items-center space-x-2"
+  const navLinkClasses = "nav-link group flex items-center space-x-2 text-gray-800"
   const dropdownItemClasses = "dropdown-item group"
 
   const productCategories = [
-    { href: "#cocina", icon: Utensils, title: "Cocina", desc: "Electrodomésticos y utensilios", color: "blue" },
-    { href: "#dormitorio", icon: Bed, title: "Dormitorio", desc: "Ropa de cama y decoración", color: "purple" },
-    { href: "#baño", icon: Bath, title: "Baño", desc: "Accesorios y organización", color: "blue" },
-    { href: "#sala", icon: Sofa, title: "Sala", desc: "Muebles y decoración", color: "purple" },
-    { href: "#tecnologia", icon: Wifi, title: "Tecnología", desc: "Smart home y gadgets", color: "blue" },
-    { href: "#iluminacion", icon: Lightbulb, title: "Iluminación", desc: "Lámparas y sistemas LED", color: "purple" },
+    { href: "#cocina", icon: Utensils, title: "Cocina", desc: "Electrodomésticos y utensilios", color: "blue-600" },
+    { href: "#dormitorio", icon: Bed, title: "Dormitorio", desc: "Ropa de cama y decoración", color: "purple-600" },
+    { href: "#baño", icon: Bath, title: "Baño", desc: "Accesorios y organización", color: "blue-600" },
+    { href: "#sala", icon: Sofa, title: "Sala", desc: "Muebles y decoración", color: "purple-600" },
+    { href: "#tecnologia", icon: Wifi, title: "Tecnología", desc: "Smart home y gadgets", color: "blue-600" },
+    { href: "#iluminacion", icon: Lightbulb, title: "Iluminación", desc: "Lámparas y sistemas LED", color: "purple-600" },
   ];
 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         scrollY > 50
-          ? "bg-white/98 backdrop-blur-xl border-b border-blue-100/50 shadow-lg shadow-blue-500/5"
-          : "bg-white/95 backdrop-blur-md border-b border-blue-100"
+          ? "bg-white/98 backdrop-blur-xl border-b border-gray-100/50 shadow-lg shadow-gray-500/5"
+          : "bg-white/95 backdrop-blur-md border-b border-gray-100"
       }`}
     >
       <div className="container mx-auto px-6">
@@ -88,7 +88,7 @@ export function Navbar() {
 
           <div className="hidden lg:flex items-center space-x-8">
             <Link href="/" className={navLinkClasses}>
-              <Home className="w-4 h-4 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
+              <Home className="w-4 h-4 text-primary group-hover:scale-110 transition-transform duration-300" />
               <span>INICIO</span>
               <span className="nav-underline"></span>
             </Link>
@@ -99,7 +99,7 @@ export function Navbar() {
                 onMouseEnter={() => setProductsDropdownOpen(true)}
                 onMouseLeave={() => setProductsDropdownOpen(false)}
               >
-                <Package className="w-4 h-4 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
+                <Package className="w-4 h-4 text-primary group-hover:scale-110 transition-transform duration-300" />
                 <span>PRODUCTOS</span>
                 <ChevronDown
                   className={`w-3 h-3 text-gray-400 transition-transform duration-300 ${productsDropdownOpen ? "rotate-180" : ""}`}
@@ -118,9 +118,9 @@ export function Navbar() {
                   <div className="grid grid-cols-2 gap-4">
                     {productCategories.map((cat) => (
                       <a key={cat.title} href={cat.href} className={`${dropdownItemClasses}`}>
-                        <cat.icon className={`w-5 h-5 text-${cat.color}-600`} />
+                        <cat.icon className={`w-5 h-5 text-${cat.color}`} />
                         <div>
-                          <div className={`font-medium text-gray-800 group-hover:text-${cat.color}-600`}>{cat.title}</div>
+                          <div className={`font-medium text-gray-800 group-hover:text-${cat.color}`}>{cat.title}</div>
                           <div className="text-xs text-gray-500">{cat.desc}</div>
                         </div>
                       </a>
@@ -139,15 +139,15 @@ export function Navbar() {
 
           <div className="flex items-center space-x-4">
             <button className="nav-icon-btn group hidden sm:flex">
-              <Search className="w-5 h-5 text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all duration-300" />
+              <Search className="w-5 h-5 text-gray-600 group-hover:text-primary group-hover:scale-110 transition-all duration-300" />
             </button>
             <button className="nav-icon-btn group hidden sm:flex">
-              <User className="w-5 h-5 text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all duration-300" />
+              <User className="w-5 h-5 text-gray-600 group-hover:text-primary group-hover:scale-110 transition-all duration-300" />
             </button>
             <button className="nav-icon-btn group relative" onClick={toggleCart}>
-              <ShoppingBag className="w-5 h-5 text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all duration-300" />
+              <ShoppingBag className="w-5 h-5 text-gray-600 group-hover:text-primary group-hover:scale-110 transition-all duration-300" />
               {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 w-5 h-5 bg-blue-600 text-white text-xs rounded-full flex items-center justify-center font-medium shadow-lg border-2 border-white">
+                <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-white text-xs rounded-full flex items-center justify-center font-medium shadow-lg border-2 border-white">
                   {totalItems}
                 </span>
               )}
@@ -168,7 +168,7 @@ export function Navbar() {
               <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon" className="nav-icon-btn group">
-                    <Menu className="w-6 h-6 text-gray-600 group-hover:text-blue-600 transition-colors duration-300" />
+                    <Menu className="w-6 h-6 text-gray-600 group-hover:text-primary transition-colors duration-300" />
                   </Button>
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[300px]">
@@ -190,19 +190,19 @@ export function Navbar() {
                   </SheetHeader>
                   <div className="py-6 space-y-4">
                      <Link href="/" className="mobile-nav-item group" onClick={() => setMobileMenuOpen(false)}>
-                        <Home className="w-5 h-5 text-blue-600" />
+                        <Home className="w-5 h-5 text-primary" />
                         <span>Inicio</span>
                       </Link>
                       <Link href="/productos" className="mobile-nav-item group" onClick={() => setMobileMenuOpen(false)}>
-                        <Package className="w-5 h-5 text-blue-600" />
+                        <Package className="w-5 h-5 text-primary" />
                         <span>Productos</span>
                       </Link>
                       <a href="#about" className="mobile-nav-item group" onClick={() => setMobileMenuOpen(false)}>
-                        <Award className="w-5 h-5 text-blue-600" />
+                        <Award className="w-5 h-5 text-primary" />
                         <span>Nosotros</span>
                       </a>
                       <a href="#contact" className="mobile-nav-item group" onClick={() => setMobileMenuOpen(false)}>
-                        <Mail className="w-5 h-5 text-blue-600" />
+                        <Mail className="w-5 h-5 text-primary" />
                         <span>Contacto</span>
                       </a>
                       <div className="pt-4 border-t border-blue-100">
