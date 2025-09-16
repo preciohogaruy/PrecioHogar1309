@@ -8,8 +8,8 @@ interface ProductTableProps {
   products: Product[]
   formatPrice: (price: number) => string
   openModal: (product: Product) => void
-  toggleProductStatus: (id: string) => void
-  deleteProduct: (id: string) => void
+  toggleProductStatus: (id: number) => void
+  deleteProduct: (id: number) => void
 }
 
 export function ProductTable({
@@ -51,14 +51,14 @@ export function ProductTable({
                     <div className="flex-shrink-0 h-12 w-12">
                       <Image
                         src={product.image || "/placeholder.svg"}
-                        alt={product.name}
+                        alt={product.title}
                         width={48}
                         height={48}
                         className="h-12 w-12 rounded-lg object-cover"
                       />
                     </div>
                     <div className="ml-4">
-                      <div className="text-sm font-medium text-gray-900 max-w-xs truncate">{product.name}</div>
+                      <div className="text-sm font-medium text-gray-900 max-w-xs truncate">{product.title}</div>
                       <div className="flex items-center space-x-2 mt-1">
                         {product.isNew && (
                           <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
@@ -75,7 +75,7 @@ export function ProductTable({
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className="text-sm text-gray-900">{product.category}</span>
+                  <span className="text-sm text-gray-900">{product.category.name}</span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-900">{formatPrice(product.price)}</div>
@@ -85,10 +85,10 @@ export function ProductTable({
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
-                    <span className={`text-sm ${product.inStock ? "text-gray-900" : "text-red-600"}`}>
-                      {product.stockQuantity}
+                    <span className={`text-sm ${product.quantity > 0 ? "text-gray-900" : "text-red-600"}`}>
+                      {product.quantity}
                     </span>
-                    {!product.inStock && (
+                    {!(product.quantity > 0) && (
                       <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
                         Agotado
                       </span>

@@ -1,52 +1,44 @@
 {
   "categorys": [
     {
-      "id": 1,
       "name": "Baño",
       "description": "Accesorios, organización y productos.",
-      "tag": "bano"
+      "tag": "BAN"
     },
     {
-      "id": 2,
       "name": "Dormitorio",
       "description": "Ropa de cama, almohadas y decoración.",
-      "tag": "dormitorio"
+      "tag": "DOR"
     },
     {
-      "id": 3,
       "name": "Herramientas",
       "description": "Las mejores herramientas para tus proyectos.",
-      "tag": "herramientas"
+      "tag": "HER"
     },
     {
-      "id": 4,
       "name": "Otros",
       "description": "Descubre una variedad de productos.",
-      "tag": "otros"
+      "tag": "OTR"
     },
     {
-      "id": 5,
       "name": "Cuidado Personal",
       "description": "Productos para tu bienestar y belleza.",
-      "tag": "cuidado-personal"
+      "tag": "CPE"
     },
     {
-      "id": 6,
       "name": "Hogar",
       "description": "Todo lo que necesitas para tu casa.",
-      "tag": "hogar"
+      "tag": "HOG"
     },
     {
-      "id": 7,
       "name": "Cocina",
       "description": "Electrodomésticos, utensilios y accesorios.",
-      "tag": "cocina"
+      "tag": "COC"
     },
     {
-      "id": 8,
       "name": "Tecnologia",
       "description": "Lo último en tecnología y gadgets.",
-      "tag": "tecnologia"
+      "tag": "TEC"
     }
   ]
 }

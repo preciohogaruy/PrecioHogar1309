@@ -30,9 +30,10 @@ export function ProductModal({
     originalPrice: "",
     description: "",
     stockQuantity: "",
+    badge: "Nuevo",
     isNew: false,
     isBestSeller: false,
-    inStock: true,
+    isActive: true,
     image: "",
   })
 
@@ -40,29 +41,31 @@ export function ProductModal({
     if (isOpen) {
       if (editingProduct) {
         setFormData({
-          name: editingProduct.name,
-          category: editingProduct.category,
+          name: editingProduct.title,
+          category: editingProduct.category.name,
           price: editingProduct.price.toString(),
           originalPrice: editingProduct.originalPrice?.toString() || "",
           description: editingProduct.description,
-          stockQuantity: editingProduct.stockQuantity.toString(),
+          stockQuantity: editingProduct.quantity.toString(),
+          badge: editingProduct.badge,
           isNew: editingProduct.isNew,
           isBestSeller: editingProduct.isBestSeller,
-          inStock: editingProduct.inStock,
-          image: editingProduct.image,
+          isActive: editingProduct.isActive,
+          image: editingProduct.image || "",
         })
       } else {
         setFormData({
-          name: "",
-          category: "Hogar",
-          price: "",
-          originalPrice: "",
-          description: "",
-          stockQuantity: "",
-          isNew: false,
-          isBestSeller: false,
-          inStock: true,
-          image: "https://ik.imagekit.io/precioahorro/TiendaPrecioHogar/tr:w-200,h-200/placeholder.jpg",
+            name: "",
+            category: "Hogar",
+            price: "",
+            originalPrice: "",
+            description: "",
+            stockQuantity: "",
+            badge: "Nuevo",
+            isNew: false,
+            isBestSeller: false,
+            isActive: true,
+            image: "https://ik.imagekit.io/precioahorro/TiendaPrecioHogar/tr:w-200,h-200/placeholder.jpg",
         })
       }
     }
@@ -75,12 +78,22 @@ export function ProductModal({
       showNotification("error", "Por favor completa todos los campos obligatorios")
       return
     }
+    
+    let badge = "";
+    if (formData.isNew) badge = "Nuevo";
+    if (formData.isBestSeller) badge = "Más Vendido";
+
 
     const productData = {
-      ...formData,
-      price: Number.parseInt(formData.price),
-      originalPrice: formData.originalPrice ? Number.parseInt(formData.originalPrice) : null,
-      stockQuantity: Number.parseInt(formData.stockQuantity) || 0,
+      name: formData.name,
+      category: formData.category,
+      price: Number.parseFloat(formData.price),
+      originalPrice: formData.originalPrice ? Number.parseFloat(formData.originalPrice) : null,
+      quantity: Number.parseInt(formData.stockQuantity) || 0,
+      description: formData.description,
+      badge: badge,
+      image: formData.image,
+      isActive: formData.isActive,
     }
 
     if (editingProduct) {
@@ -128,7 +141,7 @@ export function ProductModal({
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                   required
                 >
-                  {categories.slice(1).map((category) => (
+                  {categories.filter(c => c !== 'Todos').map((category) => (
                     <option key={category} value={category}>
                       {category}
                     </option>
@@ -175,7 +188,7 @@ export function ProductModal({
                   <input
                     type="checkbox"
                     checked={formData.isNew}
-                    onChange={(e) => setFormData({ ...formData, isNew: e.target.checked })}
+                    onChange={(e) => setFormData({ ...formData, isNew: e.target.checked, isBestSeller: e.target.checked ? false: formData.isBestSeller })}
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   />
                   <span className="text-sm text-gray-700">Producto Nuevo</span>
@@ -185,7 +198,7 @@ export function ProductModal({
                   <input
                     type="checkbox"
                     checked={formData.isBestSeller}
-                    onChange={(e) => setFormData({ ...formData, isBestSeller: e.target.checked })}
+                    onChange={(e) => setFormData({ ...formData, isBestSeller: e.target.checked, isNew: e.target.checked ? false: formData.isNew })}
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   />
                   <span className="text-sm text-gray-700">Más Vendido</span>
@@ -194,11 +207,11 @@ export function ProductModal({
                 <label className="flex items-center space-x-2">
                   <input
                     type="checkbox"
-                    checked={formData.inStock}
-                    onChange={(e) => setFormData({ ...formData, inStock: e.target.checked })}
+                    checked={formData.isActive}
+                    onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   />
-                  <span className="text-sm text-gray-700">En Stock</span>
+                  <span className="text-sm text-gray-700">Activo</span>
                 </label>
               </div>
 

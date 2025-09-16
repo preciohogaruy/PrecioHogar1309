@@ -2,9 +2,10 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { categories } from "@/lib/categorias";
+import { getCategories, type CategoryWithIcon } from "@/lib/categorias";
 
-export function CategoriesSection() {
+export async function CategoriesSection() {
+  const categories = await getCategories();
   return (
     <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
       <div className="container mx-auto px-6 text-center">

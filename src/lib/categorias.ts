@@ -1,42 +1,31 @@
+import prisma from './prisma'
+import type { Category } from "@prisma/client";
+import {
+    Utensils,
+    Bed,
+    Bath,
+    Sofa,
+    Wifi,
+    Lightbulb,
+    type LucideIcon,
+  } from "lucide-react";
+  
+  export type CategoryWithIcon = Category & { icon: LucideIcon };
 
-'use client';
+export async function getCategories(): Promise<CategoryWithIcon[]> {
+  const categories = await prisma.category.findMany()
 
-import { Utensils, Bed, Bath, Sofa, Laptop, HeartPulse, Wrench, MoreHorizontal, LucideIcon } from "lucide-react";
-import productsData from "@/contexts/productos.json";
+  const iconMap: { [key: string]: LucideIcon } = {
+    Cocina: Utensils,
+    Dormitorio: Bed,
+    Baño: Bath,
+    Sala: Sofa,
+    Tecnología: Wifi,
+    Iluminación: Lightbulb,
+  };
 
-export interface Category {
-  name: string;
-  icon: LucideIcon;
-  description: string;
+  return categories.map(category => ({
+    ...category,
+    icon: iconMap[category.name] || Utensils,
+  }))
 }
-
-const iconMap: Record<string, LucideIcon> = {
-  "Hogar": Sofa,
-  "Tecnologia": Laptop,
-  "Cuidado Personal": HeartPulse,
-  "Herramientas": Wrench,
-  "Otros": MoreHorizontal,
-  "Cocina": Utensils,
-  "Dormitorio": Bed,
-  "Baño": Bath,
-};
-
-const descriptionMap: Record<string, string> = {
-  "Hogar": "Todo lo que necesitas para tu casa.",
-  "Tecnologia": "Lo último en tecnología y gadgets.",
-  "Cuidado Personal": "Productos para tu bienestar y belleza.",
-  "Herramientas": "Las mejores herramientas para tus proyectos.",
-  "Otros": "Descubre una variedad de productos.",
-  "Cocina": "Electrodomésticos, utensilios y accesorios.",
-  "Dormitorio": "Ropa de cama, almohadas y decoración.",
-  "Baño": "Accesorios, organización y productos.",
-};
-
-
-const uniqueCategories = [...new Set(productsData.products.map(p => p.category))];
-
-export const categories: Category[] = uniqueCategories.map(name => ({
-  name: name,
-  icon: iconMap[name] || MoreHorizontal,
-  description: descriptionMap[name] || "Descubre nuestros productos."
-}));

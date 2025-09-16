@@ -2,42 +2,34 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { getProducts } from "@/lib/products"
+import { getCategories } from "@/lib/categorias"
+import type { Product as ProductType, Category } from "@prisma/client"
 
-import { useCart } from "@/contexts/CartContext"
-import productsData from "@/contexts/productos.json"
 import { AdminHeader } from "@/components/admin/AdminHeader"
 import { Notification } from "@/components/admin/Notification"
 import { ProductControls } from "@/components/admin/ProductControls"
 import { ProductTable } from "@/components/admin/ProductTable"
 import { ProductModal } from "@/components/admin/ProductModal"
 
-// Initial products data from JSON file
-const initialProducts = productsData.products.map((p, index) => ({
-  id: p.id,
-  slug: p.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
-  name: p.title,
-  category: p.category,
-  price: p.price,
-  originalPrice: null, // JSON doesn't have originalPrice
-  image: p.image,
-  rating: p.rating,
-  reviews: (p.id.charCodeAt(0) % 50) + 10, // Consistent random-like number
-  isNew: p.badge === 'Nuevo',
-  isBestSeller: p.badge === 'Más Vendido',
-  description: p.description,
-  inStock: p.quantity > 0,
-  stockQuantity: p.quantity,
-  isActive: true,
-}))
+// Extend ProductType to include category name
+export type ProductWithCategory = ProductType & { category: { name: string } }
 
-const categories = ["Todos", ...Array.from(new Set(productsData.products.map((p) => p.category)))]
+export type Product = ProductWithCategory & {
+  slug: string
+  originalPrice: number | null
+  reviews: number
+  isNew: boolean
+  isBestSeller: boolean
+}
 
-export type Product = (typeof initialProducts)[0]
 export type NotificationType = { type: "success" | "error"; message: string }
 
 export default function AdminPage() {
-  const [products, setProducts] = useState<Product[]>(initialProducts)
+  const [products, setProducts] = useState<Product[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
+  const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("Todos")
   const [showInactive, setShowInactive] = useState(false)
@@ -45,9 +37,36 @@ export default function AdminPage() {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null)
   const [notification, setNotification] = useState<NotificationType | null>(null)
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [productsData, categoriesData] = await Promise.all([getProducts(), getCategories()])
+
+        const formattedProducts = productsData.map((p) => ({
+          ...p,
+          slug: p.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
+          originalPrice: null, // This can be adjusted if your DB supports it
+          reviews: Math.floor(Math.random() * 200),
+          isNew: p.badge === "Nuevo",
+          isBestSeller: p.badge === "Más Vendido",
+          category: { name: p.category.name }, // Ensure category object with name is passed
+        }))
+
+        setProducts(formattedProducts)
+        setCategories(categoriesData)
+      } catch (error) {
+        console.error("Failed to fetch data:", error)
+        showNotification("error", "Error al cargar los datos.")
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchData()
+  }, [])
+
   const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesCategory = selectedCategory === "Todos" || product.category === selectedCategory
+    const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesCategory = selectedCategory === "Todos" || product.category.name === selectedCategory
     const matchesStatus = showInactive || product.isActive
     return matchesSearch && matchesCategory && matchesStatus
   })
@@ -75,34 +94,40 @@ export default function AdminPage() {
   }
 
   const handleAddProduct = (formData: any) => {
-    const newProduct = {
+    const newProduct: Product = {
       ...formData,
-      id: `NEW-${Math.random().toString(36).substr(2, 9)}`,
+      id: Math.floor(Math.random() * 10000), // temp id
+      productId: `NEW-${Math.random().toString(36).substr(2, 9)}`,
       slug: generateSlug(formData.name),
       rating: 4.5,
       reviews: 0,
       isActive: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      title: formData.name, // Ensure title is set
+      category: { name: formData.category },
     }
     setProducts([...products, newProduct])
     showNotification("success", "Producto agregado exitosamente")
     closeModal()
+    // Here you would typically call an API to save the new product to the database
   }
 
   const handleUpdateProduct = (formData: any) => {
     if (!editingProduct) return
-    setProducts(
-      products.map((p) =>
-        p.id === editingProduct.id
-          ? {
-              ...p,
-              ...formData,
-              slug: generateSlug(formData.name),
-            }
-          : p,
-      ),
-    )
+
+    const updatedProduct: Product = {
+      ...editingProduct,
+      ...formData,
+      title: formData.name,
+      slug: generateSlug(formData.name),
+      category: { name: formData.category },
+    }
+
+    setProducts(products.map((p) => (p.id === editingProduct.id ? updatedProduct : p)))
     showNotification("success", "Producto actualizado exitosamente")
     closeModal()
+    // Here you would typically call an API to update the product in the database
   }
 
   const openModal = (product?: Product) => {
@@ -115,17 +140,29 @@ export default function AdminPage() {
     setEditingProduct(null)
   }
 
-  const toggleProductStatus = (id: string) => {
+  const toggleProductStatus = (id: number) => {
     setProducts(products.map((p) => (p.id === id ? { ...p, isActive: !p.isActive } : p)))
     const product = products.find((p) => p.id === id)
     showNotification("success", `Producto ${product?.isActive ? "desactivado" : "activado"} exitosamente`)
+    // API call to update status
   }
 
-  const deleteProduct = (id: string) => {
+  const deleteProduct = (id: number) => {
     if (confirm("¿Estás seguro de que quieres eliminar este producto?")) {
       setProducts(products.filter((p) => p.id !== id))
       showNotification("success", "Producto eliminado exitosamente")
+      // API call to delete product
     }
+  }
+
+  const categoryNames = ["Todos", ...categories.map((c) => c.name)]
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p>Cargando panel de administración...</p>
+      </div>
+    )
   }
 
   return (
@@ -139,7 +176,7 @@ export default function AdminPage() {
           setSearchTerm={setSearchTerm}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
-          categories={categories}
+          categories={categoryNames}
           showInactive={showInactive}
           setShowInactive={setShowInactive}
           openModal={openModal}
@@ -158,7 +195,7 @@ export default function AdminPage() {
         isOpen={isModalOpen}
         closeModal={closeModal}
         editingProduct={editingProduct}
-        categories={categories}
+        categories={categoryNames}
         onAddProduct={handleAddProduct}
         onUpdateProduct={handleUpdateProduct}
         showNotification={showNotification}

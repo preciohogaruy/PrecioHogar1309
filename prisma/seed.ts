@@ -1,7 +1,7 @@
 
 import { PrismaClient } from '@prisma/client';
-import productsData from './data/products.json';
 import categoriesData from './data/categorys.json';
+import productsData from './data/products.json';
 
 const prisma = new PrismaClient();
 
@@ -12,14 +12,12 @@ async function main() {
   console.log('Seeding categories...');
   for (const category of categoriesData.categorys) {
     await prisma.category.upsert({
-      where: { id: category.id },
+      where: { name: category.name },
       update: {
-        name: category.name,
         description: category.description,
         tag: category.tag,
       },
       create: {
-        id: category.id,
         name: category.name,
         description: category.description,
         tag: category.tag,
@@ -28,37 +26,40 @@ async function main() {
   }
   console.log('Categories seeded.');
 
+  const allCategories = await prisma.category.findMany();
+  const categoryMap = new Map(allCategories.map(c => [c.id, c.name]));
+
   // Cargar productos
   console.log('Seeding products...');
   for (const product of productsData.products) {
-    await prisma.product.upsert({
+    const existingProduct = await prisma.product.findUnique({
       where: { productId: product.productId },
-      update: {
-        title: product.title,
-        description: product.description,
-        price: product.price,
-        quantity: product.quantity,
-        image: product.image,
-        rating: product.rating,
-        badge: product.badge,
-        categoryId: product.categoryId,
-      },
-      create: {
-        productId: product.productId,
-        title: product.title,
-        description: product.description,
-        price: product.price,
-        quantity: product.quantity,
-        image: product.image,
-        rating: product.rating,
-        badge: product.badge,
-        categoryId: product.categoryId,
-      },
     });
+
+    if (!existingProduct) {
+      // Verificar si la categoryId del producto existe en el mapa de categorías
+      if (categoryMap.has(product.categoryId)) {
+        await prisma.product.create({
+          data: {
+            productId: product.productId,
+            title: product.title,
+            description: product.description,
+            price: product.price,
+            quantity: product.quantity,
+            rating: product.rating,
+            badge: product.badge,
+            categoryId: product.categoryId,
+            image: product.image,
+          },
+        });
+      } else {
+        console.warn(`Category ID '${product.categoryId}' for product '${product.title}' not found. Skipping.`);
+      }
+    }
   }
   console.log('Products seeded.');
 
-  console.log(`Seeding finished.`);
+  console.log('Seeding finished.');
 }
 
 main()
@@ -69,3 +70,5 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
+
+    

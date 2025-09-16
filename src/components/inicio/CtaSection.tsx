@@ -5,12 +5,25 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ShoppingBag, Star } from "lucide-react"
 
-import productsData from "@/contexts/productos.json"
+import { getProducts } from "@/lib/products"
 import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react"
+import type { Product, Category } from "@prisma/client"
 
-const products = [...productsData.products, ...productsData.products]
+type ProductWithCategory = Product & { category: Category }
 
 export function CtaSection() {
+  const [products, setProducts] = useState<ProductWithCategory[]>([])
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const productsData = await getProducts()
+      const duplicatedProducts = [...productsData, ...productsData] as ProductWithCategory[]
+      setProducts(duplicatedProducts)
+    }
+    fetchProducts()
+  }, [])
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("es-AR", {
       style: "currency",
@@ -37,7 +50,7 @@ export function CtaSection() {
                   <div className="relative">
                     <div className="aspect-square overflow-hidden">
                       <Image
-                        src={product.image}
+                        src={product.image || ''}
                         alt={product.title}
                         width={300}
                         height={300}

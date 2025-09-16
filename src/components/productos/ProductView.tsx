@@ -4,51 +4,22 @@
 import { useState, useEffect } from "react"
 import { Grid3X3, List, Search, Package, Loader2 } from "lucide-react"
 import { useCart } from "@/contexts/CartContext"
-import productsData from "@/contexts/productos.json"
 import { ProductCardGrid } from "./ProductCardGrid"
 import { ProductCardList } from "./ProductCardList"
 import { ProductHero } from "./ProductHero"
 import { Button } from "@/components/ui/button"
+import type { Product as ProductType, Category } from "@prisma/client"
 
-type Product = {
-  id: string
-  slug: string
-  name: string
-  category: string
-  price: number
-  originalPrice: number | null
-  image: string
-  rating: number
-  reviews: number
-  isNew: boolean
-  isBestSeller: boolean
-  description: string
-  inStock: boolean
-  stockQuantity: number
-}
-
-const initialProducts: Product[] = productsData.products.map((p) => ({
-  id: p.id,
-  slug: p.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
-  name: p.title,
-  category: p.category,
-  price: p.price,
-  originalPrice: null,
-  image: p.image,
-  rating: p.rating,
-  reviews: 0,
-  isNew: p.badge === "Nuevo",
-  isBestSeller: p.badge === "Más Vendido",
-  description: p.description,
-  inStock: p.quantity > 0,
-  stockQuantity: p.quantity,
-}))
-
-const categories = ["Todos", ...Array.from(new Set(productsData.products.map((p) => p.category)))]
+type Product = ProductType & { category: Category }
 
 const PRODUCTS_PER_PAGE = 12
 
-export function ProductView() {
+interface ProductViewProps {
+  initialProducts: Product[]
+  initialCategories: Category[]
+}
+
+export function ProductView({ initialProducts, initialCategories }: ProductViewProps) {
   const [selectedCategory, setSelectedCategory] = useState("Todos")
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [searchTerm, setSearchTerm] = useState("")
@@ -63,15 +34,15 @@ export function ProductView() {
       reviews: Math.floor(Math.random() * 200),
     }))
     setProducts(updatedProducts)
-  }, [])
+  }, [initialProducts])
 
   useEffect(() => {
     setVisibleCount(PRODUCTS_PER_PAGE)
   }, [selectedCategory, searchTerm])
 
   const filteredProducts = products.filter((product) => {
-    const matchesCategory = selectedCategory === "Todos" || product.category === selectedCategory
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesCategory = selectedCategory === "Todos" || product.category.name === selectedCategory
+    const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase())
     return matchesCategory && matchesSearch
   })
 
@@ -90,20 +61,22 @@ export function ProductView() {
   }
 
   const handleAddToCart = (product: Product) => {
-    if (!product.inStock) return
+    const isInStock = product.quantity > 0
+    if (!isInStock) return
 
     addItem({
-      id: product.id,
-      slug: product.slug,
-      name: product.name,
+      id: product.productId,
+      slug: product.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
+      name: product.title,
       price: product.price,
-      originalPrice: product.originalPrice || undefined,
-      image: product.image,
-      category: product.category,
-      inStock: product.inStock,
-      stockQuantity: product.stockQuantity,
+      image: product.image || '',
+      category: product.category.name,
+      inStock: isInStock,
+      stockQuantity: product.quantity,
     })
   }
+
+  const categories = ["Todos", ...initialCategories.map(c => c.name)];
 
   return (
     <>
