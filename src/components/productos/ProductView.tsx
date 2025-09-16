@@ -37,18 +37,6 @@ export async function ProductView({ searchParams, categories }: ProductViewProps
     sort,
   })
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("es-AR", {
-      style: "currency",
-      currency: "ARS",
-      minimumFractionDigits: 0,
-    }).format(price)
-  }
-
-  // NOTE: This is a placeholder. The client component for adding to cart
-  // will need to be created separately. This is just to satisfy the compiler.
-  const handleAddToCart = (product: Product) => {}
-
   return (
     <section className="py-16 bg-gray-50 -mt-8 rounded-t-3xl relative z-10">
       <div className="container mx-auto px-6">
@@ -75,8 +63,6 @@ export async function ProductView({ searchParams, categories }: ProductViewProps
               <ProductCardGrid
                 key={product.id}
                 product={product}
-                formatPrice={formatPrice}
-                handleAddToCart={handleAddToCart}
               />
             ))}
           </div>
@@ -86,8 +72,6 @@ export async function ProductView({ searchParams, categories }: ProductViewProps
               <ProductCardList
                 key={product.id}
                 product={product}
-                formatPrice={formatPrice}
-                handleAddToCart={handleAddToCart}
               />
             ))}
           </div>

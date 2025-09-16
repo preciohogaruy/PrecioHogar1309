@@ -11,8 +11,6 @@ type Product = ProductType & { category: Category, reviews?: number, originalPri
 
 interface ProductCardGridProps {
   product: Product
-  formatPrice: (price: number) => string
-  handleAddToCart: (product: Product) => void
 }
 
 const getBadgeClass = (badge: string) => {
@@ -34,11 +32,19 @@ const getBadgeClass = (badge: string) => {
     }
   };
 
-export function ProductCardGrid({ product, formatPrice }: ProductCardGridProps) {
+export function ProductCardGrid({ product }: ProductCardGridProps) {
     const slug = product.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
     const reviews = product.reviews || Math.floor(Math.random() * 200);
     const isInStock = product.quantity > 0;
     const { addItem } = useCart()
+
+    const formatPrice = (price: number) => {
+      return new Intl.NumberFormat("es-AR", {
+        style: "currency",
+        currency: "ARS",
+        minimumFractionDigits: 0,
+      }).format(price)
+    }
 
     const handleAddToCart = () => {
       if (!isInStock) return
