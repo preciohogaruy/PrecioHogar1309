@@ -2,10 +2,10 @@
 import { Shield, Truck, CreditCard, Clock } from "lucide-react"
 
 const features = [
-  { icon: Shield, title: "CALIDAD\nGARANTIZADA", delay: "0ms" },
-  { icon: Truck, title: "ENVÍO\nGRATIS", delay: "100ms" },
-  { icon: CreditCard, title: "PAGO\nSEGURO", delay: "200ms" },
-  { icon: Clock, title: "ENTREGA\nRÁPIDA", delay: "300ms" },
+  { icon: Shield, title: "CALIDAD GARANTIZADA", delay: "0ms" },
+  { icon: Truck, title: "ENVÍO GRATIS", delay: "100ms" },
+  { icon: CreditCard, title: "PAGO SEGURO", delay: "200ms" },
+  { icon: Clock, title: "ENTREGA RÁPIDA", delay: "300ms" },
 ]
 
 export function FeaturesSection() {
