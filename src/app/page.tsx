@@ -18,8 +18,11 @@ export default function HomePage() {
         <HeroSection />
         <FeaturesSection />
         <CtaSection />
+        <ProductShowcaseSection />
         <CategoriesSection />
         {/* <FinalCtaSection /> */}
+        <NewsletterSection />
+        <DynamicMapLoader />
       </main>
       <Footer />
     </div>

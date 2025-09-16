@@ -11,7 +11,7 @@ import { AdminHeader } from "@/components/admin/AdminHeader"
 import { Notification } from "@/components/admin/Notification"
 import { ProductControls } from "@/components/admin/ProductControls"
 import { ProductTable } from "@/components/admin/ProductTable"
-import { ProductModal } from "@/components/admin/ProductModal"
+import { ProductModal, type ProductFormData } from "@/components/admin/ProductModal"
 
 // Extend ProductType to include category name
 export type ProductWithCategory = ProductType & { category: { name: string } }
@@ -40,7 +40,7 @@ export default function AdminPage() {
       try {
         const [{ products: productsData }, categoriesData] = await Promise.all([getProducts(), getCategories()])
 
-        const formattedProducts = productsData.map((p: ProductType & { category: Category }) => ({
+        const formattedProducts: Product[] = productsData.map((p: ProductType & { category: Category }) => ({
           ...p,
           slug: p.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
           originalPrice: null, // This can be adjusted if your DB supports it
@@ -89,7 +89,7 @@ export default function AdminPage() {
       .trim()
   }
 
-  const handleAddProduct = (formData: any) => {
+  const handleAddProduct = (formData: ProductFormData) => {
     const newProduct: Product = {
       ...formData,
       id: Math.floor(Math.random() * 10000), // temp id
@@ -102,6 +102,9 @@ export default function AdminPage() {
       updatedAt: new Date(),
       title: formData.name, // Ensure title is set
       category: { name: formData.category },
+      categoryId: categories.find(c => c.name === formData.category)?.id || 0,
+      image: formData.image,
+      originalPrice: formData.originalPrice,
     }
     setProducts([...products, newProduct])
     showNotification("success", "Producto agregado exitosamente")
@@ -109,7 +112,7 @@ export default function AdminPage() {
     // Here you would typically call an API to save the new product to the database
   }
 
-  const handleUpdateProduct = (formData: any) => {
+  const handleUpdateProduct = (formData: ProductFormData) => {
     if (!editingProduct) return
 
     const updatedProduct: Product = {

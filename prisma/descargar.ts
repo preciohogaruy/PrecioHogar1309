@@ -20,7 +20,7 @@ async function main() {
     // Prisma Client usa nombres de modelo en minúscula (camelCase)
     const prismaModelName = modelName.charAt(0).toLowerCase() + modelName.slice(1);
     
-    // @ts-ignore - Usamos un acceso dinámico al modelo que TypeScript no puede verificar estáticamente
+    // @ts-expect-error - Usamos un acceso dinámico al modelo que TypeScript no puede verificar estáticamente
     const data = await prisma[prismaModelName].findMany();
 
     const fileName = `${modelName.toLowerCase()}s.json`;

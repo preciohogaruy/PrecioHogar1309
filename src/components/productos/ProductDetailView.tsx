@@ -11,7 +11,6 @@ import {
   Share2,
   Minus,
   Plus,
-  ArrowLeft,
   Truck,
   Shield,
   RotateCcw,
@@ -22,7 +21,7 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 import { useCart } from "@/contexts/CartContext"
-import type { Product, Category } from "@prisma/client"
+import type { Product } from "@prisma/client"
 
 type ProductWithCategory = Product & { category: { name: string } };
 
@@ -311,7 +310,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
               ].map((tab) => (
                 <button
                   key={tab.key}
-                  onClick={() => setActiveTab(tab.key as any)}
+                  onClick={() => setActiveTab(tab.key as "description" | "specifications" | "reviews")}
                   className={`px-6 py-4 font-medium transition-all duration-300 ${
                     activeTab === tab.key
                       ? "text-blue-600 border-b-2 border-blue-600"

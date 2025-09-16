@@ -1,3 +1,5 @@
+
+import { Prisma } from "@prisma/client";
 import prisma from "./prisma"
 
 export async function getProducts({
@@ -13,7 +15,7 @@ export async function getProducts({
   search?: string
   sort?: string
 } = {}) {
-  const where: any = {}
+  const where: Prisma.ProductWhereInput = {}
 
   if (category && category !== "Todos") {
     where.category = {
@@ -28,11 +30,11 @@ export async function getProducts({
     }
   }
 
-  const orderBy: any = {}
+  const orderBy: Prisma.ProductOrderByWithRelationInput = {}
   if (sort) {
     const [field, direction] = sort.split("-")
     if (field && direction) {
-      orderBy[field] = direction
+      orderBy[field as keyof Prisma.ProductOrderByWithRelationInput] = direction as Prisma.SortOrder
     }
   } else {
     orderBy.createdAt = "desc"

@@ -1,7 +1,7 @@
 
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { Grid3X3, List, Search, X } from "lucide-react"
 
@@ -25,7 +25,7 @@ export function ProductFilters({ categories, initialValues }: ProductFiltersProp
   const [viewMode, setViewMode] = useState(initialValues.view || "grid")
   const [sortOption, setSortOption] = useState(initialValues.sort || "createdAt-desc")
 
-  const updateURL = (params: Record<string, string>) => {
+  const updateURL = useCallback((params: Record<string, string>) => {
     const current = new URLSearchParams(Array.from(searchParams.entries()))
 
     for (const key in params) {
@@ -42,14 +42,14 @@ export function ProductFilters({ categories, initialValues }: ProductFiltersProp
     const search = current.toString()
     const query = search ? `?${search}` : ""
     router.push(`${pathname}${query}`)
-  }
+  }, [searchParams, pathname, router])
 
   useEffect(() => {
     const debounce = setTimeout(() => {
       updateURL({ q: searchTerm })
     }, 500)
     return () => clearTimeout(debounce)
-  }, [searchTerm])
+  }, [searchTerm, updateURL])
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category)
@@ -139,4 +139,3 @@ export function ProductFilters({ categories, initialValues }: ProductFiltersProp
     </div>
   )
 }
-

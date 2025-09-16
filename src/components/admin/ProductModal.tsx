@@ -4,13 +4,25 @@ import { Button } from "@/components/ui/button"
 import { X, Save, Upload } from "lucide-react"
 import { type Product } from "@/app/admin/page"
 
+export interface ProductFormData {
+  name: string;
+  category: string;
+  price: number;
+  originalPrice: number | null;
+  quantity: number;
+  description: string;
+  badge: string;
+  image: string;
+  isActive: boolean;
+}
+
 interface ProductModalProps {
   isOpen: boolean
   closeModal: () => void
   editingProduct: Product | null
   categories: string[]
-  onAddProduct: (formData: any) => void
-  onUpdateProduct: (formData: any) => void
+  onAddProduct: (formData: ProductFormData) => void
+  onUpdateProduct: (formData: ProductFormData) => void
   showNotification: (type: "success" | "error", message: string) => void
 }
 
@@ -84,7 +96,7 @@ export function ProductModal({
       return
     }
 
-    const productData = {
+    const productData: ProductFormData = {
       name: formData.name,
       category: formData.category,
       price: Number.parseFloat(formData.price),

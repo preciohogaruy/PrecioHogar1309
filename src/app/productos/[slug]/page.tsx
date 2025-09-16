@@ -3,7 +3,7 @@ import { getProductBySlug, getProducts } from "@/lib/products";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ProductDetailView } from "@/components/productos/ProductDetailView";
-import type { Product, Category } from "@prisma/client";
+import type { Product } from "@prisma/client";
 import { Package, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -13,8 +13,6 @@ type ProductPageProps = {
         slug: string;
     };
 };
-
-type ProductWithCategory = Product & { category: Category };
 
 export default async function ProductDetailPage({ params }: ProductPageProps) {
   const { slug } = params;
@@ -45,7 +43,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
   const { products: allProducts } = await getProducts();
   const relatedProducts = allProducts
-    .filter((p: { categoryId: number; id: number; }) => p.categoryId === product.categoryId && p.id !== product.id)
+    .filter((p: Product) => p.categoryId === product.categoryId && p.id !== product.id)
     .slice(0, 4)
     .map((p) => ({ ...p, category: { name: p.category.name } }));
 

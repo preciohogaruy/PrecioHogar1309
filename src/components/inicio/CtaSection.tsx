@@ -1,7 +1,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, ShoppingBag, Star } from "lucide-react"
+import { ArrowRight, Star } from "lucide-react"
 
 import { getProducts } from "@/lib/products"
 import { Button } from "@/components/ui/button"
@@ -10,7 +10,7 @@ import type { Product, Category } from "@prisma/client"
 type ProductWithCategory = Product & { category: Category }
 
 export async function CtaSection() {
-  const { products: productsData } = await getProducts()
+  const { products: productsData } = await getProducts({limit: 10})
   const products = [...productsData, ...productsData] as ProductWithCategory[]
 
   const formatPrice = (price: number) => {

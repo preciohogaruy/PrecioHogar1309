@@ -1,13 +1,11 @@
 
-import { Grid3X3, List, Search, Package } from "lucide-react"
+import { Package } from "lucide-react"
 import { ProductCardGrid } from "./ProductCardGrid"
 import { ProductCardList } from "./ProductCardList"
 import { getProducts } from "@/lib/products"
 import { ProductFilters } from "./ProductFilters"
 import { PaginationComponent } from "./PaginationComponent"
-import type { Product as ProductType, Category } from "@prisma/client"
-
-type Product = ProductType & { category: Category }
+import type { Category } from "@prisma/client"
 
 export type SearchParams = {
   page?: string

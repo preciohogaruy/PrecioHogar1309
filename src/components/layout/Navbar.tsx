@@ -21,7 +21,6 @@ import {
   User,
   Utensils,
   Wifi,
-  X,
 } from "lucide-react"
 
 import { useCart } from "@/contexts/CartContext"
@@ -232,5 +231,3 @@ export function Navbar() {
     </nav>
   )
 }
-
-    

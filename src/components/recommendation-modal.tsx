@@ -1,7 +1,8 @@
+
 "use client";
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
 import { getProductRecommendations } from "@/ai/flows/product-recommendations";
 import { Loader2, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -48,7 +49,7 @@ export function RecommendationModal({ productName, children }: RecommendationMod
             <span>Sugerencias para ti</span>
           </DialogTitle>
           <DialogDescription>
-            Basado en "{productName}", también te podría gustar:
+            Basado en &quot;{productName}&quot;, también te podría gustar:
           </DialogDescription>
         </DialogHeader>
         <div className="py-4 min-h-[120px] flex items-center justify-center">

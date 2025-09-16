@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { getCategories, type CategoryWithIcon } from "@/lib/categorias";
+import { getCategories } from "@/lib/categorias";
 
 export async function CategoriesSection() {
   const categories = await getCategories();
