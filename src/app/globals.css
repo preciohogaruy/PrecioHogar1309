@@ -82,3 +82,166 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Styles */
+@layer components {
+  /* Layout & General */
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-gray-800 mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-600 max-w-3xl mx-auto;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300;
+  }
+
+  /* Navbar */
+  .nav-link {
+    @apply relative font-medium text-sm uppercase tracking-wider transition-colors duration-300;
+  }
+  .nav-underline {
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center;
+  }
+  .dropdown-item {
+    @apply flex items-center gap-3 p-3 rounded-lg hover:bg-blue-50/80 transition-colors duration-300;
+  }
+  .dropdown-cta {
+    @apply flex items-center justify-between w-full text-sm font-semibold text-blue-600 hover:text-purple-600 transition-colors duration-300;
+  }
+  .nav-icon-btn {
+    @apply w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-300;
+  }
+  .mobile-nav-item {
+    @apply flex items-center gap-4 px-4 py-3 rounded-lg text-lg font-medium text-gray-700 hover:bg-blue-50 transition-colors duration-300;
+  }
+
+
+  /* Hero Section */
+  .floating-element {
+    @apply absolute flex items-center justify-center w-14 h-14 rounded-2xl shadow-lg animate-pulse;
+  }
+
+  /* Features Section */
+  .feature-card {
+    @apply flex flex-col items-center justify-center text-center p-6 bg-white/50 rounded-2xl shadow-lg shadow-blue-500/5 border border-gray-100/80 hover:shadow-xl hover:-translate-y-2 transition-all duration-300;
+  }
+  .icon-container {
+    @apply w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:from-blue-200 group-hover:to-purple-200;
+  }
+  .feature-text {
+    @apply text-sm font-semibold text-gray-700 uppercase tracking-wider;
+  }
+
+  /* CTA Section */
+  @keyframes marquee {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  /* Product Showcase */
+  .benefit-card {
+    @apply flex flex-col items-center text-center p-4 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300;
+  }
+
+  /* Categories Section */
+  .ingredient-card {
+    @apply flex flex-col items-center text-center p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg shadow-blue-500/10 border border-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300;
+  }
+  .icon-container-lg {
+    @apply w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:from-blue-200 group-hover:to-purple-200;
+  }
+  .ingredient-title {
+    @apply text-sm font-bold text-gray-800 tracking-widest mb-2;
+  }
+
+  /* Final CTA Section */
+  .collection-card {
+    @apply relative rounded-3xl overflow-hidden shadow-2xl;
+  }
+  .collection-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex flex-col justify-end;
+  }
+  .collection-content {
+    @apply transform transition-transform duration-500 group-hover:-translate-y-10;
+  }
+  .collection-title {
+    @apply text-white text-3xl font-bold mb-2;
+  }
+  .collection-subtitle {
+    @apply text-white/80;
+  }
+  .collection-arrow {
+    @apply absolute bottom-8 right-8 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:scale-110;
+  }
+
+  /* Newsletter Section */
+  .newsletter-input {
+    @apply w-full px-6 py-4 rounded-full bg-white/20 text-white placeholder-white/70 border-2 border-transparent focus:border-white focus:outline-none focus:ring-0 transition-all duration-300;
+  }
+  .newsletter-button {
+    @apply bg-white text-blue-600 font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-colors duration-300;
+  }
+
+  /* Footer */
+  .social-icon {
+    @apply w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-primary hover:text-white transition-all duration-300;
+  }
+  .footer-link {
+    @apply text-gray-400 hover:text-white hover:pl-2 transition-all duration-300;
+  }
+}
+
+/* Keyframe Animations */
+@layer utilities {
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+
+  @keyframes draw-line {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .animate-draw {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 2s ease-out forwards 0.5s;
+  }
+}
