@@ -37,7 +37,9 @@ const nextConfig: NextConfig = {
       }
     ],
   },
-  allowedDevOrigins: ['https://*.cloudworkstations.dev'],
+  allowedDevOrigins: [
+    'https://*.cloudworkstations.dev',
+  ],
   serverExternalPackages: ['@genkit-ai/core', '@genkit-ai/googleai'],
 };
 
