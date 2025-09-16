@@ -53,12 +53,12 @@ export function Navbar() {
   const dropdownItemClasses = "dropdown-item group"
 
   const productCategories = [
-    { href: "#cocina", icon: Utensils, title: "Cocina", desc: "Electrodomésticos y utensilios", color: "blue-600" },
-    { href: "#dormitorio", icon: Bed, title: "Dormitorio", desc: "Ropa de cama y decoración", color: "purple-600" },
-    { href: "#baño", icon: Bath, title: "Baño", desc: "Accesorios y organización", color: "blue-600" },
-    { href: "#sala", icon: Sofa, title: "Sala", desc: "Muebles y decoración", color: "purple-600" },
-    { href: "#tecnologia", icon: Wifi, title: "Tecnología", desc: "Smart home y gadgets", color: "blue-600" },
-    { href: "#iluminacion", icon: Lightbulb, title: "Iluminación", desc: "Lámparas y sistemas LED", color: "purple-600" },
+    { href: "/productos?category=Cocina", icon: Utensils, title: "Cocina", desc: "Electrodomésticos y utensilios", color: "blue-600" },
+    { href: "/productos?category=Dormitorio", icon: Bed, title: "Dormitorio", desc: "Ropa de cama y decoración", color: "purple-600" },
+    { href: "/productos?category=Baño", icon: Bath, title: "Baño", desc: "Accesorios y organización", color: "blue-600" },
+    { href: "/productos?category=Sala", icon: Sofa, title: "Sala", desc: "Muebles y decoración", color: "purple-600" },
+    { href: "/productos?category=Tecnología", icon: Wifi, title: "Tecnología", desc: "Smart home y gadgets", color: "blue-600" },
+    { href: "/productos?category=Iluminación", icon: Lightbulb, title: "Iluminación", desc: "Lámparas y sistemas LED", color: "purple-600" },
   ];
 
   return (
@@ -117,13 +117,13 @@ export function Navbar() {
                 <div className="p-6 space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     {productCategories.map((cat) => (
-                      <a key={cat.title} href={cat.href} className={`${dropdownItemClasses}`}>
+                      <Link key={cat.title} href={cat.href} className={`${dropdownItemClasses}`}>
                         <cat.icon className={`w-5 h-5 text-${cat.color}`} />
                         <div>
                           <div className={`font-medium text-gray-800 group-hover:text-${cat.color}`}>{cat.title}</div>
                           <div className="text-xs text-gray-500">{cat.desc}</div>
                         </div>
-                      </a>
+                      </Link>
                     ))}
                   </div>
                   <div className="border-t border-blue-100 pt-4 mt-4">
