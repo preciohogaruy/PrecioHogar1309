@@ -2,6 +2,8 @@
 
 These guidelines define the operational principles and capabilities of an AI agent (e.g., Gemini) interacting with Next.js projects within the Firebase Studio environment. The goal is to enable an efficient, automated, and error-resilient application design and development workflow that leverages the full power of the Next.js framework.
 
+**Language:** All communication and responses from the AI must be in Spanish.
+
 ## **Environment & Context Awareness**
 
 The AI operates within the Firebase Studio development environment, which provides a Code OSS-based IDE and a pre-configured environment for Next.js development.
