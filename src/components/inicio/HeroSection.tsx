@@ -23,7 +23,7 @@ export function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden text-white">
       <div className="absolute inset-0 z-[-1]">
         <Image
-          src="https://picsum.photos/seed/hero-living-room/1920/1080"
+          src="/banners/banner_1.png"
           alt="Banner de productos para el hogar"
           fill
           className="object-cover"
@@ -107,7 +107,7 @@ export function HeroSection() {
             <div className="relative group">
               <div className="aspect-square overflow-hidden rounded-3xl shadow-primary-lg">
                 <Image
-                  src="/logotienda.png"
+                  src="/logotienda_blanco.png"
                   alt="Productos para el hogar con los mejores precios"
                   width={600}
                   height={600}
