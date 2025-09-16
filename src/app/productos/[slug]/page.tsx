@@ -47,7 +47,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const relatedProducts = allProducts
     .filter((p: { categoryId: number; id: number; }) => p.categoryId === product.categoryId && p.id !== product.id)
     .slice(0, 4)
-    .map((p: { category: { name: any; }; }) => ({ ...p, category: { name: p.category.name } }));
+    .map((p) => ({ ...p, category: { name: p.category.name } }));
 
   const productWithCategory = {
       ...product,
