@@ -10,7 +10,7 @@ import type { Product, Category } from "@prisma/client"
 type ProductWithCategory = Product & { category: Category }
 
 export async function CtaSection() {
-  const productsData = await getProducts()
+  const { products: productsData } = await getProducts()
   const products = [...productsData, ...productsData] as ProductWithCategory[]
 
   const formatPrice = (price: number) => {
