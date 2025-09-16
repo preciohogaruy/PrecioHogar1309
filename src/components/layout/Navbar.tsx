@@ -154,62 +154,6 @@ export function Navbar() {
                 </div>
               </div>
             </div>
-
-            {/* About Dropdown */}
-            <div className="relative group">
-              <button
-                className="nav-link flex items-center space-x-2"
-                onMouseEnter={() => setAboutDropdownOpen(true)}
-                onMouseLeave={() => setAboutDropdownOpen(false)}
-              >
-                <Award className="w-4 h-4 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
-                <span>NOSOTROS</span>
-                <ChevronDown
-                  className={`w-3 h-3 text-gray-400 transition-transform duration-300 ${aboutDropdownOpen ? "rotate-180" : ""}`}
-                />
-                <span className="nav-underline"></span>
-              </button>
-
-              {/* About Dropdown Menu */}
-              <div
-                className={`absolute top-full left-0 mt-2 w-64 bg-white/98 backdrop-blur-xl rounded-2xl shadow-xl shadow-blue-500/10 border border-blue-100/50 transition-all duration-300 ${
-                  aboutDropdownOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
-                }`}
-                onMouseEnter={() => setAboutDropdownOpen(true)}
-                onMouseLeave={() => setAboutDropdownOpen(false)}
-              >
-                <div className="p-4 space-y-3">
-                  <a href="#story" className="dropdown-item group">
-                    <Award className="w-4 h-4 text-blue-600" />
-                    <div>
-                      <div className="font-medium text-gray-800 group-hover:text-blue-600">Nuestra Historia</div>
-                      <div className="text-xs text-gray-500">Más de 10 años equipando hogares</div>
-                    </div>
-                  </a>
-                  <a href="#calidad" className="dropdown-item group">
-                    <Sofa className="w-4 h-4 text-purple-600" />
-                    <div>
-                      <div className="font-medium text-gray-800 group-hover:text-purple-600">Calidad</div>
-                      <div className="text-xs text-gray-500">Productos certificados y garantizados</div>
-                    </div>
-                  </a>
-                  <a href="#envios" className="dropdown-item group">
-                    <ShoppingBag className="w-4 h-4 text-blue-600" />
-                    <div>
-                      <div className="font-medium text-gray-800 group-hover:text-blue-600">Envíos</div>
-                      <div className="text-xs text-gray-500">Entrega rápida y segura</div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact */}
-            <a href="#contact" className="nav-link group flex items-center space-x-2">
-              <Mail className="w-4 h-4 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
-              <span>CONTACTO</span>
-              <span className="nav-underline"></span>
-            </a>
           </div>
 
           {/* Right side actions */}
