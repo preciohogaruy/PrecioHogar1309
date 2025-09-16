@@ -38,7 +38,7 @@ export default function AdminPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const [productsData, categoriesData] = await Promise.all([getProducts(), getCategories()])
+        const [{ products: productsData }, categoriesData] = await Promise.all([getProducts(), getCategories()])
 
         const formattedProducts = productsData.map((p: { title: string; category: { name: any } }) => ({
           ...p,
