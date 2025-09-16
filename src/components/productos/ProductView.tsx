@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react"
@@ -11,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import Fab from "@mui/material/Fab"
 import AddIcon from "@mui/icons-material/Add"
 import type { Product as ProductType, Category } from "@prisma/client"
+import type { CategoryWithStringIcon } from "@/lib/categorias"
 
 type Product = ProductType & { category: Category }
 
@@ -18,7 +18,7 @@ const PRODUCTS_PER_PAGE = 12
 
 interface ProductViewProps {
   initialProducts: Product[]
-  initialCategories: Category[]
+  initialCategories: CategoryWithStringIcon[]
 }
 
 export function ProductView({ initialProducts, initialCategories }: ProductViewProps) {

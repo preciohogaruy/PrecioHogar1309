@@ -3,11 +3,11 @@ import { Navbar } from "@/components/layout/Navbar"
 import { ProductView } from "@/components/productos/ProductView"
 import { Footer } from "@/components/layout/Footer"
 import { getProducts } from "@/lib/products"
-import { getCategories } from "@/lib/categorias"
+import { getCategoriesWithStringIcon } from "@/lib/categorias"
 
 export default async function ProductsPage() {
   const products = await getProducts()
-  const categories = await getCategories()
+  const categories = await getCategoriesWithStringIcon()
 
   return (
     <div className="min-h-screen bg-white">
