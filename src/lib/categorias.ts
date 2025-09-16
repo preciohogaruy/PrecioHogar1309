@@ -15,13 +15,36 @@ import {
   export type CategoryWithStringIcon = Category & { icon: string };
 
 const iconMap: { [key: string]: LucideIcon } = {
-    Cocina: Utensils,
-    Dormitorio: Bed,
-    Baño: Bath,
-    Sala: Sofa,
-    Tecnología: Wifi,
-    Iluminación: Lightbulb,
+    "Hogar": Utensils,
+    "Tecnología": Wifi,
+    "Electrodomésticos": Lightbulb,
+    "Herramientas": Sofa,
+    "Muebles": Bed,
+    "Juguetes": Bath,
+    "Deportes": Utensils,
+    "Moda": Utensils,
+    "Salud y Belleza": Utensils,
+    "Libros y Medios": Utensils,
+    "Automotriz": Utensils,
+    "Otros": Utensils,
 };
+
+const iconNameMap: { [key: string]: string } = {
+  "Hogar": "Utensils",
+  "Tecnología": "Wifi",
+  "Electrodomésticos": "Lightbulb",
+  "Herramientas": "Sofa",
+  "Muebles": "Bed",
+  "Juguetes": "Bath",
+  "Deportes": "Utensils",
+  "Moda": "Utensils",
+  "Salud y Belleza": "Utensils",
+  "Libros y Medios": "Utensils",
+  "Automotriz": "Utensils",
+  "Otros": "Utensils",
+}
+
+
 export const getIconForCategory = (iconName: string): React.FC<LucideProps> => {
     return iconMap[iconName] || Utensils;
 }
@@ -37,10 +60,10 @@ export async function getCategories(): Promise<CategoryWithIcon[]> {
 }
 
 export async function getCategoriesWithStringIcon(): Promise<CategoryWithStringIcon[]> {
-    const categories = await prisma.category.findMany();
+    const categoriesWithIcon = await getCategories();
     
-    return categories.map(category => ({
+    return categoriesWithIcon.map(category => ({
         ...category,
-        icon: Object.keys(iconMap).find(key => iconMap[key] === (iconMap[category.name] || Utensils)) || 'Utensils'
+        icon: iconNameMap[category.name] || 'Utensils'
     }));
 }
