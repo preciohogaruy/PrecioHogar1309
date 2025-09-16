@@ -31,6 +31,25 @@ type ProductDetailViewProps = {
     relatedProducts: ProductWithCategory[];
 }
 
+const getBadgeClass = (badge: string) => {
+    switch (badge) {
+        case 'Nuevo Ingreso':
+            return 'bg-blue-500 text-white';
+        case 'Oferta':
+            return 'bg-yellow-500 text-black';
+        case 'Más Vendido':
+            return 'bg-green-500 text-white';
+        case 'Liquidación':
+            return 'bg-red-500 text-white';
+        case 'Exclusivo Online':
+            return 'bg-purple-500 text-white';
+        case 'Pocas Unidades':
+            return 'bg-orange-500 text-white';
+        default:
+            return 'hidden';
+    }
+};
+
 const sampleReviews = [
   {
     id: 1,
@@ -164,12 +183,9 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
                   <span className="text-sm text-blue-600 font-medium uppercase tracking-wide bg-blue-50 px-3 py-1 rounded-full">
                     {product.category.name}
                   </span>
-                  {product.badge === 'Nuevo' && (
-                    <span className="bg-green-500 text-white text-xs px-3 py-1 rounded-full font-medium">NUEVO</span>
-                  )}
-                  {product.badge === 'Más Vendido' && (
-                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs px-3 py-1 rounded-full font-medium">
-                      MÁS VENDIDO
+                  {product.badge && (
+                    <span className={`text-xs px-3 py-1 rounded-full font-medium ${getBadgeClass(product.badge)}`}>
+                        {product.badge}
                     </span>
                   )}
                 </div>

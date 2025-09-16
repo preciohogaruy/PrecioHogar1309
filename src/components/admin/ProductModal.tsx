@@ -14,6 +14,17 @@ interface ProductModalProps {
   showNotification: (type: "success" | "error", message: string) => void
 }
 
+const badgeOptions = [
+  "Ninguno",
+  "Nuevo Ingreso",
+  "Oferta",
+  "Más Vendido",
+  "Liquidación",
+  "Exclusivo Online",
+  "Pocas Unidades"
+];
+
+
 export function ProductModal({
   isOpen,
   closeModal,
@@ -30,9 +41,7 @@ export function ProductModal({
     originalPrice: "",
     description: "",
     stockQuantity: "",
-    badge: "Nuevo",
-    isNew: false,
-    isBestSeller: false,
+    badge: "Ninguno",
     isActive: true,
     image: "",
   })
@@ -47,9 +56,7 @@ export function ProductModal({
           originalPrice: editingProduct.originalPrice?.toString() || "",
           description: editingProduct.description,
           stockQuantity: editingProduct.quantity.toString(),
-          badge: editingProduct.badge,
-          isNew: editingProduct.isNew,
-          isBestSeller: editingProduct.isBestSeller,
+          badge: editingProduct.badge || "Ninguno",
           isActive: editingProduct.isActive,
           image: editingProduct.image || "",
         })
@@ -61,9 +68,7 @@ export function ProductModal({
             originalPrice: "",
             description: "",
             stockQuantity: "",
-            badge: "Nuevo",
-            isNew: false,
-            isBestSeller: false,
+            badge: "Ninguno",
             isActive: true,
             image: "https://ik.imagekit.io/precioahorro/TiendaPrecioHogar/tr:w-200,h-200/placeholder.jpg",
         })
@@ -78,11 +83,6 @@ export function ProductModal({
       showNotification("error", "Por favor completa todos los campos obligatorios")
       return
     }
-    
-    let badge = "";
-    if (formData.isNew) badge = "Nuevo";
-    if (formData.isBestSeller) badge = "Más Vendido";
-
 
     const productData = {
       name: formData.name,
@@ -91,7 +91,7 @@ export function ProductModal({
       originalPrice: formData.originalPrice ? Number.parseFloat(formData.originalPrice) : null,
       quantity: Number.parseInt(formData.stockQuantity) || 0,
       description: formData.description,
-      badge: badge,
+      badge: formData.badge === "Ninguno" ? "" : formData.badge,
       image: formData.image,
       isActive: formData.isActive,
     }
@@ -183,27 +183,22 @@ export function ProductModal({
                 />
               </div>
 
-              <div className="space-y-3">
-                <label className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    checked={formData.isNew}
-                    onChange={(e) => setFormData({ ...formData, isNew: e.target.checked, isBestSeller: e.target.checked ? false: formData.isBestSeller })}
-                    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                  />
-                  <span className="text-sm text-gray-700">Producto Nuevo</span>
-                </label>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Insignia</label>
+                <select
+                  value={formData.badge}
+                  onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                >
+                  {badgeOptions.map((badge) => (
+                    <option key={badge} value={badge}>
+                      {badge}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-                <label className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    checked={formData.isBestSeller}
-                    onChange={(e) => setFormData({ ...formData, isBestSeller: e.target.checked, isNew: e.target.checked ? false: formData.isNew })}
-                    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                  />
-                  <span className="text-sm text-gray-700">Más Vendido</span>
-                </label>
-
+              <div className="space-y-3 pt-5">
                 <label className="flex items-center space-x-2">
                   <input
                     type="checkbox"

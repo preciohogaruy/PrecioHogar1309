@@ -12,6 +12,25 @@ interface ProductTableProps {
   deleteProduct: (id: number) => void
 }
 
+const getBadgeClass = (badge: string) => {
+    switch (badge) {
+      case 'Nuevo Ingreso':
+        return 'bg-blue-100 text-blue-800';
+      case 'Oferta':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'Más Vendido':
+        return 'bg-green-100 text-green-800';
+      case 'Liquidación':
+        return 'bg-red-100 text-red-800';
+      case 'Exclusivo Online':
+        return 'bg-purple-100 text-purple-800';
+      case 'Pocas Unidades':
+        return 'bg-orange-100 text-orange-800';
+      default:
+        return 'hidden';
+    }
+  };
+
 export function ProductTable({
   products,
   formatPrice,
@@ -59,18 +78,13 @@ export function ProductTable({
                     </div>
                     <div className="ml-4">
                       <div className="text-sm font-medium text-gray-900 max-w-xs truncate">{product.title}</div>
-                      <div className="flex items-center space-x-2 mt-1">
-                        {product.isNew && (
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
-                            Nuevo
-                          </span>
-                        )}
-                        {product.isBestSeller && (
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
-                            Más Vendido
-                          </span>
-                        )}
-                      </div>
+                      {product.badge && (
+                        <div className="flex items-center space-x-2 mt-1">
+                            <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${getBadgeClass(product.badge)}`}>
+                                {product.badge}
+                            </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </td>

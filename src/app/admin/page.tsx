@@ -20,8 +20,6 @@ export type Product = ProductWithCategory & {
   slug: string
   originalPrice: number | null
   reviews: number
-  isNew: boolean
-  isBestSeller: boolean
 }
 
 export type NotificationType = { type: "success" | "error"; message: string }
@@ -47,8 +45,6 @@ export default function AdminPage() {
           slug: p.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
           originalPrice: null, // This can be adjusted if your DB supports it
           reviews: Math.floor(Math.random() * 200),
-          isNew: p.badge === "Nuevo",
-          isBestSeller: p.badge === "Más Vendido",
           category: { name: p.category.name }, // Ensure category object with name is passed
         }))
 

@@ -13,11 +13,28 @@ interface ProductCardGridProps {
   handleAddToCart: (product: Product) => void
 }
 
+const getBadgeClass = (badge: string) => {
+    switch (badge) {
+      case 'Nuevo Ingreso':
+        return 'bg-blue-500 text-white';
+      case 'Oferta':
+        return 'bg-yellow-500 text-white';
+      case 'Más Vendido':
+        return 'bg-green-500 text-white';
+      case 'Liquidación':
+        return 'bg-red-500 text-white';
+      case 'Exclusivo Online':
+        return 'bg-purple-500 text-white';
+      case 'Pocas Unidades':
+        return 'bg-orange-500 text-white';
+      default:
+        return 'hidden';
+    }
+  };
+
 export function ProductCardGrid({ product, formatPrice, handleAddToCart }: ProductCardGridProps) {
     const slug = product.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
     const reviews = product.reviews || Math.floor(Math.random() * 200);
-    const isNew = product.badge === "Nuevo";
-    const isBestSeller = product.badge === 'Más Vendido';
     const isInStock = product.quantity > 0;
   return (
     <div className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl shadow-blue-200/50 transition-all duration-500 overflow-hidden">
@@ -34,12 +51,9 @@ export function ProductCardGrid({ product, formatPrice, handleAddToCart }: Produ
 
         {/* Badges */}
         <div className="absolute top-4 left-4 flex flex-col gap-2">
-          {isNew && (
-            <span className="bg-green-500 text-white text-xs px-3 py-1 rounded-full font-medium">NUEVO</span>
-          )}
-          {isBestSeller && (
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs px-3 py-1 rounded-full font-medium">
-              MÁS VENDIDO
+          {product.badge && (
+            <span className={`text-xs px-3 py-1 rounded-full font-medium ${getBadgeClass(product.badge)}`}>
+                {product.badge}
             </span>
           )}
           {product.originalPrice && (
