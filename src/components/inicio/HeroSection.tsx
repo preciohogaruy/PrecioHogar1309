@@ -23,11 +23,11 @@ export function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden text-white">
       <div className="absolute inset-0 z-[-1]">
         <Image
-          src="/banners/banner_1.png"
+          src="https://picsum.photos/seed/home-banner/1920/1080"
           alt="Banner de productos para el hogar"
           fill
-          className="object-cover"
           priority
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
@@ -107,7 +107,7 @@ export function HeroSection() {
             <div className="relative group">
               <div className="aspect-square overflow-hidden rounded-3xl shadow-primary-lg">
                 <Image
-                  src="/logotienda_blanco.png"
+                  src="/logotienda.png"
                   alt="Productos para el hogar con los mejores precios"
                   width={600}
                   height={600}
@@ -116,6 +116,14 @@ export function HeroSection() {
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+               <div className="floating-element -top-4 -right-4 bg-white/20 backdrop-blur-sm hidden md:flex">
+                <Home className="w-6 h-6 text-white/80" />
+              </div>
+              <div className="floating-element -bottom-4 -left-4 animation-delay-500 bg-white/20 backdrop-blur-sm hidden md:flex">
+                <Zap className="w-6 h-6 text-yellow-400" />
+              </div>
+
             </div>
           </div>
         </div>

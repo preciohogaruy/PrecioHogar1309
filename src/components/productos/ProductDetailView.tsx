@@ -152,6 +152,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
                   alt={product.title}
                   width={600}
                   height={600}
+                  priority
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -170,6 +171,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
                       alt={`${product.title} - Vista ${index + 1}`}
                       width={150}
                       height={150}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                   </button>
@@ -473,6 +475,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
                       alt={relatedProduct.title}
                       width={300}
                       height={300}
+                      loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>

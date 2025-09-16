@@ -45,6 +45,7 @@ export function ProductCardGrid({ product, formatPrice, handleAddToCart }: Produ
             alt={product.title}
             width={400}
             height={400}
+            loading="lazy"
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           />
         </div>

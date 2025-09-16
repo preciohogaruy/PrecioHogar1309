@@ -46,6 +46,7 @@ export function ProductCardList({ product, formatPrice, handleAddToCart }: Produ
               alt={product.title}
               width={300}
               height={300}
+              loading="lazy"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
             />
           </div>
