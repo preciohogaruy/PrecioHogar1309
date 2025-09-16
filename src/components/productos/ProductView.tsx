@@ -8,6 +8,8 @@ import { ProductCardGrid } from "./ProductCardGrid"
 import { ProductCardList } from "./ProductCardList"
 import { ProductHero } from "./ProductHero"
 import { Button } from "@/components/ui/button"
+import Fab from "@mui/material/Fab"
+import AddIcon from "@mui/icons-material/Add"
 import type { Product as ProductType, Category } from "@prisma/client"
 
 type Product = ProductType & { category: Category }
@@ -180,6 +182,17 @@ export function ProductView({ initialProducts, initialCategories }: ProductViewP
           )}
         </div>
       </section>
+      <Fab
+        color="primary"
+        aria-label="add"
+        sx={{
+          position: "fixed",
+          bottom: 16,
+          right: 16,
+        }}
+      >
+        <AddIcon />
+      </Fab>
     </>
   )
 }
