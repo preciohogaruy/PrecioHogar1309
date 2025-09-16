@@ -40,7 +40,7 @@ export default function AdminPage() {
       try {
         const [{ products: productsData }, categoriesData] = await Promise.all([getProducts(), getCategories()])
 
-        const formattedProducts = productsData.map((p: { title: string; category: { name: any } }) => ({
+        const formattedProducts = productsData.map((p: ProductType & { category: Category }) => ({
           ...p,
           slug: p.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
           originalPrice: null, // This can be adjusted if your DB supports it
