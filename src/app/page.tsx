@@ -12,7 +12,7 @@ import { DynamicMapLoader } from "@/components/DynamicMapLoader"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen">
       <Navbar />
       <main>
         <HeroSection />

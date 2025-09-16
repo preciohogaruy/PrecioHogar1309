@@ -23,7 +23,7 @@ export function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden text-white">
       <div className="absolute inset-0 z-[-1]">
         <Image
-          src="/banners/banner_1.png"
+          src="https://picsum.photos/seed/hero-living-room/1920/1080"
           alt="Banner de productos para el hogar"
           fill
           className="object-cover"
@@ -122,7 +122,7 @@ export function HeroSection() {
               <Home className="w-6 h-6 text-white/80" />
             </div>
             <div className="floating-element -bottom-4 -left-4 animation-delay-500 bg-white/20 backdrop-blur-sm">
-              <Zap className="w-6 h-6 text-accent" />
+              <Zap className="w-6 h-6 text-yellow-400" />
             </div>
           </div>
         </div>
