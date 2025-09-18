@@ -176,7 +176,7 @@ export function Navbar() {
                     <Menu className="w-6 h-6 text-gray-600 group-hover:text-primary transition-colors duration-300" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-[300px]">
+                <SheetContent side="right" className="w-full sm:w-[300px]">
                   <SheetHeader>
                     <SheetTitle className="flex items-center space-x-2">
                        <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-lg">
