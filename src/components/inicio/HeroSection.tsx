@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export function HeroSection() {
     return (
-        <section className="relative pt-48 pb-32 text-center text-white overflow-hidden bg-gray-900">
+        <section className="relative pt-32 sm:pt-48 pb-24 sm:pb-32 text-center text-white overflow-hidden bg-gray-900">
             <div className="absolute inset-0 z-0 opacity-40">
                 <Image 
                     src="/banners/banner_1.jpg"
@@ -38,7 +38,7 @@ export function HeroSection() {
                     </h1>
                     
                     <p 
-                        className="max-w-2xl mx-auto text-lg text-gray-300 mb-10 animate-fade-in-up"
+                        className="max-w-2xl mx-auto text-base sm:text-lg text-gray-300 mb-10 animate-fade-in-up"
                         style={{ animationDelay: '400ms' }}
                     >
                         Descubre nuestra amplia gama de productos para el hogar con los mejores precios del mercado. Calidad, estilo y ahorro en un solo lugar.
@@ -48,10 +48,10 @@ export function HeroSection() {
                         className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up"
                         style={{ animationDelay: '600ms' }}
                     >
-                       <Link href="/productos">
+                       <Link href="/productos" className="w-full sm:w-auto">
                         <Button
                             size="lg"
-                            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
+                            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition-transform duration-300 w-full"
                         >
                             <ShoppingBag className="w-5 h-5 mr-3" />
                             Ver Productos
@@ -61,7 +61,7 @@ export function HeroSection() {
                         <Button
                             size="lg"
                             variant="outline"
-                            className="bg-transparent text-white border-white/50 hover:bg-white/10 hover:text-white py-4 px-8 rounded-full font-bold text-lg backdrop-blur-sm"
+                            className="bg-transparent text-white border-white/50 hover:bg-white/10 hover:text-white py-4 px-8 rounded-full font-bold text-lg backdrop-blur-sm w-full sm:w-auto"
                         >
                             Ver Ofertas
                             <ArrowRight className="w-5 h-5 ml-3" />
@@ -71,13 +71,13 @@ export function HeroSection() {
             </div>
 
             {/* Elementos decorativos flotantes */}
-            <div className="absolute top-1/4 left-10 floating-element bg-blue-500/20" style={{ animationDelay: '1s' }}>
+            <div className="absolute top-1/4 left-10 floating-element bg-blue-500/20 hidden md:flex" style={{ animationDelay: '1s' }}>
                 <TrendingUp className="w-6 h-6 text-blue-300" />
             </div>
-            <div className="absolute top-1/2 right-12 floating-element bg-purple-500/20" style={{ animationDelay: '1.5s' }}>
+            <div className="absolute top-1/2 right-12 floating-element bg-purple-500/20 hidden md:flex" style={{ animationDelay: '1.5s' }}>
                 <Star className="w-6 h-6 text-purple-300" />
             </div>
-            <div className="absolute bottom-1/4 left-20 floating-element bg-yellow-500/20" style={{ animationDelay: '2s' }}>
+            <div className="absolute bottom-1/4 left-20 floating-element bg-yellow-500/20 hidden md:flex" style={{ animationDelay: '2s' }}>
                 <ShoppingBag className="w-6 h-6 text-yellow-300" />
             </div>
         </section>
