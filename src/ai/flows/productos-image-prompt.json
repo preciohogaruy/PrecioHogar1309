@@ -1,0 +1,38 @@
+
+[
+    {
+      "title": "XIAOMI REDMI A3X",
+      "category": "Tecnologia",
+      "description": "Smartphone XIAOMI REDMI A3X con pantalla HD+ de 6.71'', procesador octa-core, 4GB RAM, 64GB almacenamiento, cámara dual 13MP y batería 5000mAh. Android 14 con MIUI 14."
+    },
+    {
+      "title": "XIAOMI REDMI NOTE 14",
+      "category": "Tecnologia",
+      "description": "Smartphone XIAOMI REDMI NOTE 14 con 8GB RAM y 256GB almacenamiento. Pantalla AMOLED de 6.67'' 120Hz, procesador Snapdragon, cámara principal 108MP, carga rápida 67W y batería 5000mAh."
+    },
+    {
+        "title": "Juego de Toallas de Algodón Egipcio",
+        "category": "Baño",
+        "description": "Set de 3 toallas de lujo (mano, cara, cuerpo) hechas con 100% algodón egipcio de 600 gramos, ultra absorbentes y suaves al tacto."
+    },
+    {
+        "title": "Sofá Modular de 3 Cuerpos",
+        "category": "Hogar",
+        "description": "Sofá esquinero modular tapizado en lino anti-manchas, con cojines de espuma de alta densidad y estructura de madera maciza. Color gris perla."
+    },
+    {
+        "title": "Batidora de Vaso Profesional 1200W",
+        "category": "Cocina",
+        "description": "Batidora de vaso de alta potencia con 1200W, jarra de cristal de 1.5L, 6 cuchillas de acero inoxidable y 3 programas automáticos (smoothie, hielo, sopa)."
+    },
+    {
+        "title": "Taladro Percutor Inalámbrico 18V",
+        "category": "Herramientas",
+        "description": "Taladro percutor sin cable con motor brushless, 2 baterías de litio de 18V, 50Nm de par, y maletín con 32 accesorios incluidos."
+    },
+    {
+        "title": "Juego de Sábanas de Bambú",
+        "category": "Dormitorio",
+        "description": "Sábanas de fibra de bambú termorreguladoras, hipoalergénicas y extra suaves. Incluye sábana bajera, encimera y dos fundas de almohada."
+    }
+]

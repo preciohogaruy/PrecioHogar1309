@@ -10,6 +10,7 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 import profiles from './image-prompt-profiles.json';
+import products from './productos-image-prompt.json';
 
 // Definir el tipo para un perfil individual basado en la estructura del JSON
 const ImagePromptProfileSchema = z.object({
@@ -30,13 +31,15 @@ const ImagePromptProfileSchema = z.object({
     phone: z.string(),
     website: z.string()
   }).optional(),
-  products_showcased: z.array(z.string()).optional()
+  products_showcased: z.union([z.array(z.string()), z.literal("from_catalog")]).optional()
 });
 
 type ImagePromptProfile = z.infer<typeof ImagePromptProfileSchema>;
 
 // Cargar y validar los perfiles usando Zod
 const loadedProfiles = z.record(ImagePromptProfileSchema).parse(profiles);
+const productCatalog = z.array(z.object({title: z.string(), category: z.string(), description: z.string()})).parse(products);
+
 
 const GenerateImagePromptInputSchema = z.object({
   componentType: z.string().describe('El componente o tipo de escena para la que se necesita la imagen (ej: Hero Section, Product Card).'),
@@ -57,6 +60,7 @@ export async function generateImagePrompt(input: GenerateImagePromptInput): Prom
 // Extender el input para el primer prompt para incluir el perfil de contexto
 const DetailedSceneInputSchema = GenerateImagePromptInputSchema.extend({
   contextProfile: ImagePromptProfileSchema.describe('El perfil de contexto para guiar a la IA.'),
+  productCatalog: z.string().optional().describe('Un listado en formato JSON de productos disponibles en el catálogo, si es necesario.'),
 });
 
 const detailedScenePrompt = ai.definePrompt({
@@ -87,12 +91,19 @@ const detailedScenePrompt = ai.definePrompt({
     {{#if contextProfile.callToAction}}
     - Llamada a la Acción (CTA): La imagen debe tener un espacio visual claro para un botón con el texto "{{contextProfile.callToAction.text}}".
     {{/if}}
-    {{#if contextProfile.products_showcased}}
-    - Productos a mostrar: Debes integrar de forma natural y atractiva los siguientes productos en la escena:
-      {{#each contextProfile.products_showcased}}
-      - {{{this}}}
-      {{/each}}
+    
+    {{#if productCatalog}}
+    - Catálogo de Productos Disponibles: {{{productCatalog}}}.
+    - Tarea de Selección: De este catálogo, selecciona entre 3 y 5 productos que sean coherentes con el tipo de componente "{{{componentType}}}" y la descripción del usuario. Debes integrar de forma natural y atractiva los productos seleccionados en la escena.
+    {{else}}
+      {{#if contextProfile.products_showcased}}
+      - Productos a mostrar: Debes integrar de forma natural y atractiva los siguientes productos en la escena:
+        {{#each contextProfile.products_showcased}}
+        - {{{this}}}
+        {{/each}}
+      {{/if}}
     {{/if}}
+
     {{#if contextProfile.contact}}
     - Información de contacto a incluir sutilmente (si es posible, en elementos del fondo): Teléfono {{{contextProfile.contact.phone}}} y web {{{contextProfile.contact.website}}}.
     {{/if}}
@@ -122,7 +133,7 @@ const finalPromptGenerator = ai.definePrompt({
     **1. Prompt para Gemini (Nano Banana):**
     Crea un prompt de una sola línea, **en inglés**. Debe ser altamente descriptivo, enfocado en un estilo fotográfico profesional y cinematográfico.
     Usa términos como "professional product photography", "cinematic lighting", "ultra-realistic", "4K resolution", "soft focus", "minimalist composition", etc.
-    **IMPORTANTE:** Si la escena incluye un botón de llamada a la acción, el texto de ese botón debe estar **EN ESPAÑOL**. Por ejemplo, en lugar de "SHOP NOW", usa "{{#if callToActionText}}{{{callToActionText}}}{{else}}VER MÁS{{/if}}".
+    **IMPORTANTE:** Si la escena incluye un botón de llamada a la acción o cualquier texto visible, ese texto debe estar **EN ESPAÑOL**. Por ejemplo, en lugar de "SHOP NOW", usa "{{#if callToActionText}}{{{callToActionText}}}{{else}}VER MÁS{{/if}}".
     Ejemplo de prompt final: "Professional e-commerce product photography of a modern, minimalist living room... with a call-to-action button that reads 'COMPRAR AHORA' in Spanish."
 
     **2. Prompt para Whisk de Google:**
@@ -149,14 +160,22 @@ const generateImagePromptFlow = ai.defineFlow(
     const profileKey = input.componentType as keyof typeof loadedProfiles;
     const contextProfile = loadedProfiles[profileKey] || loadedProfiles["Default"]; // Usar un perfil por defecto si no se encuentra
 
-    // 2. Generar la escena detallada usando el perfil de contexto
-    const sceneResponse = await detailedScenePrompt({
+    // 2. Preparar el input para el generador de escena
+    const sceneInput: z.infer<typeof DetailedSceneInputSchema> = {
       ...input,
       contextProfile,
-    });
+    };
+    
+    // Si el perfil pide productos del catálogo, se lo pasamos
+    if (contextProfile.products_showcased === "from_catalog") {
+      sceneInput.productCatalog = JSON.stringify(productCatalog);
+    }
+
+    // 3. Generar la escena detallada usando el perfil de contexto
+    const sceneResponse = await detailedScenePrompt(sceneInput);
     const detailedScene = sceneResponse.text;
 
-    // 3. Usar la escena detallada para generar los prompts finales específicos de la plataforma
+    // 4. Usar la escena detallada para generar los prompts finales específicos de la plataforma
     const finalPromptsResponse = await finalPromptGenerator({ 
         scene: detailedScene,
         callToActionText: contextProfile.callToAction?.text
@@ -165,5 +184,3 @@ const generateImagePromptFlow = ai.defineFlow(
     return finalPromptsResponse.output!;
   }
 );
-
-    
