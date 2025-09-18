@@ -33,13 +33,13 @@ public/
 
 Estas imágenes se usan como fondos y elementos visuales clave.
 
-| Archivo | Ubicación | Tamaño Recomendado | Formato | Uso |
+| Archivo | Ubicación | Tamaño | Uso | Prompt para IA |
 | :--- | :--- | :--- | :--- | :--- |
-| `banner_1.jpg` | `public/banners/` | 1920x1080 px | JPG | Fondo de la sección principal (HeroSection). |
-| `banner_2.png` | `public/banners/` | 1920x600 px | PNG/JPG | Cabecera de la página de listado de productos. |
-| `banner_3.jpg` | `public/banners/` | 1920x800 px | JPG | Fondo de la sección de llamada a la acción (CtaSection). |
-| `banner_4.jpg` | `public/banners/` | 1920x800 px | JPG | Fondo de la sección de suscripción al boletín. |
-| `banner_registro.jpg`| `public/banners/` | 800x1200 px | JPG | Banner vertical en la página de registro (solo para escritorio). |
+| `banner_1.jpg` | `public/banners/` | 1920x1080 px | Fondo de la sección principal (HeroSection). | `Banner cinematográfico para e-commerce, mostrando una sala de estar moderna y luminosa, decorada con productos del hogar elegantes. La paleta de colores mezcla naranja vibrante en cojines y detalles, con un fondo de pared en tonos de azul cielo y muebles en azul oscuro. Iluminación cálida y profesional, estilo de alta calidad con enfoque suave.` |
+| `banner_2.png` | `public/banners/` | 1920x600 px | Cabecera de la página de listado de productos. | `Composición artística y minimalista de productos del hogar variados (utensilios de cocina, textiles, pequeñas herramientas) organizados sobre un fondo degradado de azul cielo a azul oscuro. Acentos de naranja vibrante en algunos productos. Fotografía cenital, estilo limpio y moderno.` |
+| `banner_3.jpg` | `public/banners/` | 1920x800 px | Fondo de la sección de llamada a la acción (CtaSection). | `Fotografía abstracta de texturas del hogar, como telas y maderas, con una paleta de colores que fusiona naranjas vibrantes, azules cielo y azules oscuros. La imagen debe transmitir calidez y calidad, con un desenfoque suave (bokeh) en el fondo. Iluminación dramática y estilo elegante.` |
+| `banner_4.jpg` | `public/banners/` | 1920x800 px | Fondo de la sección de suscripción al boletín. | `Imagen conceptual y minimalista. Un sobre blanco con un sello de cera naranja vibrante descansa sobre una superficie de madera oscura. El fondo es un degradado sutil de azul oscuro. La composición debe ser limpia y centrar la atención en el sobre. Estilo profesional y corporativo.` |
+| `banner_registro.jpg`| `public/banners/` | 800x1200 px | Banner vertical en la página de registro (solo para escritorio). | `Composición vertical de diseño de interiores que muestra una esquina acogedora de un hogar. Un sillón moderno de color azul oscuro con un cojín naranja vibrante, junto a una planta de interior. La pared de fondo es de un color azul cielo pálido. La imagen debe ser inspiradora y aspiracional, con luz natural suave.` |
 
 ---
 
@@ -99,21 +99,20 @@ Las imágenes de los productos se gestionan desde el panel de administración y 
 
 Para mantener una coherencia visual en todas las imágenes generadas por inteligencia artificial (como Midjourney, DALL-E, etc.), utiliza el siguiente prompt como base.
 
+### Paleta de Colores del Proyecto
+
+*   **Principal**: Naranja vibrante (`hsl(35, 100%, 58%)`).
+*   **Acento**: Azul cielo (`hsl(205, 90%, 55%)`).
+*   **Secundario**: Azul oscuro (`hsl(215, 60%, 40%)`).
+*   **Neutrales**: Blancos puros, grises claros.
+
 ### Prompt Base
 
 ```
 Fotografía de producto profesional para e-commerce, [descripción del producto o concepto], con una paleta de colores que mezcla naranja vibrante, azul cielo y acentos de azul oscuro. El producto debe estar bien iluminado, con un enfoque nítido sobre un fondo minimalista de color blanco o gris claro. Estilo limpio, moderno y de alta calidad, con sombras suaves.
 ```
 
-### Paleta de Colores del Proyecto
-
-*   **Principal**: Naranja vibrante.
-*   **Acento**: Azul cielo.
-*   **Secundario**: Azul oscuro.
-*   **Neutrales**: Blancos puros, grises claros.
-
 ### Ejemplos de Aplicación
 
-*   **Para un banner**: `Banner cinematográfico para e-commerce de productos del hogar, mostrando una sala de estar moderna. Paleta de colores de naranja vibrante y azules, con iluminación cálida y profesional.`
 *   **Para una categoría**: `Icono visual para categoría 'Tecnología', una composición abstracta con formas geométricas y circuitos. Paleta de colores de naranja vibrante, azul cielo y azul oscuro, estilo minimalista y futurista.`
 *   **Para un producto**: `Fotografía de producto profesional para e-commerce de un set de herramientas manuales organizadas sobre una superficie de madera. Paleta de colores de naranjas, azules y grises, fondo limpio y moderno.`
