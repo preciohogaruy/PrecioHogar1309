@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -16,6 +17,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 const promptFormSchema = z.object({
   imageType: z.string().min(1, 'Debes seleccionar un tipo de imagen.'),
   description: z.string().min(10, 'La descripción debe tener al menos 10 caracteres.'),
+  resolution: z.string().optional(),
+  aspectRatio: z.string().optional(),
 });
 
 type PromptFormValues = z.infer<typeof promptFormSchema>;
@@ -48,6 +51,8 @@ export function PromptGeneratorForm() {
     defaultValues: {
       imageType: '',
       description: '',
+      resolution: '',
+      aspectRatio: '',
     },
   });
 
@@ -84,8 +89,8 @@ export function PromptGeneratorForm() {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <Card className="lg:col-span-2">
             <CardHeader>
-                <CardTitle>Describe tu Imagen</CardTitle>
-                <CardDescription>Completa los campos para que la IA genere el prompt perfecto.</CardDescription>
+                <CardTitle>Describe tu Imagen Ideal</CardTitle>
+                <CardDescription>Completa los campos para que la IA genere un prompt optimizado y profesional.</CardDescription>
             </CardHeader>
             <CardContent>
                 <Form {...form}>
@@ -128,6 +133,36 @@ export function PromptGeneratorForm() {
                         </FormItem>
                     )}
                     />
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <FormField
+                        control={form.control}
+                        name="resolution"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Resolución (Opcional)</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Ej: 1920x1080, 4K, 8K" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                        />
+                        <FormField
+                        control={form.control}
+                        name="aspectRatio"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Aspect Ratio (Opcional)</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Ej: 16:9, cuadrado, vertical" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                        />
+                    </div>
+
 
                     <div className="flex justify-end">
                     <Button

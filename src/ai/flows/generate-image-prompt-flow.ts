@@ -13,6 +13,8 @@ import { z } from 'genkit';
 const GenerateImagePromptInputSchema = z.object({
   imageType: z.string().describe('El tipo de imagen a generar (ej: Banner, Logo, Foto de producto).'),
   description: z.string().describe('Una descripción detallada de lo que debe contener la imagen.'),
+  resolution: z.string().optional().describe('La resolución deseada para la imagen (ej: "1920x1080", "4K", "8K").'),
+  aspectRatio: z.string().optional().describe('La relación de aspecto de la imagen (ej: "16:9", "cuadrado", "vertical").'),
 });
 export type GenerateImagePromptInput = z.infer<typeof GenerateImagePromptInputSchema>;
 
@@ -40,22 +42,28 @@ const promptGeneratorPrompt = ai.definePrompt({
   - Neutros: Blancos puros, grises claros.
 
   **Instrucciones:**
-  1.  Toma el "Tipo de imagen" y la "Descripción" proporcionados por el usuario.
+  1.  Toma el "Tipo de imagen", "Descripción", "Resolución" (opcional) y "Aspect Ratio" (opcional) proporcionados.
   2.  Crea un prompt que sea claro, conciso y rico en detalles visuales.
   3.  **Crucialmente, DEBES incorporar la paleta de colores del proyecto de forma natural en el prompt.** Describe cómo los colores deben interactuar.
-  4.  Añade términos técnicos y artísticos que mejoren la calidad de la imagen (ej: "cinematic lighting", "ultra-realistic", "soft focus", "4K", "professional product photography", "minimalist composition").
-  5.  El prompt debe estar en una sola línea de texto, en inglés para máxima compatibilidad con los modelos de IA.
+  4.  Añade términos técnicos y artísticos que mejoren la calidad (ej: "cinematic lighting", "ultra-realistic", "soft focus", "professional product photography", "minimalist composition").
+  5.  Si se proporciona 'resolution', inclúyela en el prompt (ej: "4K", "8K", "high resolution").
+  6.  Si se proporciona 'aspectRatio', tradúcelo a términos que la IA entienda (ej: "16:9" -> "widescreen, cinematic", "vertical" -> "portrait aspect ratio", "cuadrado" -> "square aspect ratio").
+  7.  El prompt debe estar en una sola línea de texto, en inglés para máxima compatibilidad con los modelos de IA.
 
   **Ejemplo de cómo transformar la entrada en un prompt:**
   -   *Entrada de Usuario:*
       -   Tipo de imagen: "Banner para sección de Herramientas"
       -   Descripción: "Varias herramientas manuales bien organizadas sobre una mesa de madera."
+      -   Resolución: "4K"
+      -   Aspect Ratio: "16:9"
   -   *Prompt Generado (Salida Esperada):*
-      "Professional e-commerce product photography, a top-down view of a neatly organized set of hand tools on a dark wood surface. The scene is illuminated with cinematic lighting, creating soft shadows. The color palette elegantly mixes vibrant orange accents on some tool handles with deep sky blue and dark blue elements in the background. Minimalist composition, ultra-realistic, 4K, high detail."
+      "Professional e-commerce product photography, a top-down view of a neatly organized set of hand tools on a dark wood surface, cinematic lighting creating soft shadows. The color palette elegantly mixes vibrant orange accents on some tool handles with deep sky blue and dark blue elements in the background. Minimalist composition, ultra-realistic, 4K resolution, widescreen 16:9 aspect ratio."
 
   **Entrada del Usuario:**
   -   Tipo de imagen: {{{imageType}}}
   -   Descripción: {{{description}}}
+  {{#if resolution}}-   Resolución: {{{resolution}}}{{/if}}
+  {{#if aspectRatio}}-   Aspect Ratio: {{{aspectRatio}}}{{/if}}
 
   Genera el prompt optimizado.`,
 });
