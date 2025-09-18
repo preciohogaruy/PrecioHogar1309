@@ -29,7 +29,7 @@ const ImagePromptProfileSchema = z.object({
     phone: z.string(),
     website: z.string()
   }).optional(),
-  products_showcased: z.array(z.string()).optional()
+  products_showcased: z.union([z.array(z.string()), z.literal("from_catalog")]).optional()
 });
 
 const GenerateImageDescriptionInputSchema = z.object({
@@ -57,7 +57,7 @@ Tu tarea es generar una idea de imagen creativa y concisa (máximo 30 palabras) 
 **BRIEF CREATIVO:**
 - **Estilo y Atmósfera:** Apunta a un estilo "{{contextProfile.style}}" y una atmósfera "{{contextProfile.mood}}".
 {{#if contextProfile.products_showcased}}
-- **Productos a mostrar:** La imagen debe incluir: {{#each contextProfile.products_showcased}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}.
+- **Productos a mostrar:** {{#if (eq contextProfile.products_showcased "from_catalog")}}La imagen debe incluir una selección de productos del catálogo de la tienda.{{else}}La imagen debe incluir: {{#each contextProfile.products_showcased}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}.{{/if}}
 {{/if}}
 {{#if contextProfile.offer}}
 - **Promoción:** La imagen debe evocar la oferta "{{contextProfile.offer.discount}}".
