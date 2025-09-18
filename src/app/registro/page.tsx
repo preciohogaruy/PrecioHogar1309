@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { RegistroForm } from "@/components/auth/RegistroForm";
 import Image from "next/image";
@@ -6,7 +7,7 @@ export default function RegistroPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-4xl flex bg-white rounded-2xl shadow-xl overflow-hidden">
-        <div className="w-full md:w-1/2 p-8 sm:p-12">
+        <div className="w-full md:w-1/2 p-6 sm:p-8 md:p-12">
             <Link href="/" className="flex items-center space-x-2 mb-8 group">
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 shadow-lg">
                     <Image
@@ -37,8 +38,8 @@ export default function RegistroPage() {
             <Image 
                 src="/banners/banner_registro.jpg" 
                 alt="Banner de registro" 
-                layout="fill" 
-                objectFit="cover"
+                fill
+                className="object-cover"
             />
              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 to-purple-600/30"></div>
         </div>
