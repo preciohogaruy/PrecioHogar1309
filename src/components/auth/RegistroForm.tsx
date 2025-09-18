@@ -162,7 +162,7 @@ export function RegistroForm() {
                 <Button
                   type="button"
                   onClick={nextStep}
-                  className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground"
+                  className="w-full bg-primary text-primary-foreground"
                 >
                   Siguiente
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -250,7 +250,7 @@ export function RegistroForm() {
                 </Button>
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white"
+                  className="w-full bg-green-500 hover:bg-green-600 text-white"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (

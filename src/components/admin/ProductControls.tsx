@@ -66,7 +66,7 @@ export function ProductControls({
         {/* Add Product Button */}
         <Link href="/admin/producto/nuevo" className="w-full lg:w-auto">
             <Button
-            className="bg-gradient-to-r from-primary to-accent hover:from-orange-500 hover:to-yellow-400 text-primary-foreground w-full"
+            className="bg-primary text-primary-foreground w-full"
             >
             <Plus className="w-4 h-4 mr-2" />
             Agregar Producto

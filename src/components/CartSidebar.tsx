@@ -49,7 +49,7 @@ export function CartSidebar() {
               <p className="text-gray-500 mb-6">Agrega algunos productos para comenzar</p>
               <Link href="/productos">
                 <Button
-                  className="bg-gradient-to-r from-primary to-accent text-primary-foreground"
+                  className="bg-primary text-primary-foreground"
                   onClick={closeCart}
                 >
                   Ver Productos
@@ -143,7 +143,7 @@ export function CartSidebar() {
             </div>
 
             {/* Checkout Button */}
-            <Button className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground py-4 text-lg">
+            <Button className="w-full bg-primary text-primary-foreground py-4 text-lg">
               Proceder al Pago
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>

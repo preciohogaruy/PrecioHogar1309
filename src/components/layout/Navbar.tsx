@@ -106,7 +106,7 @@ export function Navbar() {
               </button>
 
               <div
-                className={`absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl shadow-orange-500/10 border border-orange-100/50 transition-all duration-300 ${
+                className={`absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl shadow-primary/10 border border-primary/20 transition-all duration-300 ${
                   productsDropdownOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                 }`}
                 onMouseEnter={() => setProductsDropdownOpen(true)}
@@ -118,13 +118,13 @@ export function Navbar() {
                       <Link key={cat.title} href={cat.href} className={`${dropdownItemClasses}`}>
                         <cat.icon className={`w-5 h-5 text-${cat.color}`} />
                         <div>
-                          <div className={`font-medium text-gray-800 group-hover:text-${cat.color}`}>{cat.title}</div>
+                          <div className={`font-medium text-gray-800 group-hover:text-primary`}>{cat.title}</div>
                           <div className="text-xs text-gray-500">{cat.desc}</div>
                         </div>
                       </Link>
                     ))}
                   </div>
-                  <div className="border-t border-orange-100 pt-4 mt-4">
+                  <div className="border-t border-primary/10 pt-4 mt-4">
                     <Link href="/productos" className="dropdown-cta" onClick={() => setProductsDropdownOpen(false)}>
                       <span>Ver todos los productos</span>
                       <ArrowRight className="w-3 h-3" />
@@ -144,9 +144,11 @@ export function Navbar() {
             <button className="nav-icon-btn group hidden sm:flex">
               <Search className="w-5 h-5 text-gray-600 group-hover:text-primary group-hover:scale-110 transition-all duration-300" />
             </button>
-            <button className="nav-icon-btn group hidden sm:flex">
-              <User className="w-5 h-5 text-gray-600 group-hover:text-primary group-hover:scale-110 transition-all duration-300" />
-            </button>
+            <Link href="/admin">
+              <button className="nav-icon-btn group hidden sm:flex">
+                <User className="w-5 h-5 text-gray-600 group-hover:text-primary group-hover:scale-110 transition-all duration-300" />
+              </button>
+            </Link>
             <button className="nav-icon-btn group relative" onClick={toggleCart}>
               <ShoppingBag className="w-5 h-5 text-gray-600 group-hover:text-primary group-hover:scale-110 transition-all duration-300" />
               {totalItems > 0 && (
@@ -160,7 +162,7 @@ export function Navbar() {
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center px-6 py-3 rounded-full font-medium text-sm uppercase tracking-wide transition-all duration-300 hover:scale-105 shadow-lg group bg-gradient-to-r from-primary to-accent text-white"
+              className="hidden md:flex items-center px-6 py-3 rounded-full font-medium text-sm uppercase tracking-wide transition-all duration-300 hover:scale-105 shadow-lg group bg-primary text-white"
             >
               <Headphones className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
               CONTACTAR
@@ -179,7 +181,7 @@ export function Navbar() {
                     <SheetTitle className="flex items-center space-x-2">
                        <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-lg">
                           <Image
-                            src="/logotienda.png"
+                            src="/logotienda_blanco.svg"
                             alt="PrecioHogar Logo"
                             width={16}
                             height={16}
@@ -212,16 +214,15 @@ export function Navbar() {
                         <Mail className="w-5 h-5 text-primary" />
                         <span>Contacto</span>
                       </a>
-                      <div className="pt-4 border-t border-orange-100">
+                      <div className="pt-4 border-t border-primary/10">
                         <Button
                           asChild
-                          className="w-full"
+                          className="w-full bg-primary text-primary-foreground"
                         >
                           <Link
                             href={whatsappLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-gradient-to-r from-primary to-accent text-white"
                              onClick={() => setMobileMenuOpen(false)}
                           >
                             <Headphones className="w-4 h-4 mr-2" />

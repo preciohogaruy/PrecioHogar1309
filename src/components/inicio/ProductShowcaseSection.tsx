@@ -33,7 +33,7 @@ export async function ProductShowcaseSection() {
                     <Link href="/productos">
                         <Button
                             size="lg"
-                            className="bg-gradient-to-r from-primary to-accent hover:from-orange-500 hover:to-yellow-400 text-primary-foreground font-bold py-4 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
+                            className="bg-primary text-primary-foreground font-bold py-4 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
                         >
                             Ver todos los productos
                             <ArrowRight className="w-5 h-5 ml-2" />

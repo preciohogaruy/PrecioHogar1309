@@ -6,7 +6,7 @@ export function NewsletterSection() {
   return (
     <section id="newsletter" className="py-24 bg-gray-50">
       <div className="container mx-auto px-6">
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 shadow-2xl p-12">
+        <div className="relative rounded-3xl overflow-hidden bg-secondary shadow-2xl p-12">
             <div className="absolute inset-0 opacity-10">
                 <Image 
                     src="/banners/banner_4.jpg"

@@ -75,7 +75,7 @@ export function ProductFilters({ categories, initialValues }: ProductFiltersProp
           placeholder="Buscar productos..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-12 pr-10 py-4 rounded-2xl border border-orange-200 focus:border-primary focus:ring-2 focus:ring-orange-100 outline-none transition-all duration-300 bg-white/80 backdrop-blur-sm"
+          className="w-full pl-12 pr-10 py-4 rounded-2xl border border-primary/30 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 bg-white/80 backdrop-blur-sm"
         />
         {searchTerm && (
           <button
@@ -95,8 +95,8 @@ export function ProductFilters({ categories, initialValues }: ProductFiltersProp
               onClick={() => handleCategoryChange(category)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedCategory === category
-                  ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
-                  : "bg-white text-gray-600 hover:bg-orange-50 border border-orange-200"
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-white text-gray-600 hover:bg-orange-50 border border-primary/20"
               }`}
             >
               {category}

@@ -139,7 +139,7 @@ export function CategoryForm({ category }: CategoryFormProps) {
         <div className="flex justify-end pt-8 border-t">
           <Button
             type="submit"
-            className="bg-gradient-to-r from-primary to-accent hover:from-orange-500 hover:to-yellow-400 text-primary-foreground"
+            className="bg-primary text-primary-foreground"
             disabled={isSubmitting}
           >
             {isSubmitting ? (

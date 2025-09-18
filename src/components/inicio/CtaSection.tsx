@@ -2,12 +2,13 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 
 export function CtaSection() {
     return (
-        <section className="py-24 bg-gray-900">
+        <section className="py-24 bg-secondary text-secondary-foreground">
             <div className="container mx-auto px-6">
-                <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-secondary to-accent shadow-2xl">
+                <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-secondary to-blue-900/50 shadow-2xl">
                     <div className="absolute inset-0 opacity-10">
                         <Image 
                             src="/banners/banner_3.jpg"
@@ -22,13 +23,15 @@ export function CtaSection() {
                             <p className="text-lg text-white/80 mb-8">
                                 No esperes más para darle a tu hogar el estilo que se merece. Explora nuestras colecciones y encuentra la inspiración que necesitas.
                             </p>
-                            <Button
-                                size="lg"
-                                className="bg-white text-secondary hover:bg-gray-100 py-4 px-8 rounded-full font-bold text-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
-                            >
-                                Explorar Colecciones
-                                <ArrowRight className="w-5 h-5 ml-2" />
-                            </Button>
+                            <Link href="/productos">
+                                <Button
+                                    size="lg"
+                                    className="bg-white text-secondary hover:bg-gray-100 py-4 px-8 rounded-full font-bold text-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
+                                >
+                                    Explorar Colecciones
+                                    <ArrowRight className="w-5 h-5 ml-2" />
+                                </Button>
+                            </Link>
                         </div>
                         <div className="md:w-1/2 flex justify-center">
                             <Image 

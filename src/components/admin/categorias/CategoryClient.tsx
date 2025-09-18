@@ -56,7 +56,7 @@ export function CategoryClient({ initialCategories }: CategoryClientProps) {
             <h2 className="text-lg font-semibold text-gray-800">Categorías</h2>
             <Link href="/admin/categorias/nueva">
                 <Button
-                className="bg-gradient-to-r from-primary to-accent hover:from-orange-500 hover:to-yellow-400 text-primary-foreground"
+                className="bg-primary text-primary-foreground"
                 >
                 <Plus className="w-4 h-4 mr-2" />
                 Crear Categoría

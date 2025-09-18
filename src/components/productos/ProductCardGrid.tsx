@@ -60,7 +60,7 @@ export function ProductCardGrid({ product }: ProductCardGridProps) {
     }
 
   return (
-    <div className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl shadow-orange-200/50 transition-all duration-500 overflow-hidden">
+    <div className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl shadow-primary/10 transition-all duration-500 overflow-hidden">
       <div className="relative">
         <div className="aspect-square overflow-hidden">
           <Image
@@ -95,7 +95,7 @@ export function ProductCardGrid({ product }: ProductCardGridProps) {
         {/* Quick Add to Cart */}
         <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
           <Button
-            className="w-full bg-gradient-to-r from-primary to-accent hover:from-orange-500 hover:to-yellow-400 text-primary-foreground rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-primary text-primary-foreground rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={handleAddToCart}
             disabled={!isInStock}
           >

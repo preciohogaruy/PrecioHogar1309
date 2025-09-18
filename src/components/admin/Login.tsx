@@ -66,7 +66,7 @@ export function Login({ children }: { children: ReactNode }) {
                 </div>
               )}
             </div>
-            <Button type="submit" className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground">
+            <Button type="submit" className="w-full bg-primary text-primary-foreground">
               Acceder
             </Button>
           </form>

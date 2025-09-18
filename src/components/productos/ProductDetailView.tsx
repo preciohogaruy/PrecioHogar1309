@@ -252,7 +252,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
-                    className="flex-1 bg-gradient-to-r from-primary to-accent hover:from-orange-500 hover:to-yellow-400 text-primary-foreground py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 bg-primary text-primary-foreground py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={!(product.quantity > 0)}
                     onClick={handleAddToCart}
                   >
@@ -374,7 +374,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
                 <div className="space-y-8">
                   <div className="flex justify-between items-center">
                     <h3 className="text-2xl font-bold text-gray-800">Reseñas de Clientes</h3>
-                    <Button className="bg-gradient-to-r from-primary to-accent text-primary-foreground">
+                    <Button className="bg-primary text-primary-foreground">
                       <MessageCircle className="w-4 h-4 mr-2" />
                       Escribir Reseña
                     </Button>

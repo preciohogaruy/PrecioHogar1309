@@ -9,7 +9,7 @@ export default function RegistroPage() {
       <div className="w-full max-w-4xl flex bg-white rounded-2xl shadow-xl overflow-hidden">
         <div className="w-full md:w-1/2 p-6 sm:p-8 md:p-12">
             <Link href="/" className="flex items-center space-x-2 mb-8 group">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 shadow-lg">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 shadow-lg">
                     <Image
                         src="/logotienda_blanco.svg"
                         alt="PrecioHogar Logo"
@@ -18,7 +18,7 @@ export default function RegistroPage() {
                         className="w-5 h-5"
                     />
                 </div>
-                <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
+                <div className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
                     PrecioHogar
                 </div>
             </Link>
@@ -29,7 +29,7 @@ export default function RegistroPage() {
             <RegistroForm />
             <p className="text-center text-sm text-gray-600 mt-8">
                 ¿Ya tienes una cuenta?{" "}
-                <Link href="/login" className="font-medium text-blue-600 hover:underline">
+                <Link href="/admin" className="font-medium text-secondary hover:underline">
                     Inicia sesión
                 </Link>
             </p>
@@ -41,7 +41,7 @@ export default function RegistroPage() {
                 fill
                 className="object-cover"
             />
-             <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 to-purple-600/30"></div>
+             <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30"></div>
         </div>
       </div>
     </div>

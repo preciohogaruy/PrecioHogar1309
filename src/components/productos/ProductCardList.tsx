@@ -131,7 +131,7 @@ export function ProductCardList({ product }: ProductCardListProps) {
 
             <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <Button
-                className="bg-gradient-to-r from-primary to-accent hover:from-orange-500 hover:to-yellow-400 text-primary-foreground disabled:opacity-50 disabled:cursor-not-allowed w-full"
+                className="bg-primary text-primary-foreground disabled:opacity-50 disabled:cursor-not-allowed w-full"
                 onClick={handleAddToCart}
                 disabled={!isInStock}
               >

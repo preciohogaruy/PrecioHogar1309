@@ -65,7 +65,7 @@ export function PaginationComponent({ currentPage, totalPages }: PaginationCompo
           variant={i === currentPage ? "default" : "outline"}
           size="sm"
           onClick={() => handlePageChange(i)}
-          className={i === currentPage ? "bg-gradient-to-r from-primary to-accent text-white" : ""}
+          className={i === currentPage ? "bg-primary text-primary-foreground" : ""}
         >
           {i}
         </Button>
