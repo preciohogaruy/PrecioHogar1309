@@ -1,5 +1,5 @@
 
-import { ImageIcon, LayoutDashboardIcon, List, Shapes, Sparkles } from 'lucide-react';
+import { ImageIcon, LayoutDashboardIcon, List, Shapes, Sparkles, Paintbrush } from 'lucide-react';
 import ToolCard from '@/components/inicio/ToolCard';
 import { Login } from '@/components/admin/Login';
 
@@ -28,6 +28,13 @@ export default function AdminPage() {
             icon={<Sparkles className="w-8 h-8 text-primary" />}
             title="Generador de Prompts"
             description="Crea prompts para la IA de imágenes, manteniendo un estilo visual consistente en todo el proyecto."
+            linkText="Ir a la herramienta"
+          />
+           <ToolCard
+            href="/admin/crear-estilos"
+            icon={<Paintbrush className="w-8 h-8 text-primary" />}
+            title="Extractor de Estilos"
+            description="Sube una imagen de referencia y extrae su perfil de estilo (composición, iluminación, etc.) para replicarlo."
             linkText="Ir a la herramienta"
           />
           <ToolCard
