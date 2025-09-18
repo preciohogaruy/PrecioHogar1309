@@ -33,6 +33,23 @@ const imageTypes = [
   'Fondo abstracto',
 ];
 
+const resolutions = [
+    "1920x1080 (Full HD)",
+    "1024x1024 (Cuadrado)",
+    "800x1200 (Vertical)",
+    "4K (3840x2160)",
+    "8K (7680x4320)",
+];
+
+const aspectRatios = [
+    "16:9 (Widescreen)",
+    "1:1 (Cuadrado)",
+    "9:16 (Vertical)",
+    "4:3 (Estándar)",
+    "21:9 (Cinemático)",
+];
+
+
 const colorPalette = [
     { name: "Naranja Vibrante", value: "hsl(35, 100%, 58%)" },
     { name: "Azul Cielo", value: "hsl(205, 90%, 55%)" },
@@ -136,30 +153,54 @@ export function PromptGeneratorForm() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <FormField
-                        control={form.control}
-                        name="resolution"
-                        render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>Resolución (Opcional)</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Ej: 1920x1080, 4K, 8K" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                            </FormItem>
-                        )}
+                            control={form.control}
+                            name="resolution"
+                            render={({ field }) => (
+                                <FormItem>
+                                <FormLabel>Resolución (Opcional)</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Selecciona una resolución" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        <SelectItem value="">Ninguna</SelectItem>
+                                        {resolutions.map((res) => (
+                                            <SelectItem key={res} value={res.split(' ')[0]}>
+                                                {res}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                                <FormMessage />
+                                </FormItem>
+                            )}
                         />
                         <FormField
-                        control={form.control}
-                        name="aspectRatio"
-                        render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>Aspect Ratio (Opcional)</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Ej: 16:9, cuadrado, vertical" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                            </FormItem>
-                        )}
+                            control={form.control}
+                            name="aspectRatio"
+                            render={({ field }) => (
+                                <FormItem>
+                                <FormLabel>Aspect Ratio (Opcional)</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                     <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Selecciona un aspect ratio" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        <SelectItem value="">Ninguno</SelectItem>
+                                        {aspectRatios.map((ratio) => (
+                                            <SelectItem key={ratio} value={ratio.split(' ')[0]}>
+                                                {ratio}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                                <FormMessage />
+                                </FormItem>
+                            )}
                         />
                     </div>
 
