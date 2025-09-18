@@ -109,7 +109,7 @@ const detailedScenePrompt = ai.definePrompt({
 
 const finalPromptGenerator = ai.definePrompt({
   name: 'finalPromptGenerator',
-  input: { schema: z.object({ scene: z.string() }) },
+  input: { schema: z.object({ scene: z.string(), callToActionText: z.string().optional() }) },
   output: { schema: GenerateImagePromptOutputSchema },
   prompt: `
     A partir de la siguiente descripción de escena, genera dos prompts optimizados para diferentes plataformas de IA.
@@ -120,21 +120,23 @@ const finalPromptGenerator = ai.definePrompt({
     ---
 
     **1. Prompt para Gemini (Nano Banana):**
-    Crea un prompt de una sola línea, en inglés. Debe ser altamente descriptivo, enfocado en un estilo fotográfico profesional y cinematográfico.
+    Crea un prompt de una sola línea, **en inglés**. Debe ser altamente descriptivo, enfocado en un estilo fotográfico profesional y cinematográfico.
     Usa términos como "professional product photography", "cinematic lighting", "ultra-realistic", "4K resolution", "soft focus", "minimalist composition", etc.
-    Ejemplo: "Professional e-commerce product photography of a modern, minimalist living room, featuring a sleek dark blue sofa (hsl(215, 60%, 40%)) with vibrant orange pillows (hsl(35, 100%, 58%)). Cinematic, soft morning light streams through a large window. Background is a clean, light gray wall (hsl(210, 40%, 98%)). Ultra-realistic, 4K resolution, depth of field."
+    **IMPORTANTE:** Si la escena incluye un botón de llamada a la acción, el texto de ese botón debe estar **EN ESPAÑOL**. Por ejemplo, en lugar de "SHOP NOW", usa "{{#if callToActionText}}{{{callToActionText}}}{{else}}VER MÁS{{/if}}".
+    Ejemplo de prompt final: "Professional e-commerce product photography of a modern, minimalist living room... with a call-to-action button that reads 'COMPRAR AHORA' in Spanish."
 
     **2. Prompt para Whisk de Google:**
-    Crea un prompt estructurado en tres partes: Asunto, Escena y Estilo. Sé claro y conciso en cada parte.
+    Crea un prompt estructurado en tres partes: Asunto, Escena y Estilo. Sé claro y conciso en cada parte. El idioma debe ser español.
     Ejemplo:
     Asunto: Un sofá azul oscuro con almohadas naranjas.
-    Escena: Un salón moderno y minimalista con una ventana grande por donde entra luz suave. La pared del fondo es gris claro.
+    Escena: Un salón moderno y minimalista con una ventana grande por donde entra luz suave. La pared del fondo es gris claro. Hay un botón que dice "COMPRAR AHORA".
     Estilo: Fotografía de producto profesional para e-commerce, realista, con iluminación cinematográfica y composición limpia. Paleta de colores: azul oscuro, naranja vibrante, gris claro.
 
     ---
     Genera ambos prompts en el formato JSON requerido.
   `,
 });
+
 
 const generateImagePromptFlow = ai.defineFlow(
   {
@@ -155,8 +157,13 @@ const generateImagePromptFlow = ai.defineFlow(
     const detailedScene = sceneResponse.text;
 
     // 3. Usar la escena detallada para generar los prompts finales específicos de la plataforma
-    const finalPromptsResponse = await finalPromptGenerator({ scene: detailedScene });
+    const finalPromptsResponse = await finalPromptGenerator({ 
+        scene: detailedScene,
+        callToActionText: contextProfile.callToAction?.text
+    });
     
     return finalPromptsResponse.output!;
   }
 );
+
+    
