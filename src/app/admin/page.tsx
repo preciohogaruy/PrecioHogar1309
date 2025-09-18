@@ -1,15 +1,11 @@
 
 import { ImageIcon, LayoutDashboardIcon, List, Shapes } from 'lucide-react';
-import HomePageHeader from '@/components/inicio/HomePageHeader';
 import ToolCard from '@/components/inicio/ToolCard';
-import { AdminHeader } from '@/components/admin/AdminHeader';
+import { Login } from '@/components/admin/Login';
 
-export default function Home() {
+export default function AdminPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <AdminHeader />
-
-      <main className="container mx-auto px-6 py-8">
+    <Login>
         <header className="mb-12 text-center">
             <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl mb-4">
                 Bienvenido a tu Panel de Control
@@ -42,7 +38,6 @@ export default function Home() {
             linkText="Ir al panel"
           />
         </div>
-      </main>
-    </div>
+    </Login>
   );
 }
