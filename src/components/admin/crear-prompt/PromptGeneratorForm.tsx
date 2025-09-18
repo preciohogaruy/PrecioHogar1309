@@ -77,7 +77,11 @@ export function PromptGeneratorForm() {
     setIsGenerating(true);
     setGeneratedPrompt(null);
     try {
-      const result = await generateImagePrompt(values);
+      const result = await generateImagePrompt({
+        ...values,
+        resolution: values.resolution === "none" ? undefined : values.resolution,
+        aspectRatio: values.aspectRatio === "none" ? undefined : values.aspectRatio,
+      });
       setGeneratedPrompt(result.prompt);
     } catch (error) {
       console.error('Error generating prompt:', error);
@@ -165,7 +169,7 @@ export function PromptGeneratorForm() {
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="">Ninguna</SelectItem>
+                                        <SelectItem value="none">Ninguna</SelectItem>
                                         {resolutions.map((res) => (
                                             <SelectItem key={res} value={res.split(' ')[0]}>
                                                 {res}
@@ -190,7 +194,7 @@ export function PromptGeneratorForm() {
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="">Ninguno</SelectItem>
+                                        <SelectItem value="none">Ninguno</SelectItem>
                                         {aspectRatios.map((ratio) => (
                                             <SelectItem key={ratio} value={ratio.split(' ')[0]}>
                                                 {ratio}
