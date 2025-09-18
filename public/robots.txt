@@ -1,0 +1,11 @@
+# Reglas para todos los crawlers
+User-agent: *
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /api/*
+
+# Permitir el rastreo de todo lo demás
+Allow: /
+
+# Ubicación del Sitemap
+Sitemap: https://preciohogaruy.netlify.app/sitemap.xml
