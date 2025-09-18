@@ -42,8 +42,12 @@ Tu tarea es generar una idea de imagen creativa y concisa (máximo 30 palabras) 
 - **Concepto:** Describe una escena con el personaje "{{contextProfile.escena_ilustrada.sujeto_principal.descripcion}}" en un entorno amigable y moderno.
 {{else}}
 - **Estilo y Atmósfera:** Apunta a un estilo "{{contextProfile.style}}" y una atmósfera "{{contextProfile.mood}}".
-{{#if contextProfile.products_showcased}}
-- **Productos a mostrar:** {{#if (Array.isArray contextProfile.products_showcased)}}La imagen debe incluir: {{#each contextProfile.products_showcased}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}.{{else}}La imagen debe incluir una selección de productos del catálogo de la tienda.{{/if}}
+{{#if contextProfile.products_showcased.length}}
+- **Productos a mostrar:** La imagen debe incluir: {{#each contextProfile.products_showcased}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}.
+{{else}}
+  {{#if contextProfile.products_showcased}}
+- **Productos a mostrar:** La imagen debe incluir una selección de productos del catálogo de la tienda.
+  {{/if}}
 {{/if}}
 {{#if contextProfile.offer}}
 - **Promoción:** La imagen debe evocar la oferta "{{contextProfile.offer.discount}}".
