@@ -134,6 +134,11 @@ export function Navbar() {
                 </div>
               </div>
             </div>
+            <Link href="/registro" className={navLinkClasses}>
+              <User className="w-4 h-4 text-primary group-hover:scale-110 transition-transform duration-300" />
+              <span>REGISTRO</span>
+              <span className="nav-underline"></span>
+            </Link>
           </div>
 
           <div className="flex items-center space-x-4">
@@ -195,6 +200,10 @@ export function Navbar() {
                       <Link href="/productos" className="mobile-nav-item group" onClick={() => setMobileMenuOpen(false)}>
                         <Package className="w-5 h-5 text-primary" />
                         <span>Productos</span>
+                      </Link>
+                      <Link href="/registro" className="mobile-nav-item group" onClick={() => setMobileMenuOpen(false)}>
+                        <User className="w-5 h-5 text-primary" />
+                        <span>Registro</span>
                       </Link>
                       <a href="#about" className="mobile-nav-item group" onClick={() => setMobileMenuOpen(false)}>
                         <Award className="w-5 h-5 text-primary" />

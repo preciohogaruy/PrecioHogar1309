@@ -1,31 +1,16 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
-}
-model Product {
-  id          Int      @id @default(autoincrement())
-  productId   String   @unique
-  title       String
-  description String
-  price       Float
-  quantity    Int
-  image       String?
-  rating      Float
-  badge       String
-  category    Category @relation(fields: [categoryId], references: [id])
-  categoryId  Int
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  provider  = "sqlite"
+  url       = "file:./dev.db"
+  // uncomment for Prisma Accelerate
+  // directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 model Category {
@@ -34,4 +19,31 @@ model Category {
   description String?
   tag         String    @unique
   products    Product[]
+}
+
+model Product {
+  id           Int       @id @default(autoincrement())
+  productId    String    @unique
+  title        String
+  description  String?
+  price        Float
+  quantity     Int
+  image        String?
+  rating       Float     @default(0)
+  badge        String?
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  category     Category  @relation(fields: [categoryId], references: [id])
+  categoryId   Int
+  // reviews    Json?
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
