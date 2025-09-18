@@ -10,6 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { generateImagePrompt, type GenerateImagePromptOutput } from '@/ai/flows/generate-image-prompt-flow';
+import { generateImageDescription } from '@/ai/flows/generate-description-flow';
 import { Loader2, Sparkles, Copy, Check, Wand2, Image as ImageIcon, Milestone } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -33,7 +34,7 @@ const componentTypes = [
 ];
 
 const colorPalette = [
-    { name: "Naranja Vibrante", value: "hsl(42, 100%, 50%)" },
+    { name: "Naranja Vibrante", value: "hsl(35, 100%, 58%)" },
     { name: "Azul Cielo", value: "hsl(205, 90%, 55%)" },
     { name: "Azul Oscuro", value: "hsl(215, 60%, 40%)" },
     { name: "Blancos y Grises Claros", value: "hsl(210, 40%, 98%)" },
@@ -42,6 +43,7 @@ const colorPalette = [
 export function PromptGeneratorForm() {
   const { toast } = useToast();
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isSuggesting, setIsSuggesting] = useState(false);
   const [generatedPrompts, setGeneratedPrompts] = useState<GenerateImagePromptOutput | null>(null);
   const [copiedStates, setCopiedStates] = useState<{ [key: string]: boolean }>({});
 
@@ -52,6 +54,29 @@ export function PromptGeneratorForm() {
       userDescription: '',
     },
   });
+
+  const handleSuggestDescription = async () => {
+    const componentType = form.getValues('componentType');
+    if (!componentType) {
+      form.setError('componentType', { message: 'Selecciona un componente primero.' });
+      return;
+    }
+    setIsSuggesting(true);
+    try {
+      const result = await generateImageDescription({ componentType });
+      form.setValue('userDescription', result.description);
+      form.clearErrors('userDescription');
+    } catch (error) {
+      console.error('Error suggesting description:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Error de IA',
+        description: 'No se pudo generar la sugerencia. Inténtalo de nuevo.',
+      });
+    } finally {
+      setIsSuggesting(false);
+    }
+  };
 
   const onSubmit = async (values: PromptFormValues) => {
     setIsGenerating(true);
@@ -126,7 +151,20 @@ export function PromptGeneratorForm() {
                         name="userDescription"
                         render={({ field }) => (
                             <FormItem>
-                            <FormLabel>Descripción de la Imagen *</FormLabel>
+                            <div className="flex items-center justify-between">
+                                <FormLabel>Descripción de la Imagen *</FormLabel>
+                                <Button 
+                                    type="button" 
+                                    variant="ghost" 
+                                    size="sm" 
+                                    onClick={handleSuggestDescription}
+                                    disabled={isSuggesting}
+                                    className="text-primary hover:bg-primary/10"
+                                >
+                                    {isSuggesting ? <Loader2 className="w-4 h-4 animate-spin"/> : <Sparkles className="w-4 h-4" />}
+                                    <span className="ml-2">Sugerir</span>
+                                </Button>
+                            </div>
                             <FormControl>
                                 <Textarea placeholder="Ej: Un set de herramientas modernas y elegantes sobre una mesa de trabajo limpia y ordenada." rows={4} {...field} />
                             </FormControl>
@@ -139,7 +177,7 @@ export function PromptGeneratorForm() {
                         <Button
                             type="submit"
                             className="bg-primary text-primary-foreground"
-                            disabled={isGenerating}
+                            disabled={isGenerating || isSuggesting}
                         >
                             {isGenerating ? (
                             <Loader2 className="w-4 h-4 mr-2 animate-spin" />
