@@ -12,28 +12,8 @@ import { z } from 'genkit';
 import profiles from './image-prompt-profiles.json';
 import products from './productos-image-prompt.json';
 
-// Definir el tipo para un perfil individual basado en la estructura del JSON
-const ImagePromptProfileSchema = z.object({
-  style: z.string(),
-  composition: z.string(),
-  lighting: z.string(),
-  mood: z.string(),
-  extras: z.string().optional(),
-  offer: z.object({
-    discount: z.string(),
-    description: z.string()
-  }).optional(),
-  callToAction: z.object({
-    text: z.string(),
-    type: z.string()
-  }).optional(),
-  contact: z.object({
-    phone: z.string(),
-    website: z.string()
-  }).optional(),
-  products_showcased: z.union([z.array(z.string()), z.literal("from_catalog")]).optional()
-});
-
+// Hacer el esquema flexible para aceptar diferentes estructuras de perfil.
+const ImagePromptProfileSchema = z.record(z.any());
 type ImagePromptProfile = z.infer<typeof ImagePromptProfileSchema>;
 
 // Cargar y validar los perfiles usando Zod
@@ -71,6 +51,14 @@ const detailedScenePrompt = ai.definePrompt({
 
     **BRIEF CREATIVO:**
 
+    {{#if contextProfile.escena_ilustrada}}
+    **1. Directrices de Ilustración:**
+    - Estilo General: {{{contextProfile.escena_ilustrada.estilo}}}
+    - Sujeto Principal: {{{contextProfile.escena_ilustrada.sujeto_principal.descripcion}}} con {{{contextProfile.escena_ilustrada.sujeto_principal.vestimenta.prenda_superior}}}, {{{contextProfile.escena_ilustrada.sujeto_principal.vestimenta.prenda_inferior}}} y {{{contextProfile.escena_ilustrada.sujeto_principal.vestimenta.calzado}}}. La acción es: {{{contextProfile.escena_ilustrada.sujeto_principal.accion}}}.
+    - Elementos del Entorno: Describe una escena que incluya: {{#each contextProfile.escena_ilustrada.elementos_entorno}}{{{this.objeto}}} ({{{this.descripcion}}}), {{/each}}.
+    - Fondo: El fondo debe ser un {{{contextProfile.escena_ilustrada.fondo.tipo}}}.
+
+    {{else}}
     **1. Paleta de Colores Obligatoria de la Marca:**
     - Naranja vibrante (hsl(35, 100%, 58%))
     - Azul Cielo (hsl(205, 90%, 55%))
@@ -107,9 +95,10 @@ const detailedScenePrompt = ai.definePrompt({
     {{#if contextProfile.contact}}
     - Información de contacto a incluir sutilmente (si es posible, en elementos del fondo): Teléfono {{{contextProfile.contact.phone}}} y web {{{contextProfile.contact.website}}}.
     {{/if}}
+    {{/if}}
 
     **INSTRUCCIONES:**
-    A partir del componente de la aplicación y la descripción del usuario, genera un párrafo detallado que describa una escena visualmente impactante. Integra todos los elementos del brief (colores, estilo, productos, ofertas, etc.) de manera cohesiva y profesional.
+    A partir del componente de la aplicación y la descripción del usuario, genera un párrafo detallado que describa una escena visualmente impactante. Integra todos los elementos del brief de manera cohesiva y profesional.
 
     **Componente:** {{{componentType}}}
     **Descripción del Usuario:** {{{userDescription}}}
@@ -131,8 +120,8 @@ const finalPromptGenerator = ai.definePrompt({
     ---
 
     **1. Prompt para Gemini (Nano Banana):**
-    Crea un prompt de una sola línea, **en inglés**. Debe ser altamente descriptivo, enfocado en un estilo fotográfico profesional y cinematográfico.
-    Usa términos como "professional product photography", "cinematic lighting", "ultra-realistic", "4K resolution", "soft focus", "minimalist composition", etc.
+    Crea un prompt de una sola línea, **en inglés**. Debe ser altamente descriptivo, enfocado en un estilo fotográfico profesional y cinematográfico, o en el estilo de ilustración requerido.
+    Usa términos como "professional product photography", "cinematic lighting", "ultra-realistic", "4K resolution", "3D render", "cartoon character", "isometric", etc., según corresponda.
     **IMPORTANTE:** Si la escena incluye un botón de llamada a la acción o cualquier texto visible, ese texto debe estar **EN ESPAÑOL**. Por ejemplo, en lugar de "SHOP NOW", usa "{{#if callToActionText}}{{{callToActionText}}}{{else}}VER MÁS{{/if}}".
     Ejemplo de prompt final: "Professional e-commerce product photography of a modern, minimalist living room... with a call-to-action button that reads 'COMPRAR AHORA' in Spanish."
 
@@ -178,7 +167,7 @@ const generateImagePromptFlow = ai.defineFlow(
     // 4. Usar la escena detallada para generar los prompts finales específicos de la plataforma
     const finalPromptsResponse = await finalPromptGenerator({ 
         scene: detailedScene,
-        callToActionText: contextProfile.callToAction?.text
+        callToActionText: contextProfile.callToAction?.text || contextProfile.escena_ilustrada?.callToAction?.text
     });
     
     return finalPromptsResponse.output!;

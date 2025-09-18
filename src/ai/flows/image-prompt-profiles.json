@@ -1,82 +1,108 @@
 {
-    "Default": {
-        "style": "Fotografía de producto profesional para e-commerce",
-        "composition": "Composición limpia y centrada",
-        "lighting": "Iluminación de estudio brillante y uniforme",
-        "mood": "Limpio, profesional y atractivo",
-        "extras": "Fondo neutro (blanco o gris claro)"
+  "Default": {
+    "style": "Fotografía de producto profesional para e-commerce",
+    "composition": "Composición limpia y centrada, con espacio negativo",
+    "lighting": "Iluminación de estudio brillante y uniforme, sin sombras duras",
+    "mood": "Moderno, limpio y aspiracional",
+    "extras": "Fondos de colores sólidos o degradados sutiles que complementen el producto"
+  },
+  "Hero Section": {
+    "style": "Fotografía de estilo de vida cinematográfica y de alta calidad",
+    "composition": "Regla de los tercios, con el producto como punto focal pero en un contexto de uso",
+    "lighting": "Luz natural suave y difusa (ej. luz de ventana) o luz dorada del atardecer",
+    "mood": "Inspirador, cálido y acogedor",
+    "extras": "Lente de enfoque suave (bokeh) para desenfocar el fondo y resaltar el producto"
+  },
+  "Product Card": {
+    "style": "Fotografía de producto profesional sobre fondo neutro",
+    "composition": "Producto centrado, ocupando aproximadamente el 70-80% del encuadre",
+    "lighting": "Iluminación de estudio brillante y uniforme para mostrar detalles",
+    "mood": "Limpio, claro y directo",
+    "extras": "Sombra proyectada suave para dar profundidad"
+  },
+  "Category Banner": {
+    "style": "Composición de productos estilo 'flat lay' o bodegón moderno",
+    "composition": "Vista cenital (desde arriba) o en perspectiva isométrica",
+    "lighting": "Iluminación brillante y uniforme",
+    "mood": "Organizado, vibrante y atractivo",
+    "extras": "Los productos deben estar dispuestos de forma artística, se pueden incluir elementos decorativos que refuercen la categoría",
+    "offer": {
+      "discount": "HASTA 50% OFF",
+      "description": "En productos seleccionados de la categoría"
     },
-    "Hero Section": {
-        "style": "Fotografía de estilo de vida cinematográfica y aspiracional",
-        "composition": "Plano general con sujeto(s) interactuando en un espacio, usando la regla de los tercios",
-        "lighting": "Luz natural suave y cálida, preferiblemente durante la hora dorada (amanecer/atardecer)",
-        "mood": "Acogedor, feliz, inspirador y sereno",
-        "extras": "Ambiente hogareño realista y bien decorado, con profundidad de campo (bokeh)"
+    "callToAction": {
+      "text": "VER CATEGORÍA",
+      "type": "button"
     },
-    "Product Card": {
-        "style": "Fotografía de producto detallada y nítida",
-        "composition": "Primer plano del producto, llenando el encuadre",
-        "lighting": "Iluminación de estudio precisa que resalte texturas y detalles",
-        "mood": "Directo, informativo y de alta calidad",
-        "extras": "Aislamiento del producto sobre un fondo blanco puro"
-    },
-    "Category Banner": {
-        "style": "Composición de productos estilo 'flat lay' o bodegón moderno",
-        "composition": "Vista cenital (desde arriba) o en perspectiva isométrica",
-        "lighting": "Iluminación brillante y uniforme, sin sombras fuertes",
-        "mood": "Organizado, vibrante y atractivo",
-        "extras": "Los productos deben estar dispuestos de forma artística, se pueden incluir elementos decorativos que refuercen la categoría",
-        "offer": {
-            "discount": "HASTA 50% OFF",
-            "description": "En productos seleccionados de la categoría"
-        },
-        "callToAction": {
-            "text": "VER CATEGORÍA",
-            "type": "button"
-        },
-        "products_showcased": "from_catalog"
-    },
-    "CTA Section": {
-        "style": "Fotografía impactante con un toque dramático",
-        "composition": "Sujeto principal claro con espacio negativo para texto",
-        "lighting": "Iluminación contrastada que cree profundidad y enfoque",
-        "mood": "Urgente, emocionante y persuasivo",
-        "extras": "Puede incluir elementos en movimiento o desenfoque de movimiento",
-        "callToAction": {
-            "text": "COMPRAR AHORA",
-            "type": "button"
-        }
-    },
-    "Newsletter Background": {
-        "style": "Imagen de fondo sutil y texturizada",
-        "composition": "Abstracta o con un patrón de bajo contraste",
-        "lighting": "Luz suave y difusa",
-        "mood": "Calmado, limpio y elegante",
-        "extras": "Colores que complementen la paleta de la marca sin distraer del formulario"
-    },
-    "Product Detail Gallery": {
-        "style": "Serie de fotografías de producto consistentes",
-        "composition": "Múltiples ángulos: frontal, lateral, 45 grados, plano detalle de características clave, y en contexto de uso",
-        "lighting": "Iluminación de estudio consistente en todas las tomas",
-        "mood": "Informativo, detallado y confiable",
-        "extras": "Mantener la misma escala y fondo en todas las imágenes"
-    },
-    "Shopping Cart Empty State": {
-        "style": "Ilustración o fotografía minimalista y amigable",
-        "composition": "Elemento central simple y simbólico (ej. un carrito de compras triste o un producto solitario)",
-        "lighting": "Suave y sin pretensiones",
-        "mood": "Ligeramente melancólico pero esperanzador y motivador",
-        "extras": "Uso de espacio negativo para no abrumar",
-        "callToAction": {
-            "text": "VOLVER A LA TIENDA",
-            "type": "link"
-        }
-    },
-    "Login/Register Page Banner": {
-        "style": "Fotografía de estilo de vida que represente comunidad y pertenencia",
-        "composition": "Personas felices en un entorno hogareño bien decorado",
-        "lighting": "Luz natural y brillante",
-        "mood": "Acogedor, positivo y aspiracional",
-        "extras": "Sujetos mirando a la cámara o interactuando entre sí de forma natural"
+    "products_showcased": "from_catalog"
+  },
+  "CTA Section": {
+    "style": "Fotografía emocional de estilo de vida",
+    "composition": "Personas interactuando felizmente con los productos en un entorno hogareño",
+    "lighting": "Luz cálida y acogedora",
+    "mood": "Feliz, aspiracional y convincente",
+    "extras": "Dejar espacio visual para superponer texto y un botón de llamada a la acción",
+    "callToAction": {
+      "text": "COMPRAR AHORA",
+      "type": "button"
     }
+  },
+  "Newsletter Background": {
+    "style": "Imagen de fondo texturizada y sutil",
+    "composition": "Minimalista, con mucho espacio negativo",
+    "lighting": "Luz suave y ambiental",
+    "mood": "Sereno, limpio y premium",
+    "extras": "Texturas como madera clara, mármol blanco, lino o concreto pulido"
+  },
+  "Product Detail Gallery": {
+    "style": "Serie de fotografías de producto consistentes",
+    "composition": "Incluir plano general, plano detalle de materiales y características, y plano en contexto de uso",
+    "lighting": "Iluminación de estudio consistente en todas las tomas",
+    "mood": "Informativo, detallado y de alta calidad",
+    "extras": "Mismo fondo y balance de blancos en todas las imágenes"
+  },
+  "Shopping Cart Empty State": {
+    "style": "Ilustración 3D o fotografía conceptual",
+    "composition": "Un carrito de compras vacío pero estilizado en el centro de la imagen",
+    "lighting": "Iluminación suave y optimista",
+    "mood": "Juguetón, amigable y que invite a la acción",
+    "extras": "Puede estar rodeado de formas geométricas de los colores de la marca"
+  },
+  "Login/Register Page Banner": {
+    "escena_ilustrada": {
+      "estilo": "Ilustración 3D / Personaje de dibujos animados",
+      "sujeto_principal": {
+        "descripcion": "Una mujer joven con cabello azul peinado en un moño, sentada en un sillón tipo puff.",
+        "vestimenta": {
+          "prenda_superior": "Camiseta de manga corta color verde lima",
+          "prenda_inferior": "Pantalones de jean celestes",
+          "calzado": "Zapatillas deportivas blancas con detalles en verde lima"
+        },
+        "accion": "Trabajando o navegando en una computadora portátil de color gris oscuro."
+      },
+      "elementos_entorno": [
+        {
+          "objeto": "Sillón puff",
+          "descripcion": "Un sillón grande y cómodo",
+          "color": "Rosado"
+        },
+        {
+          "objeto": "Mesa auxiliar",
+          "descripcion": "Mesa pequeña, redonda y blanca con tres patas delgadas.",
+          "contenido": "Taza de color magenta."
+        },
+        {
+          "objeto": "Planta en maceta",
+          "descripcion": "Una planta pequeña con hojas verdes en una maceta gris sobre un soporte metálico alto y delgado."
+        },
+        {
+          "objeto": "Icono de chat",
+          "descripcion": "Una burbuja de chat de color violeta con tres puntos amarillos y una burbuja de diálogo más pequeña de color rosado."
+        }
+      ],
+      "fondo": {
+        "tipo": "Gradiente suave de colores pastel"
+      }
+    }
+  }
 }

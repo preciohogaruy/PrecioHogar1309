@@ -10,27 +10,9 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-// Definir el tipo para el perfil de contexto, duplicando la estructura para mantener el flujo independiente.
-const ImagePromptProfileSchema = z.object({
-  style: z.string(),
-  composition: z.string(),
-  lighting: z.string(),
-  mood: z.string(),
-  extras: z.string().optional(),
-  offer: z.object({
-    discount: z.string(),
-    description: z.string()
-  }).optional(),
-  callToAction: z.object({
-    text: z.string(),
-    type: z.string()
-  }).optional(),
-  contact: z.object({
-    phone: z.string(),
-    website: z.string()
-  }).optional(),
-  products_showcased: z.union([z.array(z.string()), z.literal("from_catalog")]).optional()
-});
+// Hacer el esquema flexible para aceptar diferentes estructuras de perfil.
+const ImagePromptProfileSchema = z.record(z.any());
+
 
 const GenerateImageDescriptionInputSchema = z.object({
   componentType: z.string().describe('El componente o tipo de escena para la que se necesita la imagen (ej: Hero Section, Product Card).'),
@@ -55,12 +37,17 @@ const descriptionGeneratorPrompt = ai.definePrompt({
 Tu tarea es generar una idea de imagen creativa y concisa (máximo 30 palabras) para un componente específico, basándote en un brief creativo.
 
 **BRIEF CREATIVO:**
+{{#if contextProfile.escena_ilustrada}}
+- **Estilo de Ilustración:** "{{contextProfile.escena_ilustrada.estilo}}".
+- **Concepto:** Describe una escena con el personaje "{{contextProfile.escena_ilustrada.sujeto_principal.descripcion}}" en un entorno amigable y moderno.
+{{else}}
 - **Estilo y Atmósfera:** Apunta a un estilo "{{contextProfile.style}}" y una atmósfera "{{contextProfile.mood}}".
 {{#if contextProfile.products_showcased}}
-- **Productos a mostrar:** {{#if contextProfile.products_showcased.length}}La imagen debe incluir: {{#each contextProfile.products_showcased}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}.{{else}}La imagen debe incluir una selección de productos del catálogo de la tienda.{{/if}}
+- **Productos a mostrar:** {{#if (Array.isArray contextProfile.products_showcased)}}La imagen debe incluir: {{#each contextProfile.products_showcased}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}.{{else}}La imagen debe incluir una selección de productos del catálogo de la tienda.{{/if}}
 {{/if}}
 {{#if contextProfile.offer}}
 - **Promoción:** La imagen debe evocar la oferta "{{contextProfile.offer.discount}}".
+{{/if}}
 {{/if}}
 
 **Componente de la Aplicación:** {{{componentType}}}
