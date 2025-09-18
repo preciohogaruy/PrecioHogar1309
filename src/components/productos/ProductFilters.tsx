@@ -89,7 +89,7 @@ export function ProductFilters({ categories, initialValues }: ProductFiltersProp
       </div>
 
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 justify-center">
           {categories.map((category) => (
             <button
               key={category}

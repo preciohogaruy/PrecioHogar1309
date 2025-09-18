@@ -103,7 +103,7 @@ export function ProductCardList({ product }: ProductCardListProps) {
               </h3>
             </Link>
 
-            <p className="text-gray-600 mb-4">{product.description}</p>
+            <p className="text-gray-600 mb-4 line-clamp-3">{product.description}</p>
 
             <div className="flex items-center mb-4">
               <div className="flex items-center">
@@ -122,7 +122,7 @@ export function ProductCardList({ product }: ProductCardListProps) {
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex flex-col">
               <span className="text-2xl font-bold text-gray-800">{formatPrice(product.price)}</span>
               {product.originalPrice && (
@@ -130,9 +130,9 @@ export function ProductCardList({ product }: ProductCardListProps) {
               )}
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <Button
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white disabled:opacity-50 disabled:cursor-not-allowed w-full"
                 onClick={handleAddToCart}
                 disabled={!isInStock}
               >
@@ -140,10 +140,10 @@ export function ProductCardList({ product }: ProductCardListProps) {
                 {isInStock ? "Agregar al Carrito" : "Agotado"}
               </Button>
 
-              <Link href={`/productos/${slug}`}>
+              <Link href={`/productos/${slug}`} className="w-full">
                 <Button
                   variant="outline"
-                  className="border-blue-200 text-blue-600 hover:bg-blue-50 bg-transparent"
+                  className="border-blue-200 text-blue-600 hover:bg-blue-50 bg-transparent w-full"
                 >
                   Ver Detalles
                   <ArrowRight className="w-4 h-4 ml-1" />
