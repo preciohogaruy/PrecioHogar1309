@@ -36,7 +36,7 @@ export default function RegistroPage() {
         </div>
         <div className="hidden md:block md:w-1/2 relative">
             <Image 
-                src="/banners/banner_registro.jpg" 
+                src="/banners/banner_registro.png" 
                 alt="Banner de registro" 
                 fill
                 className="object-cover"
