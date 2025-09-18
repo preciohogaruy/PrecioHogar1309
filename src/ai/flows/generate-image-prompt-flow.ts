@@ -33,9 +33,9 @@ const detailedScenePrompt = ai.definePrompt({
     Tu tarea es expandir una idea simple en una descripción de escena rica y evocadora.
 
     **Paleta de Colores Obligatoria de la Marca:**
-    - Naranja vibrante (hsl(42, 100%, 50%))
-    - Azul cielo (hsl(205, 90%, 55%))
-    - Azul oscuro (hsl(215, 60%, 40%))
+    - Naranja vibrante (hsl(35, 100%, 58%))
+    - Azul Cielo (hsl(205, 90%, 55%))
+    - Azul Oscuro (hsl(215, 60%, 40%))
     - Fondos neutros: Blancos puros, grises muy claros.
 
     A partir del componente de la aplicación y la descripción del usuario, genera un párrafo detallado que describa una escena visualmente atractiva.
@@ -63,7 +63,7 @@ const finalPromptGenerator = ai.definePrompt({
     **1. Prompt para Gemini (Nano Banana):**
     Crea un prompt de una sola línea, en inglés. Debe ser altamente descriptivo, enfocado en un estilo fotográfico profesional y cinematográfico.
     Usa términos como "professional product photography", "cinematic lighting", "ultra-realistic", "4K resolution", "soft focus", "minimalist composition", etc.
-    Ejemplo: "Professional e-commerce product photography of a modern, minimalist living room, featuring a sleek dark blue sofa (hsl(215, 60%, 40%)) with vibrant orange pillows (hsl(42, 100%, 50%)). Cinematic, soft morning light streams through a large window. Background is a clean, light gray wall (hsl(210, 40%, 98%)). Ultra-realistic, 4K resolution, depth of field."
+    Ejemplo: "Professional e-commerce product photography of a modern, minimalist living room, featuring a sleek dark blue sofa (hsl(215, 60%, 40%)) with vibrant orange pillows (hsl(35, 100%, 58%)). Cinematic, soft morning light streams through a large window. Background is a clean, light gray wall (hsl(210, 40%, 98%)). Ultra-realistic, 4K resolution, depth of field."
 
     **2. Prompt para Whisk de Google:**
     Crea un prompt estructurado en tres partes: Asunto, Escena y Estilo. Sé claro y conciso en cada parte.
@@ -87,7 +87,7 @@ const generateImagePromptFlow = ai.defineFlow(
   async (input) => {
     // Step 1: Generate the detailed scene description
     const sceneResponse = await detailedScenePrompt(input);
-    const detailedScene = sceneResponse.text();
+    const detailedScene = sceneResponse.text;
 
     // Step 2: Use the detailed scene to generate the final, platform-specific prompts
     const finalPromptsResponse = await finalPromptGenerator({ scene: detailedScene });
