@@ -10,6 +10,7 @@ Todas las imágenes deben colocarse dentro de la carpeta `public/`. Se recomiend
 public/
 ├── assets/
 ├── banners/
+├── categorias/
 ├── fondos/
 ├── icons/
 └── logotienda.png
@@ -69,7 +70,24 @@ Estos iconos son cruciales para la experiencia de "instalar" la web como una apl
 
 ---
 
-## 5. Imágenes de Productos
+## 5. Imágenes de Categorías
+
+Estas imágenes se utilizan para representar visualmente cada categoría de producto en diferentes partes del sitio.
+
+| Archivo | Ubicación | Tamaño Recomendado | Formato | Uso |
+| :--- | :--- | :--- | :--- | :--- |
+| `baño.jpg` | `public/categorias/` | 512x512 px | JPG | Imagen para la categoría "Baño". |
+| `dormitorio.jpg` | `public/categorias/` | 512x512 px | JPG | Imagen para la categoría "Dormitorio". |
+| `herramientas.jpg` | `public/categorias/` | 512x512 px | JPG | Imagen para la categoría "Herramientas". |
+| `otros.jpg` | `public/categorias/` | 512x512 px | JPG | Imagen para la categoría "Otros". |
+| `cuidado-personal.jpg` | `public/categorias/` | 512x512 px | JPG | Imagen para la categoría "Cuidado Personal". |
+| `hogar.jpg` | `public/categorias/` | 512x512 px | JPG | Imagen para la categoría "Hogar". |
+| `cocina.jpg` | `public/categorias/` | 512x512 px | JPG | Imagen para la categoría "Cocina". |
+| `tecnologia.jpg` | `public/categorias/` | 512x512 px | JPG | Imagen para la categoría "Tecnología". |
+
+---
+
+## 6. Imágenes de Productos
 
 Las imágenes de los productos se gestionan desde el panel de administración y se guardan en la base de datos. Sin embargo, para una carga inicial de datos (`seed`), puedes colocar imágenes de ejemplo en `public/productos/` y referenciarlas en tus archivos de seeding.
 
