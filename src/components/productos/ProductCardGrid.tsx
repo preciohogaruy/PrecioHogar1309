@@ -1,4 +1,3 @@
-
 "use client"
 import Image from "next/image"
 import Link from "next/link"
@@ -16,7 +15,7 @@ interface ProductCardGridProps {
 const getBadgeClass = (badge: string) => {
     switch (badge) {
       case 'Nuevo Ingreso':
-        return 'bg-blue-500 text-white';
+        return 'bg-accent text-accent-foreground';
       case 'Oferta':
         return 'bg-yellow-500 text-white';
       case 'Más Vendido':
@@ -24,9 +23,9 @@ const getBadgeClass = (badge: string) => {
       case 'Liquidación':
         return 'bg-red-500 text-white';
       case 'Exclusivo Online':
-        return 'bg-purple-500 text-white';
+        return 'bg-secondary text-secondary-foreground';
       case 'Pocas Unidades':
-        return 'bg-orange-500 text-white';
+        return 'bg-primary text-primary-foreground';
       default:
         return 'hidden';
     }
@@ -61,7 +60,7 @@ export function ProductCardGrid({ product }: ProductCardGridProps) {
     }
 
   return (
-    <div className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl shadow-blue-200/50 transition-all duration-500 overflow-hidden">
+    <div className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl shadow-orange-200/50 transition-all duration-500 overflow-hidden">
       <div className="relative">
         <div className="aspect-square overflow-hidden">
           <Image
@@ -96,7 +95,7 @@ export function ProductCardGrid({ product }: ProductCardGridProps) {
         {/* Quick Add to Cart */}
         <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
           <Button
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-primary to-accent hover:from-orange-500 hover:to-yellow-400 text-primary-foreground rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={handleAddToCart}
             disabled={!isInStock}
           >
@@ -114,11 +113,11 @@ export function ProductCardGrid({ product }: ProductCardGridProps) {
 
       <div className="p-6">
         <div className="mb-2">
-          <span className="text-xs text-blue-600 font-medium uppercase tracking-wide">{product.category.name}</span>
+          <span className="text-xs text-secondary font-medium uppercase tracking-wide">{product.category.name}</span>
         </div>
 
         <Link href={`/productos/${slug}`}>
-          <h3 className="font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
+          <h3 className="font-semibold text-gray-800 mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2">
             {product.title}
           </h3>
         </Link>
@@ -153,7 +152,7 @@ export function ProductCardGrid({ product }: ProductCardGridProps) {
             <Button
               variant="outline"
               size="sm"
-              className="border-blue-200 text-blue-600 hover:bg-blue-50 bg-transparent"
+              className="border-orange-200 text-primary hover:bg-orange-50 bg-transparent"
             >
               Ver Detalles
               <ArrowRight className="w-4 h-4 ml-1" />

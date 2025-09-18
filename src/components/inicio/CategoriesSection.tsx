@@ -11,7 +11,7 @@ export async function CategoriesSection() {
         <div className="text-center mb-12">
           <h2 className="section-title">
             Explora Nuestras{" "}
-            <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text">
+            <span className="text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text">
               Categorías
             </span>
           </h2>
@@ -30,7 +30,7 @@ export async function CategoriesSection() {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="icon-container-lg group-hover:scale-110">
-                  <Icon className="w-10 h-10 md:w-12 md:h-12 text-blue-600 group-hover:text-purple-600 transition-colors duration-300" />
+                  <Icon className="w-10 h-10 md:w-12 md:h-12 text-secondary group-hover:text-primary transition-colors duration-300" />
                 </div>
                 <h3 className="ingredient-title">{category.name}</h3>
               </div>

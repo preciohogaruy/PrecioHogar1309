@@ -34,7 +34,7 @@ export function ProductControls({
               placeholder="Buscar productos..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none w-full"
+              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none w-full"
             />
           </div>
 
@@ -42,7 +42,7 @@ export function ProductControls({
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none w-full sm:w-auto"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none w-full sm:w-auto"
           >
             {categories.map((category) => (
               <option key={category} value={category}>
@@ -57,7 +57,7 @@ export function ProductControls({
               type="checkbox"
               checked={showInactive}
               onChange={(e) => setShowInactive(e.target.checked)}
-              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              className="rounded border-gray-300 text-primary focus:ring-primary"
             />
             <span className="text-sm text-gray-600">Mostrar inactivos</span>
           </label>
@@ -66,7 +66,7 @@ export function ProductControls({
         {/* Add Product Button */}
         <Link href="/admin/producto/nuevo" className="w-full lg:w-auto">
             <Button
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white w-full"
+            className="bg-gradient-to-r from-primary to-accent hover:from-orange-500 hover:to-yellow-400 text-primary-foreground w-full"
             >
             <Plus className="w-4 h-4 mr-2" />
             Agregar Producto

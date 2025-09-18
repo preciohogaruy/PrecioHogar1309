@@ -1,4 +1,3 @@
-
 "use client"
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
@@ -66,7 +65,7 @@ export function PaginationComponent({ currentPage, totalPages }: PaginationCompo
           variant={i === currentPage ? "default" : "outline"}
           size="sm"
           onClick={() => handlePageChange(i)}
-          className={i === currentPage ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white" : ""}
+          className={i === currentPage ? "bg-gradient-to-r from-primary to-accent text-white" : ""}
         >
           {i}
         </Button>

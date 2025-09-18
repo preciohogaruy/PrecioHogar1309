@@ -39,16 +39,16 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
                 <Image
-                  src="/logotienda.png"
+                  src="/logotienda_blanco.svg"
                   alt="PrecioHogar Logo"
                   width={20}
                   height={20}
                   className="w-5 h-5"
                 />
               </div>
-              <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <div className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 PrecioHogar
               </div>
             </div>

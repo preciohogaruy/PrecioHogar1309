@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react"
@@ -52,12 +51,12 @@ export function Navbar() {
   const dropdownItemClasses = "dropdown-item group"
 
   const productCategories = [
-    { href: "/productos?category=Cocina", icon: Utensils, title: "Cocina", desc: "Electrodomésticos y utensilios", color: "blue-600" },
-    { href: "/productos?category=Dormitorio", icon: Bed, title: "Dormitorio", desc: "Ropa de cama y decoración", color: "purple-600" },
-    { href: "/productos?category=Baño", icon: Bath, title: "Baño", desc: "Accesorios y organización", color: "blue-600" },
-    { href: "/productos?category=Sala", icon: Sofa, title: "Sala", desc: "Muebles y decoración", color: "purple-600" },
-    { href: "/productos?category=Tecnología", icon: Wifi, title: "Tecnología", desc: "Smart home y gadgets", color: "blue-600" },
-    { href: "/productos?category=Iluminación", icon: Lightbulb, title: "Iluminación", desc: "Lámparas y sistemas LED", color: "purple-600" },
+    { href: "/productos?category=Cocina", icon: Utensils, title: "Cocina", desc: "Electrodomésticos y utensilios", color: "orange-600" },
+    { href: "/productos?category=Dormitorio", icon: Bed, title: "Dormitorio", desc: "Ropa de cama y decoración", color: "blue-600" },
+    { href: "/productos?category=Baño", icon: Bath, title: "Baño", desc: "Accesorios y organización", color: "orange-600" },
+    { href: "/productos?category=Sala", icon: Sofa, title: "Sala", desc: "Muebles y decoración", color: "blue-600" },
+    { href: "/productos?category=Tecnología", icon: Wifi, title: "Tecnología", desc: "Smart home y gadgets", color: "orange-600" },
+    { href: "/productos?category=Iluminación", icon: Lightbulb, title: "Iluminación", desc: "Lámparas y sistemas LED", color: "blue-600" },
   ];
 
   return (
@@ -71,7 +70,7 @@ export function Navbar() {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between py-4">
           <Link href="/" className="flex items-center space-x-2 group cursor-pointer">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 shadow-lg">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 shadow-lg">
               <Image
                 src="/logotienda_blanco.svg"
                 alt="PrecioHogar Logo"
@@ -80,7 +79,7 @@ export function Navbar() {
                 className="w-5 h-5"
               />
             </div>
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
+            <div className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
               PrecioHogar
             </div>
           </Link>
@@ -107,7 +106,7 @@ export function Navbar() {
               </button>
 
               <div
-                className={`absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl shadow-blue-500/10 border border-blue-100/50 transition-all duration-300 ${
+                className={`absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl shadow-orange-500/10 border border-orange-100/50 transition-all duration-300 ${
                   productsDropdownOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                 }`}
                 onMouseEnter={() => setProductsDropdownOpen(true)}
@@ -125,7 +124,7 @@ export function Navbar() {
                       </Link>
                     ))}
                   </div>
-                  <div className="border-t border-blue-100 pt-4 mt-4">
+                  <div className="border-t border-orange-100 pt-4 mt-4">
                     <Link href="/productos" className="dropdown-cta" onClick={() => setProductsDropdownOpen(false)}>
                       <span>Ver todos los productos</span>
                       <ArrowRight className="w-3 h-3" />
@@ -151,7 +150,7 @@ export function Navbar() {
             <button className="nav-icon-btn group relative" onClick={toggleCart}>
               <ShoppingBag className="w-5 h-5 text-gray-600 group-hover:text-primary group-hover:scale-110 transition-all duration-300" />
               {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-white text-xs rounded-full flex items-center justify-center font-medium shadow-lg border-2 border-white">
+                <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center font-medium shadow-lg border-2 border-white">
                   {totalItems}
                 </span>
               )}
@@ -161,7 +160,7 @@ export function Navbar() {
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center px-6 py-3 rounded-full font-medium text-sm uppercase tracking-wide transition-all duration-300 hover:scale-105 shadow-lg group bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+              className="hidden md:flex items-center px-6 py-3 rounded-full font-medium text-sm uppercase tracking-wide transition-all duration-300 hover:scale-105 shadow-lg group bg-gradient-to-r from-primary to-accent text-white"
             >
               <Headphones className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
               CONTACTAR
@@ -178,7 +177,7 @@ export function Navbar() {
                 <SheetContent side="right" className="w-[300px]">
                   <SheetHeader>
                     <SheetTitle className="flex items-center space-x-2">
-                       <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                       <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-lg">
                           <Image
                             src="/logotienda.png"
                             alt="PrecioHogar Logo"
@@ -187,7 +186,7 @@ export function Navbar() {
                             className="w-4 h-4"
                           />
                         </div>
-                        <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                           PrecioHogar
                         </span>
                     </SheetTitle>
@@ -213,7 +212,7 @@ export function Navbar() {
                         <Mail className="w-5 h-5 text-primary" />
                         <span>Contacto</span>
                       </a>
-                      <div className="pt-4 border-t border-blue-100">
+                      <div className="pt-4 border-t border-orange-100">
                         <Button
                           asChild
                           className="w-full"
@@ -222,7 +221,7 @@ export function Navbar() {
                             href={whatsappLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                            className="bg-gradient-to-r from-primary to-accent text-white"
                              onClick={() => setMobileMenuOpen(false)}
                           >
                             <Headphones className="w-4 h-4 mr-2" />

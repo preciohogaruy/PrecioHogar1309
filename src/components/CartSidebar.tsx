@@ -1,4 +1,3 @@
-
 "use client"
 
 import Image from "next/image"
@@ -30,7 +29,7 @@ export function CartSidebar() {
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div className="flex items-center gap-3">
-            <ShoppingBag className="w-6 h-6 text-blue-600" />
+            <ShoppingBag className="w-6 h-6 text-primary" />
             <h2 className="text-xl font-bold text-gray-800">Carrito ({totalItems})</h2>
           </div>
           <button
@@ -50,7 +49,7 @@ export function CartSidebar() {
               <p className="text-gray-500 mb-6">Agrega algunos productos para comenzar</p>
               <Link href="/productos">
                 <Button
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                  className="bg-gradient-to-r from-primary to-accent text-primary-foreground"
                   onClick={closeCart}
                 >
                   Ver Productos
@@ -73,7 +72,7 @@ export function CartSidebar() {
 
                   <div className="flex-1 min-w-0">
                     <Link href={`/productos/${item.slug}`} onClick={closeCart} className="block">
-                      <h3 className="font-medium text-gray-800 text-sm line-clamp-2 hover:text-blue-600 transition-colors duration-300">
+                      <h3 className="font-medium text-gray-800 text-sm line-clamp-2 hover:text-primary transition-colors duration-300">
                         {item.name}
                       </h3>
                     </Link>
@@ -144,7 +143,7 @@ export function CartSidebar() {
             </div>
 
             {/* Checkout Button */}
-            <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-4 text-lg">
+            <Button className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground py-4 text-lg">
               Proceder al Pago
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
@@ -153,7 +152,7 @@ export function CartSidebar() {
             <Link href="/productos">
               <Button
                 variant="outline"
-                className="w-full border-blue-200 text-blue-600 hover:bg-blue-50 bg-transparent"
+                className="w-full border-orange-200 text-primary hover:bg-orange-50 bg-transparent"
                 onClick={closeCart}
               >
                 Continuar Comprando

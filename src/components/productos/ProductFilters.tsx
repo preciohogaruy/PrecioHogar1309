@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
@@ -76,7 +75,7 @@ export function ProductFilters({ categories, initialValues }: ProductFiltersProp
           placeholder="Buscar productos..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-12 pr-10 py-4 rounded-2xl border border-blue-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none transition-all duration-300 bg-white/80 backdrop-blur-sm"
+          className="w-full pl-12 pr-10 py-4 rounded-2xl border border-orange-200 focus:border-primary focus:ring-2 focus:ring-orange-100 outline-none transition-all duration-300 bg-white/80 backdrop-blur-sm"
         />
         {searchTerm && (
           <button
@@ -96,8 +95,8 @@ export function ProductFilters({ categories, initialValues }: ProductFiltersProp
               onClick={() => handleCategoryChange(category)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedCategory === category
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
-                  : "bg-white text-gray-600 hover:bg-blue-50 border border-blue-200"
+                  ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
+                  : "bg-white text-gray-600 hover:bg-orange-50 border border-orange-200"
               }`}
             >
               {category}
@@ -109,7 +108,7 @@ export function ProductFilters({ categories, initialValues }: ProductFiltersProp
            <select 
              value={sortOption} 
              onChange={handleSortChange}
-             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white text-sm"
+             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white text-sm"
            >
             <option value="createdAt-desc">Más nuevos</option>
             <option value="price-asc">Precio: Menor a Mayor</option>
@@ -120,7 +119,7 @@ export function ProductFilters({ categories, initialValues }: ProductFiltersProp
             <button
               onClick={() => handleViewChange("grid")}
               className={`p-2 rounded-lg transition-all duration-300 ${
-                viewMode === "grid" ? "bg-blue-600 text-white" : "bg-white text-gray-600 hover:bg-blue-50"
+                viewMode === "grid" ? "bg-primary text-white" : "bg-white text-gray-600 hover:bg-orange-50"
               }`}
             >
               <Grid3X3 className="w-5 h-5" />
@@ -128,7 +127,7 @@ export function ProductFilters({ categories, initialValues }: ProductFiltersProp
             <button
               onClick={() => handleViewChange("list")}
               className={`p-2 rounded-lg transition-all duration-300 ${
-                viewMode === "list" ? "bg-blue-600 text-white" : "bg-white text-gray-600 hover:bg-blue-50"
+                viewMode === "list" ? "bg-primary text-white" : "bg-white text-gray-600 hover:bg-orange-50"
               }`}
             >
               <List className="w-5 h-5" />

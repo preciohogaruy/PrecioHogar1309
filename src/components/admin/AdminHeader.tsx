@@ -11,10 +11,10 @@ export function AdminHeader() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2 sm:space-x-4">
             <Link href="/" className="flex items-center space-x-2 group">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center">
-                <Image src="/logotienda.png" alt="PrecioHogar Logo" width={20} height={20} className="w-4 h-4 sm:w-5 sm:h-5" />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-accent rounded-lg sm:rounded-xl flex items-center justify-center">
+                <Image src="/logotienda_blanco.svg" alt="PrecioHogar Logo" width={20} height={20} className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 PrecioHogar
               </div>
             </Link>

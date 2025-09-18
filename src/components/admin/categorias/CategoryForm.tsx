@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -140,7 +139,7 @@ export function CategoryForm({ category }: CategoryFormProps) {
         <div className="flex justify-end pt-8 border-t">
           <Button
             type="submit"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+            className="bg-gradient-to-r from-primary to-accent hover:from-orange-500 hover:to-yellow-400 text-primary-foreground"
             disabled={isSubmitting}
           >
             {isSubmitting ? (

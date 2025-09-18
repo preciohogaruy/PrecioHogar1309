@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, type ReactNode } from 'react';
@@ -67,7 +66,7 @@ export function Login({ children }: { children: ReactNode }) {
                 </div>
               )}
             </div>
-            <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+            <Button type="submit" className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground">
               Acceder
             </Button>
           </form>

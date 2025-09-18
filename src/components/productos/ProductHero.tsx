@@ -1,4 +1,3 @@
-
 "use client"
 
 import Image from "next/image"
@@ -21,7 +20,7 @@ export function ProductHero() {
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Nuestros{" "}
-            <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text">
+            <span className="text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text">
               Productos
             </span>
           </h1>

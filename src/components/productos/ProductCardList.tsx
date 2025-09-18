@@ -1,4 +1,3 @@
-
 "use client"
 import Image from "next/image"
 import Link from "next/link"
@@ -16,7 +15,7 @@ interface ProductCardListProps {
 const getBadgeClass = (badge: string) => {
     switch (badge) {
       case 'Nuevo Ingreso':
-        return 'bg-blue-500 text-white';
+        return 'bg-accent text-accent-foreground';
       case 'Oferta':
         return 'bg-yellow-500 text-white';
       case 'Más Vendido':
@@ -24,9 +23,9 @@ const getBadgeClass = (badge: string) => {
       case 'Liquidación':
         return 'bg-red-500 text-white';
       case 'Exclusivo Online':
-        return 'bg-purple-500 text-white';
+        return 'bg-secondary text-secondary-foreground';
       case 'Pocas Unidades':
-        return 'bg-orange-500 text-white';
+        return 'bg-primary text-primary-foreground';
       default:
         return 'hidden';
     }
@@ -94,11 +93,11 @@ export function ProductCardList({ product }: ProductCardListProps) {
         <div className="md:w-2/3 p-6 flex flex-col justify-between">
           <div>
             <div className="mb-2">
-              <span className="text-xs text-blue-600 font-medium uppercase tracking-wide">{product.category.name}</span>
+              <span className="text-xs text-secondary font-medium uppercase tracking-wide">{product.category.name}</span>
             </div>
 
             <Link href={`/productos/${slug}`}>
-              <h3 className="text-xl font-semibold text-gray-800 mb-3 hover:text-blue-600 transition-colors duration-300">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3 hover:text-primary transition-colors duration-300">
                 {product.title}
               </h3>
             </Link>
@@ -132,7 +131,7 @@ export function ProductCardList({ product }: ProductCardListProps) {
 
             <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <Button
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white disabled:opacity-50 disabled:cursor-not-allowed w-full"
+                className="bg-gradient-to-r from-primary to-accent hover:from-orange-500 hover:to-yellow-400 text-primary-foreground disabled:opacity-50 disabled:cursor-not-allowed w-full"
                 onClick={handleAddToCart}
                 disabled={!isInStock}
               >
@@ -143,7 +142,7 @@ export function ProductCardList({ product }: ProductCardListProps) {
               <Link href={`/productos/${slug}`} className="w-full">
                 <Button
                   variant="outline"
-                  className="border-blue-200 text-blue-600 hover:bg-blue-50 bg-transparent w-full"
+                  className="border-orange-200 text-primary hover:bg-orange-50 bg-transparent w-full"
                 >
                   Ver Detalles
                   <ArrowRight className="w-4 h-4 ml-1" />

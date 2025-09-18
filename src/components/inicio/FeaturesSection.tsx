@@ -3,22 +3,22 @@ import { Award, Clock, Package, Shield } from "lucide-react"
 
 const features = [
   {
-    icon: <Award className="w-8 h-8 text-blue-600" />,
+    icon: <Award className="w-8 h-8 text-primary" />,
     title: "Calidad Garantizada",
     description: "Solo los mejores materiales para asegurar durabilidad y confort en cada producto.",
   },
   {
-    icon: <Package className="w-8 h-8 text-blue-600" />,
+    icon: <Package className="w-8 h-8 text-primary" />,
     title: "Variedad Insuperable",
     description: "Un catálogo extenso para que siempre encuentres lo que buscas para tu espacio.",
   },
   {
-    icon: <Shield className="w-8 h-8 text-blue-600" />,
+    icon: <Shield className="w-8 h-8 text-primary" />,
     title: "Compra Segura",
     description: "Tu información está protegida. Compra con total confianza y tranquilidad.",
   },
   {
-    icon: <Clock className="w-8 h-8 text-blue-600" />,
+    icon: <Clock className="w-8 h-8 text-primary" />,
     title: "Entrega Rápida",
     description: "Recibe tus productos en la puerta de tu casa en tiempo récord, listos para usar.",
   },
@@ -31,7 +31,7 @@ export function FeaturesSection() {
         <div className="text-center mb-16">
           <h2 className="section-title">
             ¿Por Qué Elegir{" "}
-            <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
+            <span className="text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text">
               PrecioHogar
             </span>
             ?

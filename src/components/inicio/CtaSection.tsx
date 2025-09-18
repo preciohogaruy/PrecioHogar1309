@@ -1,4 +1,3 @@
-
 "use client"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -8,7 +7,7 @@ export function CtaSection() {
     return (
         <section className="py-24 bg-gray-900">
             <div className="container mx-auto px-6">
-                <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 shadow-2xl">
+                <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-secondary to-accent shadow-2xl">
                     <div className="absolute inset-0 opacity-10">
                         <Image 
                             src="/banners/banner_3.jpg"
@@ -25,7 +24,7 @@ export function CtaSection() {
                             </p>
                             <Button
                                 size="lg"
-                                className="bg-white text-blue-600 hover:bg-gray-100 py-4 px-8 rounded-full font-bold text-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
+                                className="bg-white text-secondary hover:bg-gray-100 py-4 px-8 rounded-full font-bold text-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
                             >
                                 Explorar Colecciones
                                 <ArrowRight className="w-5 h-5 ml-2" />

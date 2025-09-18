@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -163,7 +162,7 @@ export function RegistroForm() {
                 <Button
                   type="button"
                   onClick={nextStep}
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                  className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground"
                 >
                   Siguiente
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -181,9 +180,9 @@ export function RegistroForm() {
               transition={{ duration: 0.3 }}
               className="space-y-6"
             >
-              <div className="p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
-                <h4 className="font-semibold text-blue-800">Un último paso (¡opcional!)</h4>
-                <p className="text-sm text-blue-700 mt-1">
+              <div className="p-4 bg-orange-50 border-l-4 border-primary rounded-r-lg">
+                <h4 className="font-semibold text-orange-800">Un último paso (¡opcional!)</h4>
+                <p className="text-sm text-orange-700 mt-1">
                   Completar tu información de envío ahora te ahorrará tiempo en futuras compras. Si prefieres, puedes omitir este paso y añadirla directamente en tu primer pedido.
                 </p>
               </div>

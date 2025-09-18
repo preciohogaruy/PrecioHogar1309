@@ -102,18 +102,18 @@ Para mantener una coherencia visual en todas las imágenes generadas por intelig
 ### Prompt Base
 
 ```
-Fotografía de producto profesional para e-commerce, [descripción del producto o concepto], con una paleta de colores que mezcla azul marino (navy blue), azul/púrpura vibrante y acentos en amarillo dorado. El producto debe estar bien iluminado, con un enfoque nítido sobre un fondo minimalista de color blanco o gris claro. Estilo limpio, moderno y de alta calidad, con sombras suaves.
+Fotografía de producto profesional para e-commerce, [descripción del producto o concepto], con una paleta de colores que mezcla naranja vibrante, azul cielo y acentos de azul oscuro. El producto debe estar bien iluminado, con un enfoque nítido sobre un fondo minimalista de color blanco o gris claro. Estilo limpio, moderno y de alta calidad, con sombras suaves.
 ```
 
 ### Paleta de Colores del Proyecto
 
-*   **Principal**: Azul marino (navy blue), azul/púrpura vibrante.
-*   **Acento**: Amarillo dorado brillante.
+*   **Principal**: Naranja vibrante.
+*   **Acento**: Azul cielo.
+*   **Secundario**: Azul oscuro.
 *   **Neutrales**: Blancos puros, grises claros.
 
 ### Ejemplos de Aplicación
 
-*   **Para un banner**: `Banner cinematográfico para e-commerce de productos del hogar, mostrando una sala de estar moderna. Paleta de colores de azul marino, púrpura vibrante y acentos en amarillo dorado, con iluminación cálida y profesional.`
-*   **Para una categoría**: `Icono visual para categoría 'Tecnología', una composición abstracta con formas geométricas y circuitos. Paleta de colores de azul marino, azul/púrpura vibrante y acentos en amarillo dorado, estilo minimalista y futurista.`
-*   **Para un producto**: `Fotografía de producto profesional para e-commerce de un set de herramientas manuales organizadas sobre una superficie de madera. Paleta de colores de azul marino, gris y acentos en amarillo dorado, fondo limpio y moderno.`
-```
+*   **Para un banner**: `Banner cinematográfico para e-commerce de productos del hogar, mostrando una sala de estar moderna. Paleta de colores de naranja vibrante y azules, con iluminación cálida y profesional.`
+*   **Para una categoría**: `Icono visual para categoría 'Tecnología', una composición abstracta con formas geométricas y circuitos. Paleta de colores de naranja vibrante, azul cielo y azul oscuro, estilo minimalista y futurista.`
+*   **Para un producto**: `Fotografía de producto profesional para e-commerce de un set de herramientas manuales organizadas sobre una superficie de madera. Paleta de colores de naranjas, azules y grises, fondo limpio y moderno.`
