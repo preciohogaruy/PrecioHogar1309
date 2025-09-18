@@ -1,5 +1,5 @@
 
-import { ImageIcon, LayoutDashboardIcon, List, Shapes } from 'lucide-react';
+import { ImageIcon, LayoutDashboardIcon, List, Shapes, Sparkles } from 'lucide-react';
 import ToolCard from '@/components/inicio/ToolCard';
 import { Login } from '@/components/admin/Login';
 
@@ -15,12 +15,19 @@ export default function AdminPage() {
             </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8 max-w-6xl mx-auto">
           <ToolCard
             href="/imagen"
             icon={<ImageIcon className="w-8 h-8 text-primary" />}
             title="Mejorar Imagen"
             description="Optimiza tus imágenes convirtiéndolas al formato WebP para mejorar la velocidad de carga de tu sitio."
+            linkText="Ir a la herramienta"
+          />
+          <ToolCard
+            href="/admin/crear-prompt"
+            icon={<Sparkles className="w-8 h-8 text-primary" />}
+            title="Generador de Prompts"
+            description="Crea prompts para la IA de imágenes, manteniendo un estilo visual consistente en todo el proyecto."
             linkText="Ir a la herramienta"
           />
           <ToolCard
