@@ -17,7 +17,7 @@ export function CtaSection() {
                             className="object-cover"
                         />
                     </div>
-                    <div className="relative flex flex-col md:flex-row items-center justify-between p-12">
+                    <div className="relative flex flex-col md:flex-row items-center justify-between p-8 md:p-16">
                         <div className="md:w-1/2 text-white text-center md:text-left mb-8 md:mb-0">
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">Renueva tu Hogar, Renueva tu Vida</h2>
                             <p className="text-lg text-white/80 mb-8">
@@ -33,14 +33,15 @@ export function CtaSection() {
                                 </Button>
                             </Link>
                         </div>
-                        <div className="md:w-1/2 flex justify-center">
-                            <Image 
-                                src="/assets/muebles.png"
-                                alt="Muebles modernos"
-                                width={400}
-                                height={300}
-                                className="transform md:scale-125 md:translate-x-10 -mb-20 md:-mb-32"
-                            />
+                        <div className="md:w-1/2 flex justify-center md:justify-end">
+                            <div className="relative w-[300px] h-[225px] md:w-[400px] md:h-[300px] mt-8 md:mt-0">
+                                <Image 
+                                    src="/assets/muebles.png"
+                                    alt="Muebles modernos"
+                                    fill
+                                    className="object-contain transform md:scale-125 md:translate-x-10 "
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
