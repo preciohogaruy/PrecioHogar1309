@@ -1,25 +1,24 @@
 'use server';
 /**
- * @fileOverview Un agente de IA para generar prompts para la creación de imágenes.
+ * @fileOverview Un agente de IA para generar prompts para la creación de imágenes, optimizado para múltiples plataformas.
  *
  * - generateImagePrompt - Una función que maneja la generación de prompts para imágenes.
  * - GenerateImagePromptInput - El tipo de entrada para la función.
- * - GenerateImagePromptOutput - El tipo de retorno para la función.
+ * - GenerateImagePromptOutput - El tipo de retorno para la función, que incluye prompts para Gemini y Whisk.
  */
 
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
 const GenerateImagePromptInputSchema = z.object({
-  imageType: z.string().describe('El tipo de imagen a generar (ej: Banner, Logo, Foto de producto).'),
-  description: z.string().describe('Una descripción detallada de lo que debe contener la imagen.'),
-  resolution: z.string().optional().describe('La resolución deseada para la imagen (ej: "1920x1080", "4K", "8K").'),
-  aspectRatio: z.string().optional().describe('La relación de aspecto de la imagen (ej: "16:9", "cuadrado", "vertical").'),
+  componentType: z.string().describe('El componente o tipo de escena para la que se necesita la imagen (ej: Hero Section, Product Card).'),
+  userDescription: z.string().describe('Una descripción simple del usuario sobre lo que debe contener la imagen.'),
 });
 export type GenerateImagePromptInput = z.infer<typeof GenerateImagePromptInputSchema>;
 
 const GenerateImagePromptOutputSchema = z.object({
-  prompt: z.string().describe('El prompt detallado y optimizado para la IA de generación de imágenes.'),
+  geminiPrompt: z.string().describe('El prompt detallado y optimizado para un modelo como Gemini (Nano Banana), enfocado en un estilo fotográfico y cinematográfico.'),
+  whiskPrompt: z.string().describe('Un prompt estructurado para Whisk de Google, detallando "asunto", "escena" y "estilo".'),
 });
 export type GenerateImagePromptOutput = z.infer<typeof GenerateImagePromptOutputSchema>;
 
@@ -27,46 +26,57 @@ export async function generateImagePrompt(input: GenerateImagePromptInput): Prom
   return generateImagePromptFlow(input);
 }
 
-const promptGeneratorPrompt = ai.definePrompt({
-  name: 'generateImagePrompt',
-  input: { schema: GenerateImagePromptInputSchema },
-  output: { schema: GenerateImagePromptOutputSchema },
-  prompt: `Eres un experto en la creación de prompts para modelos de IA de generación de imágenes como Midjourney o DALL-E. Tu tarea es tomar una descripción simple y convertirla en un prompt detallado, profesional y efectivo.
+const detailedScenePrompt = ai.definePrompt({
+    name: 'detailedSceneGenerator',
+    input: { schema: GenerateImagePromptInputSchema },
+    prompt: `Eres un director de arte para la marca "PrecioHogar", una tienda de e-commerce de productos para el hogar.
+    Tu tarea es expandir una idea simple en una descripción de escena rica y evocadora.
 
-  La marca es "PrecioHogar", una tienda de e-commerce de productos para el hogar.
+    **Paleta de Colores Obligatoria de la Marca:**
+    - Naranja vibrante (hsl(42, 100%, 50%))
+    - Azul cielo (hsl(205, 90%, 55%))
+    - Azul oscuro (hsl(215, 60%, 40%))
+    - Fondos neutros: Blancos puros, grises muy claros.
 
-  **Paleta de Colores Obligatoria del Proyecto:**
-  - Naranja vibrante (hsl(35, 100%, 58%))
-  - Azul cielo (hsl(205, 90%, 55%))
-  - Azul oscuro (hsl(215, 60%, 40%))
-  - Neutros: Blancos puros, grises claros.
+    A partir del componente de la aplicación y la descripción del usuario, genera un párrafo detallado que describa una escena visualmente atractiva.
+    Incorpora la paleta de colores de forma natural. Describe la iluminación, la composición y la atmósfera.
 
-  **Instrucciones:**
-  1.  Toma el "Tipo de imagen", "Descripción", "Resolución" (opcional) y "Aspect Ratio" (opcional) proporcionados.
-  2.  Crea un prompt que sea claro, conciso y rico en detalles visuales.
-  3.  **Crucialmente, DEBES incorporar la paleta de colores del proyecto de forma natural en el prompt.** Describe cómo los colores deben interactuar.
-  4.  Añade términos técnicos y artísticos que mejoren la calidad (ej: "cinematic lighting", "ultra-realistic", "soft focus", "professional product photography", "minimalist composition").
-  5.  Si se proporciona 'resolution', inclúyela en el prompt (ej: "4K", "8K", "high resolution").
-  6.  Si se proporciona 'aspectRatio', tradúcelo a términos que la IA entienda (ej: "16:9" -> "widescreen, cinematic", "vertical" -> "portrait aspect ratio", "cuadrado" -> "square aspect ratio").
-  7.  El prompt debe estar en una sola línea de texto, en inglés para máxima compatibilidad con los modelos de IA.
+    **Componente:** {{{componentType}}}
+    **Descripción del Usuario:** {{{userDescription}}}
 
-  **Ejemplo de cómo transformar la entrada en un prompt:**
-  -   *Entrada de Usuario:*
-      -   Tipo de imagen: "Banner para sección de Herramientas"
-      -   Descripción: "Varias herramientas manuales bien organizadas sobre una mesa de madera."
-      -   Resolución: "4K"
-      -   Aspect Ratio: "16:9"
-  -   *Prompt Generado (Salida Esperada):*
-      "Professional e-commerce product photography, a top-down view of a neatly organized set of hand tools on a dark wood surface, cinematic lighting creating soft shadows. The color palette elegantly mixes vibrant orange accents on some tool handles with deep sky blue and dark blue elements in the background. Minimalist composition, ultra-realistic, 4K resolution, widescreen 16:9 aspect ratio."
-
-  **Entrada del Usuario:**
-  -   Tipo de imagen: {{{imageType}}}
-  -   Descripción: {{{description}}}
-  {{#if resolution}}-   Resolución: {{{resolution}}}{{/if}}
-  {{#if aspectRatio}}-   Aspect Ratio: {{{aspectRatio}}}{{/if}}
-
-  Genera el prompt optimizado.`,
+    **Párrafo de Escena Detallado:**
+    `,
 });
+
+const finalPromptGenerator = ai.definePrompt({
+  name: 'finalPromptGenerator',
+  input: { schema: z.object({ scene: z.string() }) },
+  output: { schema: GenerateImagePromptOutputSchema },
+  prompt: `
+    A partir de la siguiente descripción de escena, genera dos prompts optimizados para diferentes plataformas de IA.
+
+    **Escena Detallada:**
+    {{{scene}}}
+
+    ---
+
+    **1. Prompt para Gemini (Nano Banana):**
+    Crea un prompt de una sola línea, en inglés. Debe ser altamente descriptivo, enfocado en un estilo fotográfico profesional y cinematográfico.
+    Usa términos como "professional product photography", "cinematic lighting", "ultra-realistic", "4K resolution", "soft focus", "minimalist composition", etc.
+    Ejemplo: "Professional e-commerce product photography of a modern, minimalist living room, featuring a sleek dark blue sofa (hsl(215, 60%, 40%)) with vibrant orange pillows (hsl(42, 100%, 50%)). Cinematic, soft morning light streams through a large window. Background is a clean, light gray wall (hsl(210, 40%, 98%)). Ultra-realistic, 4K resolution, depth of field."
+
+    **2. Prompt para Whisk de Google:**
+    Crea un prompt estructurado en tres partes: Asunto, Escena y Estilo. Sé claro y conciso en cada parte.
+    Ejemplo:
+    Asunto: Un sofá azul oscuro con almohadas naranjas.
+    Escena: Un salón moderno y minimalista con una ventana grande por donde entra luz suave. La pared del fondo es gris claro.
+    Estilo: Fotografía de producto profesional para e-commerce, realista, con iluminación cinematográfica y composición limpia. Paleta de colores: azul oscuro, naranja vibrante, gris claro.
+
+    ---
+    Genera ambos prompts en el formato JSON requerido.
+  `,
+});
+
 
 const generateImagePromptFlow = ai.defineFlow(
   {
@@ -75,7 +85,13 @@ const generateImagePromptFlow = ai.defineFlow(
     outputSchema: GenerateImagePromptOutputSchema,
   },
   async (input) => {
-    const { output } = await promptGeneratorPrompt(input);
-    return output!;
+    // Step 1: Generate the detailed scene description
+    const sceneResponse = await detailedScenePrompt(input);
+    const detailedScene = sceneResponse.text();
+
+    // Step 2: Use the detailed scene to generate the final, platform-specific prompts
+    const finalPromptsResponse = await finalPromptGenerator({ scene: detailedScene });
+    
+    return finalPromptsResponse.output!;
   }
 );
