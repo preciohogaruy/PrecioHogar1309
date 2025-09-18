@@ -18,6 +18,19 @@ const ImagePromptProfileSchema = z.object({
   lighting: z.string(),
   mood: z.string(),
   extras: z.string().optional(),
+  offer: z.object({
+    discount: z.string(),
+    description: z.string()
+  }).optional(),
+  callToAction: z.object({
+    text: z.string(),
+    type: z.string()
+  }).optional(),
+  contact: z.object({
+    phone: z.string(),
+    website: z.string()
+  }).optional(),
+  products_showcased: z.array(z.string()).optional()
 });
 
 type ImagePromptProfile = z.infer<typeof ImagePromptProfileSchema>;
@@ -49,23 +62,43 @@ const DetailedSceneInputSchema = GenerateImagePromptInputSchema.extend({
 const detailedScenePrompt = ai.definePrompt({
     name: 'detailedSceneGenerator',
     input: { schema: DetailedSceneInputSchema },
-    prompt: `Eres un director de arte para la marca "PrecioHogar", una tienda de e-commerce de productos para el hogar.
-    Tu tarea es expandir una idea simple en una descripción de escena rica y evocadora, siguiendo estrictamente las directrices de contexto.
+    prompt: `Eres un director de arte y estratega de marketing para la tienda de e-commerce "PrecioHogar".
+    Tu misión es crear un concepto visual detallado para una imagen promocional. Debes seguir un brief creativo estricto y expandir una idea simple del usuario.
 
-    **Paleta de Colores Obligatoria de la Marca:**
+    **BRIEF CREATIVO:**
+
+    **1. Paleta de Colores Obligatoria de la Marca:**
     - Naranja vibrante (hsl(35, 100%, 58%))
     - Azul Cielo (hsl(205, 90%, 55%))
     - Azul Oscuro (hsl(215, 60%, 40%))
     - Fondos neutros: Blancos puros, grises muy claros.
 
-    **Contexto Creativo (Directrices a seguir):**
-    - Estilo: {{{contextProfile.style}}}
+    **2. Directrices de Estilo y Composición:**
+    - Estilo General: {{{contextProfile.style}}}
     - Composición: {{{contextProfile.composition}}}
     - Iluminación: {{{contextProfile.lighting}}}
     - Atmósfera (Mood): {{{contextProfile.mood}}}
-    {{#if contextProfile.extras}}- Extras: {{{contextProfile.extras}}}{{/if}}
+    {{#if contextProfile.extras}}- Detalles Clave: {{{contextProfile.extras}}}{{/if}}
 
-    A partir del componente de la aplicación y la descripción del usuario, genera un párrafo detallado que describa una escena visualmente atractiva, incorporando la paleta de colores y el contexto creativo de forma natural.
+    **3. Contenido del Anuncio (si aplica):**
+    {{#if contextProfile.offer}}
+    - Oferta a comunicar: "{{contextProfile.offer.discount}} - {{contextProfile.offer.description}}". La imagen debe reflejar esta promoción de forma atractiva.
+    {{/if}}
+    {{#if contextProfile.callToAction}}
+    - Llamada a la Acción (CTA): La imagen debe tener un espacio visual claro para un botón con el texto "{{contextProfile.callToAction.text}}".
+    {{/if}}
+    {{#if contextProfile.products_showcased}}
+    - Productos a mostrar: Debes integrar de forma natural y atractiva los siguientes productos en la escena:
+      {{#each contextProfile.products_showcased}}
+      - {{{this}}}
+      {{/each}}
+    {{/if}}
+    {{#if contextProfile.contact}}
+    - Información de contacto a incluir sutilmente (si es posible, en elementos del fondo): Teléfono {{{contextProfile.contact.phone}}} y web {{{contextProfile.contact.website}}}.
+    {{/if}}
+
+    **INSTRUCCIONES:**
+    A partir del componente de la aplicación y la descripción del usuario, genera un párrafo detallado que describa una escena visualmente impactante. Integra todos los elementos del brief (colores, estilo, productos, ofertas, etc.) de manera cohesiva y profesional.
 
     **Componente:** {{{componentType}}}
     **Descripción del Usuario:** {{{userDescription}}}
