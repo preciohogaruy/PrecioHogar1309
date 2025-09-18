@@ -10,13 +10,36 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
+// Definir el tipo para el perfil de contexto, duplicando la estructura para mantener el flujo independiente.
+const ImagePromptProfileSchema = z.object({
+  style: z.string(),
+  composition: z.string(),
+  lighting: z.string(),
+  mood: z.string(),
+  extras: z.string().optional(),
+  offer: z.object({
+    discount: z.string(),
+    description: z.string()
+  }).optional(),
+  callToAction: z.object({
+    text: z.string(),
+    type: z.string()
+  }).optional(),
+  contact: z.object({
+    phone: z.string(),
+    website: z.string()
+  }).optional(),
+  products_showcased: z.array(z.string()).optional()
+});
+
 const GenerateImageDescriptionInputSchema = z.object({
   componentType: z.string().describe('El componente o tipo de escena para la que se necesita la imagen (ej: Hero Section, Product Card).'),
+  contextProfile: ImagePromptProfileSchema.describe('El perfil de contexto creativo que guía a la IA.'),
 });
 export type GenerateImageDescriptionInput = z.infer<typeof GenerateImageDescriptionInputSchema>;
 
 const GenerateImageDescriptionOutputSchema = z.object({
-  description: z.string().describe('Una descripción de imagen sugerida, creativa y concisa.'),
+  description: z.string().describe('Una descripción de imagen sugerida, creativa y concisa, basada en el brief creativo.'),
 });
 export type GenerateImageDescriptionOutput = z.infer<typeof GenerateImageDescriptionOutputSchema>;
 
@@ -28,19 +51,21 @@ const descriptionGeneratorPrompt = ai.definePrompt({
   name: 'descriptionGeneratorPrompt',
   input: { schema: GenerateImageDescriptionInputSchema },
   output: { schema: GenerateImageDescriptionOutputSchema },
-  prompt: `Eres un asistente creativo para la tienda de e-commerce "PrecioHogar".
-Tu tarea es generar una descripción de imagen breve y creativa (máximo 25 palabras) para un componente de la interfaz de usuario específico.
+  prompt: `Eres un director de arte para la tienda de e-commerce "PrecioHogar".
+Tu tarea es generar una idea de imagen creativa y concisa (máximo 30 palabras) para un componente específico, basándote en un brief creativo.
 
-Componente: {{{componentType}}}
+**BRIEF CREATIVO:**
+- **Estilo y Atmósfera:** Apunta a un estilo "{{contextProfile.style}}" y una atmósfera "{{contextProfile.mood}}".
+{{#if contextProfile.products_showcased}}
+- **Productos a mostrar:** La imagen debe incluir: {{#each contextProfile.products_showcased}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}.
+{{/if}}
+{{#if contextProfile.offer}}
+- **Promoción:** La imagen debe evocar la oferta "{{contextProfile.offer.discount}}".
+{{/if}}
 
-Basado en el componente, genera una idea para una imagen que sea atractiva y relevante.
-Ejemplo:
-- Componente: "Hero Section"
-- Descripción: "Un salón moderno y luminoso con un sofá cómodo, luz natural y acentos de color naranja y azul."
-- Componente: "Product Card"
-- Descripción: "Un set de herramientas de alta calidad ordenadamente dispuestas sobre una superficie de madera rústica."
+**Componente de la Aplicación:** {{{componentType}}}
 
-Ahora, genera una descripción para el componente proporcionado.
+Ahora, basándote en toda esta información, genera una descripción creativa y atractiva para la imagen.
 `,
 });
 

@@ -14,24 +14,20 @@ import { generateImageDescription } from '@/ai/flows/generate-description-flow';
 import { Loader2, Sparkles, Copy, Check, Wand2, Image as ImageIcon, Milestone } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AnimatePresence, motion } from 'framer-motion';
+import profiles from '@/ai/flows/image-prompt-profiles.json';
 
 const promptFormSchema = z.object({
   componentType: z.string().min(1, 'Debes seleccionar un componente.'),
   userDescription: z.string().min(10, 'La descripción debe tener al menos 10 caracteres.'),
+  resolution: z.string().optional(),
+  aspectRatio: z.string().optional(),
 });
 
 type PromptFormValues = z.infer<typeof promptFormSchema>;
 
-const componentTypes = [
-  "Hero Section",
-  "Product Card",
-  "Category Banner",
-  "CTA Section",
-  "Newsletter Background",
-  "Product Detail Gallery",
-  "Shopping Cart Empty State",
-  "Login/Register Page Banner"
-];
+// Cargar los perfiles una vez
+const loadedProfiles = profiles as Record<string, any>;
+const componentTypes = Object.keys(loadedProfiles);
 
 const colorPalette = [
     { name: "Naranja Vibrante", value: "hsl(35, 100%, 58%)" },
@@ -52,6 +48,8 @@ export function PromptGeneratorForm() {
     defaultValues: {
       componentType: '',
       userDescription: '',
+      resolution: 'none',
+      aspectRatio: 'none',
     },
   });
 
@@ -63,9 +61,14 @@ export function PromptGeneratorForm() {
     }
     setIsSuggesting(true);
     try {
-      const result = await generateImageDescription({ componentType });
+      const contextProfile = loadedProfiles[componentType] || loadedProfiles["Default"];
+      const result = await generateImageDescription({ componentType, contextProfile });
       form.setValue('userDescription', result.description);
       form.clearErrors('userDescription');
+      toast({
+        title: 'Sugerencia Lista',
+        description: 'Se ha generado una descripción creativa para ti.',
+      });
     } catch (error) {
       console.error('Error suggesting description:', error);
       toast({
@@ -82,7 +85,20 @@ export function PromptGeneratorForm() {
     setIsGenerating(true);
     setGeneratedPrompts(null);
     try {
-      const result = await generateImagePrompt(values);
+      // Filtrar valores opcionales que son 'none'
+      const optionalValues: { resolution?: string; aspectRatio?: string } = {};
+      if (values.resolution && values.resolution !== 'none') {
+        optionalValues.resolution = values.resolution;
+      }
+      if (values.aspectRatio && values.aspectRatio !== 'none') {
+        optionalValues.aspectRatio = values.aspectRatio;
+      }
+
+      const result = await generateImagePrompt({
+        ...values,
+        ...optionalValues
+      });
+
       setGeneratedPrompts(result);
     } catch (error) {
       console.error('Error generating prompt:', error);
@@ -116,64 +132,115 @@ export function PromptGeneratorForm() {
                         <Milestone className="w-6 h-6 text-primary"/>
                         <CardTitle>Paso 1: Describe tu Idea</CardTitle>
                     </div>
-                    <CardDescription>Selecciona un componente de tu app y describe la imagen que tienes en mente.</CardDescription>
+                    <CardDescription>Selecciona un componente, describe la imagen que tienes en mente (o deja que la IA te ayude) y ajusta los detalles técnicos.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                         <FormField
-                        control={form.control}
-                        name="componentType"
-                        render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>Componente del Proyecto *</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <FormControl>
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Selecciona un componente o escena" />
-                                </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                {componentTypes.map((type) => (
-                                    <SelectItem key={type} value={type}>
-                                    {type}
-                                    </SelectItem>
-                                ))}
-                                </SelectContent>
-                            </Select>
-                            <FormMessage />
-                            </FormItem>
-                        )}
+                            control={form.control}
+                            name="componentType"
+                            render={({ field }) => (
+                                <FormItem>
+                                <FormLabel>Componente del Proyecto *</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Selecciona un componente o escena" />
+                                    </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                    {componentTypes.map((type) => (
+                                        <SelectItem key={type} value={type}>
+                                        {type}
+                                        </SelectItem>
+                                    ))}
+                                    </SelectContent>
+                                </Select>
+                                <FormMessage />
+                                </FormItem>
+                            )}
                         />
                         
                         <FormField
-                        control={form.control}
-                        name="userDescription"
-                        render={({ field }) => (
-                            <FormItem>
-                            <div className="flex items-center justify-between">
-                                <FormLabel>Descripción de la Imagen *</FormLabel>
-                                <Button 
-                                    type="button" 
-                                    variant="ghost" 
-                                    size="sm" 
-                                    onClick={handleSuggestDescription}
-                                    disabled={isSuggesting}
-                                    className="text-primary hover:bg-primary/10"
-                                >
-                                    {isSuggesting ? <Loader2 className="w-4 h-4 animate-spin"/> : <Sparkles className="w-4 h-4" />}
-                                    <span className="ml-2">Sugerir</span>
-                                </Button>
-                            </div>
-                            <FormControl>
-                                <Textarea placeholder="Ej: Un set de herramientas modernas y elegantes sobre una mesa de trabajo limpia y ordenada." rows={4} {...field} />
-                            </FormControl>
-                            <FormMessage />
-                            </FormItem>
-                        )}
+                            control={form.control}
+                            name="userDescription"
+                            render={({ field }) => (
+                                <FormItem>
+                                <div className="flex items-center justify-between">
+                                    <FormLabel>Descripción de la Imagen *</FormLabel>
+                                    <Button 
+                                        type="button" 
+                                        variant="ghost" 
+                                        size="sm" 
+                                        onClick={handleSuggestDescription}
+                                        disabled={isSuggesting}
+                                        className="text-primary hover:bg-primary/10"
+                                    >
+                                        {isSuggesting ? <Loader2 className="w-4 h-4 animate-spin"/> : <Sparkles className="w-4 h-4" />}
+                                        <span className="ml-2">Sugerir con IA</span>
+                                    </Button>
+                                </div>
+                                <FormControl>
+                                    <Textarea placeholder="Ej: Un set de herramientas modernas y elegantes sobre una mesa de trabajo limpia y ordenada." rows={4} {...field} />
+                                </FormControl>
+                                <FormMessage />
+                                </FormItem>
+                            )}
                         />
 
-                        <div className="flex justify-end">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <FormField
+                            control={form.control}
+                            name="resolution"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Resolución (Opcional)</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                    <SelectTrigger>
+                                      <SelectValue placeholder="Predeterminada" />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    <SelectItem value="none">Predeterminada</SelectItem>
+                                    <SelectItem value="1920x1080">1920x1080 (Full HD)</SelectItem>
+                                    <SelectItem value="3840x2160">3840x2160 (4K)</SelectItem>
+                                    <SelectItem value="1024x1024">1024x1024 (Cuadrado)</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="aspectRatio"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Aspect Ratio (Opcional)</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                    <SelectTrigger>
+                                      <SelectValue placeholder="Predeterminado" />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    <SelectItem value="none">Predeterminado</SelectItem>
+                                    <SelectItem value="16:9">16:9 (Widescreen)</SelectItem>
+                                    <SelectItem value="1:1">1:1 (Cuadrado)</SelectItem>
+                                    <SelectItem value="4:3">4:3 (Estándar)</SelectItem>
+                                    <SelectItem value="9:16">9:16 (Vertical)</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+
+                        <div className="flex justify-end pt-4 border-t">
                         <Button
                             type="submit"
                             className="bg-primary text-primary-foreground"
