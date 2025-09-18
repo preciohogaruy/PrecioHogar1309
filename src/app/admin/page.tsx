@@ -1,11 +1,10 @@
 
-import { ImageIcon, LayoutDashboardIcon, List, Shapes, Sparkles, Paintbrush } from 'lucide-react';
+import { ImageIcon, List, Shapes, Sparkles, Paintbrush } from 'lucide-react';
 import ToolCard from '@/components/inicio/ToolCard';
-import { Login } from '@/components/admin/Login';
 
 export default function AdminPage() {
   return (
-    <Login>
+    <>
         <header className="mb-12 text-center">
             <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl mb-4">
                 Bienvenido a tu Panel de Control
@@ -52,6 +51,6 @@ export default function AdminPage() {
             linkText="Ir al panel"
           />
         </div>
-    </Login>
+    </>
   );
 }

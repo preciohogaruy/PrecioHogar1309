@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { KeyRound, ShieldAlert } from 'lucide-react';
-import { AdminHeader } from '@/components/admin/AdminHeader';
 
 const CORRECT_PASSWORD = '123456789';
 
@@ -26,14 +25,7 @@ export function Login({ children }: { children: ReactNode }) {
   };
 
   if (isAuthenticated) {
-    return (
-        <div className="min-h-screen bg-gray-50">
-            <AdminHeader />
-            <main className="container mx-auto px-6 py-8">
-                {children}
-            </main>
-        </div>
-    );
+    return <>{children}</>;
   }
 
   return (
