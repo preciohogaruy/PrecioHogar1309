@@ -43,30 +43,6 @@ export function HeroSection() {
                     >
                         Descubre nuestra amplia gama de productos para el hogar con los mejores precios del mercado. Calidad, estilo y ahorro en un solo lugar.
                     </p>
-
-                    <div 
-                        className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up"
-                        style={{ animationDelay: '600ms' }}
-                    >
-                       <Link href="/productos" className="w-full sm:w-auto">
-                        <Button
-                            size="lg"
-                            className="bg-primary text-primary-foreground font-bold py-4 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition-transform duration-300 w-full"
-                        >
-                            <ShoppingBag className="w-5 h-5 mr-3" />
-                            Ver Productos
-                        </Button>
-                        </Link>
-                        
-                        <Button
-                            size="lg"
-                            variant="outline"
-                            className="bg-transparent text-white border-white/50 hover:bg-white/10 hover:text-white py-4 px-8 rounded-full font-bold text-lg backdrop-blur-sm w-full sm:w-auto"
-                        >
-                            Ver Ofertas
-                            <ArrowRight className="w-5 h-5 ml-3" />
-                        </Button>
-                    </div>
                 </div>
             </div>
 

@@ -1,82 +1,82 @@
 {
-  "Default": {
-    "style": "Fotografía de producto limpia y moderna",
-    "composition": "Composición centrada con espacio negativo",
-    "lighting": "Luz natural suave y difusa",
-    "mood": "Fresco, claro y acogedor",
-    "extras": "Fondos de colores neutros o pastel, enfoque en la textura del producto"
-  },
-  "Hero Section": {
-    "style": "Fotografía de estilo de vida cinematográfica y aspiracional",
-    "composition": "Plano general o plano americano con un punto focal claro, siguiendo la regla de los tercios",
-    "lighting": "Luz dorada del atardecer o luz brillante y aireada de mediodía",
-    "mood": "Inspirador, cálido, acogedor y hogareño",
-    "extras": "Ligeros destellos de lente (lens flare), profundidad de campo para desenfocar el fondo, debe evocar una sensación de confort y felicidad",
-    "callToAction": {
-      "text": "DESCUBRE MÁS",
-      "type": "button"
-    }
-  },
-  "Product Card": {
-    "style": "Fotografía de producto profesional sobre fondo limpio",
-    "composition": "Primer plano del producto, composición centrada o ligeramente diagonal",
-    "lighting": "Iluminación de estudio uniforme y sin sombras duras (clave alta)",
-    "mood": "Limpio, profesional y enfocado en el detalle",
-    "extras": "El producto debe ser el único protagonista, usar un fondo blanco puro o de un color sólido muy claro"
-  },
-  "Category Banner": {
-    "style": "Composición de productos estilo 'flat lay' o bodegón moderno",
-    "composition": "Vista cenital (desde arriba) o en perspectiva isométrica",
-    "lighting": "Iluminación brillante y uniforme",
-    "mood": "Organizado, vibrante y atractivo",
-    "extras": "Los productos deben estar dispuestos de forma artística, se pueden incluir elementos decorativos que refuercen la categoría",
-    "offer": {
-      "discount": "HASTA 50% OFF",
-      "description": "En productos seleccionados de la categoría"
+    "Default": {
+        "style": "Fotografía de producto profesional para e-commerce",
+        "composition": "Composición limpia y centrada",
+        "lighting": "Iluminación de estudio brillante y uniforme",
+        "mood": "Limpio, profesional y atractivo",
+        "extras": "Fondo neutro (blanco o gris claro)"
     },
-    "callToAction": {
-      "text": "VER CATEGORÍA",
-      "type": "button"
+    "Hero Section": {
+        "style": "Fotografía de estilo de vida cinematográfica y aspiracional",
+        "composition": "Plano general con sujeto(s) interactuando en un espacio, usando la regla de los tercios",
+        "lighting": "Luz natural suave y cálida, preferiblemente durante la hora dorada (amanecer/atardecer)",
+        "mood": "Acogedor, feliz, inspirador y sereno",
+        "extras": "Ambiente hogareño realista y bien decorado, con profundidad de campo (bokeh)"
     },
-    "products_showcased": "from_catalog"
-  },
-  "CTA Section": {
-    "style": "Imagen impactante y directa con texto superpuesto",
-    "composition": "Espacio negativo deliberado para colocar texto y un botón",
-    "lighting": "Iluminación dramática o de alto contraste para llamar la atención",
-    "mood": "Urgente, emocionante y convincente",
-    "extras": "El sujeto principal debe mirar o apuntar hacia el área del CTA. Colores vibrantes de la marca.",
-    "callToAction": {
-      "text": "COMPRAR AHORA",
-      "type": "button"
+    "Product Card": {
+        "style": "Fotografía de producto detallada y nítida",
+        "composition": "Primer plano del producto, llenando el encuadre",
+        "lighting": "Iluminación de estudio precisa que resalte texturas y detalles",
+        "mood": "Directo, informativo y de alta calidad",
+        "extras": "Aislamiento del producto sobre un fondo blanco puro"
+    },
+    "Category Banner": {
+        "style": "Composición de productos estilo 'flat lay' o bodegón moderno",
+        "composition": "Vista cenital (desde arriba) o en perspectiva isométrica",
+        "lighting": "Iluminación brillante y uniforme, sin sombras fuertes",
+        "mood": "Organizado, vibrante y atractivo",
+        "extras": "Los productos deben estar dispuestos de forma artística, se pueden incluir elementos decorativos que refuercen la categoría",
+        "offer": {
+            "discount": "HASTA 50% OFF",
+            "description": "En productos seleccionados de la categoría"
+        },
+        "callToAction": {
+            "text": "VER CATEGORÍA",
+            "type": "button"
+        },
+        "products_showcased": "from_catalog"
+    },
+    "CTA Section": {
+        "style": "Fotografía impactante con un toque dramático",
+        "composition": "Sujeto principal claro con espacio negativo para texto",
+        "lighting": "Iluminación contrastada que cree profundidad y enfoque",
+        "mood": "Urgente, emocionante y persuasivo",
+        "extras": "Puede incluir elementos en movimiento o desenfoque de movimiento",
+        "callToAction": {
+            "text": "COMPRAR AHORA",
+            "type": "button"
+        }
+    },
+    "Newsletter Background": {
+        "style": "Imagen de fondo sutil y texturizada",
+        "composition": "Abstracta o con un patrón de bajo contraste",
+        "lighting": "Luz suave y difusa",
+        "mood": "Calmado, limpio y elegante",
+        "extras": "Colores que complementen la paleta de la marca sin distraer del formulario"
+    },
+    "Product Detail Gallery": {
+        "style": "Serie de fotografías de producto consistentes",
+        "composition": "Múltiples ángulos: frontal, lateral, 45 grados, plano detalle de características clave, y en contexto de uso",
+        "lighting": "Iluminación de estudio consistente en todas las tomas",
+        "mood": "Informativo, detallado y confiable",
+        "extras": "Mantener la misma escala y fondo en todas las imágenes"
+    },
+    "Shopping Cart Empty State": {
+        "style": "Ilustración o fotografía minimalista y amigable",
+        "composition": "Elemento central simple y simbólico (ej. un carrito de compras triste o un producto solitario)",
+        "lighting": "Suave y sin pretensiones",
+        "mood": "Ligeramente melancólico pero esperanzador y motivador",
+        "extras": "Uso de espacio negativo para no abrumar",
+        "callToAction": {
+            "text": "VOLVER A LA TIENDA",
+            "type": "link"
+        }
+    },
+    "Login/Register Page Banner": {
+        "style": "Fotografía de estilo de vida que represente comunidad y pertenencia",
+        "composition": "Personas felices en un entorno hogareño bien decorado",
+        "lighting": "Luz natural y brillante",
+        "mood": "Acogedor, positivo y aspiracional",
+        "extras": "Sujetos mirando a la cámara o interactuando entre sí de forma natural"
     }
-  },
-  "Newsletter Background": {
-    "style": "Imagen de fondo sutil y texturizada",
-    "composition": "Abstracta o con elementos desenfocados",
-    "lighting": "Iluminación suave y ambiental",
-    "mood": "Relajante, elegante y no intrusivo",
-    "extras": "Texturas de materiales como madera, tela o paredes de hormigón. Paleta de colores monocromática o análoga."
-  },
-  "Product Detail Gallery": {
-    "style": "Serie de fotografías de producto desde múltiples ángulos",
-    "composition": "Plano detalle, vista 360°, producto en contexto de uso",
-    "lighting": "Iluminación consistente en todas las tomas para mostrar el producto fielmente",
-    "mood": "Informativo, detallado y transparente",
-    "extras": "Fondos neutros consistentes. Una de las imágenes debe mostrar la escala del producto (ej: al lado de un objeto cotidiano)."
-  },
-  "Shopping Cart Empty State": {
-    "style": "Ilustración vectorial o fotografía minimalista y amigable",
-    "composition": "Elemento central con mucho espacio alrededor",
-    "lighting": "Brillante y optimista",
-    "mood": "Amigable, un poco melancólico pero esperanzador",
-    "extras": "Un carrito de compras vacío y estilizado, quizás con una pequeña planta creciendo dentro o una mascota mirando hacia él."
-  },
-  "Login/Register Page Banner": {
-    "style": "Fotografía de estilo de vida que refleje seguridad y comunidad",
-    "composition": "Personas sonriendo en un ambiente hogareño y bien decorado",
-    "lighting": "Luz cálida y acogedora",
-    "mood": "Confiable, seguro y acogedor",
-    "extras": "La escena debe transmitir la sensación de 'pertenecer' a la comunidad de PrecioHogar. Evitar mostrar caras en primer plano."
-  }
 }
