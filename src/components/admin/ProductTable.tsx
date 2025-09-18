@@ -2,42 +2,31 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Edit, Trash2, Eye, EyeOff, Package } from "lucide-react"
-import { type Product } from "@/app/admin/page"
+import type { Product } from "@prisma/client";
 
 interface ProductTableProps {
   products: Product[]
   formatPrice: (price: number) => string
-  openModal: (product: Product) => void
-  toggleProductStatus: (id: number) => void
-  deleteProduct: (id: number) => void
+  openEditPage: (id: number) => void
+  toggleProductStatus: (id: string, currentStatus: boolean) => void
+  deleteProduct: (id: string) => void
 }
-
-const getBadgeClass = (badge: string) => {
-    switch (badge) {
-      case 'Nuevo Ingreso':
-        return 'bg-blue-100 text-blue-800';
-      case 'Oferta':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'Más Vendido':
-        return 'bg-green-100 text-green-800';
-      case 'Liquidación':
-        return 'bg-red-100 text-red-800';
-      case 'Exclusivo Online':
-        return 'bg-purple-100 text-purple-800';
-      case 'Pocas Unidades':
-        return 'bg-orange-100 text-orange-800';
-      default:
-        return 'hidden';
-    }
-  };
 
 export function ProductTable({
   products,
   formatPrice,
-  openModal,
+  openEditPage,
   toggleProductStatus,
   deleteProduct,
 }: ProductTableProps) {
+
+  const getImageUrl = (image: string | null) => {
+    if (image && (image.startsWith('http') || image.startsWith('/') || image.startsWith('data:'))) {
+      return image;
+    }
+    return "/logotienda.svg";
+  };
+
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
       <div className="p-6 border-b border-gray-200">
@@ -52,7 +41,7 @@ export function ProductTable({
                 Producto
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Categoría
+                ID
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Precio</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
@@ -69,7 +58,7 @@ export function ProductTable({
                   <div className="flex items-center">
                     <div className="flex-shrink-0 h-12 w-12">
                       <Image
-                        src={product.image || "/placeholder.svg"}
+                        src={getImageUrl(product.image)}
                         alt={product.title}
                         width={48}
                         height={48}
@@ -79,30 +68,25 @@ export function ProductTable({
                     <div className="ml-4">
                       <div className="text-sm font-medium text-gray-900 max-w-xs truncate">{product.title}</div>
                       {product.badge && (
-                        <div className="flex items-center space-x-2 mt-1">
-                            <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${getBadgeClass(product.badge)}`}>
-                                {product.badge}
-                            </span>
-                        </div>
-                      )}
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                            {product.badge}
+                          </span>
+                        )}
                     </div>
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className="text-sm text-gray-900">{product.category.name}</span>
+                  <span className="text-sm text-gray-900">{product.productId}</span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-900">{formatPrice(product.price)}</div>
-                  {product.originalPrice && (
-                    <div className="text-xs text-gray-500 line-through">{formatPrice(product.originalPrice)}</div>
-                  )}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
                     <span className={`text-sm ${product.quantity > 0 ? "text-gray-900" : "text-red-600"}`}>
                       {product.quantity}
                     </span>
-                    {!(product.quantity > 0) && (
+                    {product.quantity <= 0 && (
                       <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
                         Agotado
                       </span>
@@ -123,7 +107,7 @@ export function ProductTable({
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => openModal(product)}
+                      onClick={() => openEditPage(product.id)}
                       className="text-blue-600 hover:text-blue-700"
                     >
                       <Edit className="w-4 h-4" />
@@ -131,7 +115,7 @@ export function ProductTable({
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => toggleProductStatus(product.id)}
+                      onClick={() => toggleProductStatus(String(product.id), product.isActive)}
                       className={
                         product.isActive
                           ? "text-gray-600 hover:text-gray-700"
@@ -143,7 +127,7 @@ export function ProductTable({
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => deleteProduct(product.id)}
+                      onClick={() => deleteProduct(String(product.id))}
                       className="text-red-600 hover:text-red-700"
                     >
                       <Trash2 className="w-4 h-4" />

@@ -1,40 +1,43 @@
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import { getCategories } from "@/lib/categorias";
+import Image from "next/image"
+import { getCategories } from "@/lib/categorias"
 
 export async function CategoriesSection() {
-  const categories = await getCategories();
+  const categories = await getCategories()
+
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
-      <div className="container mx-auto px-6 text-center">
-        <div className="mb-16">
-          <h2 className="section-title">Productos para cada rincón de tu hogar</h2>
+    <section id="categories" className="py-24 bg-gray-50">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-12">
+          <h2 className="section-title">
+            Explora Nuestras{" "}
+            <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text">
+              Categorías
+            </span>
+          </h2>
           <p className="section-subtitle">
-            Desde la cocina hasta el dormitorio, tenemos todo lo que necesitas para crear el hogar de tus sueños.
+            Encuentra todo lo que necesitas para tu hogar, organizado para tu comodidad.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {categories.slice(0, 4).map((item, index) => (
-            <div key={index} className="ingredient-card group">
-              <div className="icon-container-lg">
-                <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary group-hover:scale-110 transition-transform duration-300" />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          {categories.map((category, index) => {
+            const Icon = category.icon
+            return (
+              <div
+                key={category.id}
+                className="group ingredient-card"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="icon-container-lg group-hover:scale-110">
+                  <Icon className="w-10 h-10 md:w-12 md:h-12 text-blue-600 group-hover:text-purple-600 transition-colors duration-300" />
+                </div>
+                <h3 className="ingredient-title">{category.name}</h3>
               </div>
-              <h3 className="ingredient-title">{item.name.toUpperCase()}</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
-            </div>
-          ))}
+            )
+          })}
         </div>
-
-        <Link href="/productos">
-          <Button className="btn-primary group">
-            VER TODOS LOS PRODUCTOS
-            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-          </Button>
-        </Link>
       </div>
     </section>
-  );
+  )
 }
