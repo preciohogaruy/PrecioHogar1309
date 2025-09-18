@@ -5,13 +5,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, LayoutDashboard, List, Shapes } from "lucide-react";
+import { ArrowLeft, LayoutDashboard, List, Shapes, Sparkles, Paintbrush, ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/admin", label: "Inicio", icon: LayoutDashboard },
   { href: "/admin/producto", label: "Productos", icon: List },
   { href: "/admin/categorias", label: "Categorías", icon: Shapes },
+  { href: "/admin/crear-prompt", label: "Crear Prompt", icon: Sparkles },
+  { href: "/admin/crear-estilos", label: "Crear Estilos", icon: Paintbrush },
+  { href: "/imagen", label: "Mejorar Imagen", icon: ImageIcon },
 ];
 
 export function AdminHeader() {
