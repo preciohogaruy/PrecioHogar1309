@@ -9,6 +9,21 @@
 
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
+import profiles from './image-prompt-profiles.json';
+
+// Definir el tipo para un perfil individual basado en la estructura del JSON
+const ImagePromptProfileSchema = z.object({
+  style: z.string(),
+  composition: z.string(),
+  lighting: z.string(),
+  mood: z.string(),
+  extras: z.string().optional(),
+});
+
+type ImagePromptProfile = z.infer<typeof ImagePromptProfileSchema>;
+
+// Cargar y validar los perfiles usando Zod
+const loadedProfiles = z.record(ImagePromptProfileSchema).parse(profiles);
 
 const GenerateImagePromptInputSchema = z.object({
   componentType: z.string().describe('El componente o tipo de escena para la que se necesita la imagen (ej: Hero Section, Product Card).'),
@@ -26,11 +41,16 @@ export async function generateImagePrompt(input: GenerateImagePromptInput): Prom
   return generateImagePromptFlow(input);
 }
 
+// Extender el input para el primer prompt para incluir el perfil de contexto
+const DetailedSceneInputSchema = GenerateImagePromptInputSchema.extend({
+  contextProfile: ImagePromptProfileSchema.describe('El perfil de contexto para guiar a la IA.'),
+});
+
 const detailedScenePrompt = ai.definePrompt({
     name: 'detailedSceneGenerator',
-    input: { schema: GenerateImagePromptInputSchema },
+    input: { schema: DetailedSceneInputSchema },
     prompt: `Eres un director de arte para la marca "PrecioHogar", una tienda de e-commerce de productos para el hogar.
-    Tu tarea es expandir una idea simple en una descripción de escena rica y evocadora.
+    Tu tarea es expandir una idea simple en una descripción de escena rica y evocadora, siguiendo estrictamente las directrices de contexto.
 
     **Paleta de Colores Obligatoria de la Marca:**
     - Naranja vibrante (hsl(35, 100%, 58%))
@@ -38,8 +58,14 @@ const detailedScenePrompt = ai.definePrompt({
     - Azul Oscuro (hsl(215, 60%, 40%))
     - Fondos neutros: Blancos puros, grises muy claros.
 
-    A partir del componente de la aplicación y la descripción del usuario, genera un párrafo detallado que describa una escena visualmente atractiva.
-    Incorpora la paleta de colores de forma natural. Describe la iluminación, la composición y la atmósfera.
+    **Contexto Creativo (Directrices a seguir):**
+    - Estilo: {{{contextProfile.style}}}
+    - Composición: {{{contextProfile.composition}}}
+    - Iluminación: {{{contextProfile.lighting}}}
+    - Atmósfera (Mood): {{{contextProfile.mood}}}
+    {{#if contextProfile.extras}}- Extras: {{{contextProfile.extras}}}{{/if}}
+
+    A partir del componente de la aplicación y la descripción del usuario, genera un párrafo detallado que describa una escena visualmente atractiva, incorporando la paleta de colores y el contexto creativo de forma natural.
 
     **Componente:** {{{componentType}}}
     **Descripción del Usuario:** {{{userDescription}}}
@@ -77,7 +103,6 @@ const finalPromptGenerator = ai.definePrompt({
   `,
 });
 
-
 const generateImagePromptFlow = ai.defineFlow(
   {
     name: 'generateImagePromptFlow',
@@ -85,11 +110,18 @@ const generateImagePromptFlow = ai.defineFlow(
     outputSchema: GenerateImagePromptOutputSchema,
   },
   async (input) => {
-    // Step 1: Generate the detailed scene description
-    const sceneResponse = await detailedScenePrompt(input);
+    // 1. Obtener el perfil de contexto basado en el componentType
+    const profileKey = input.componentType as keyof typeof loadedProfiles;
+    const contextProfile = loadedProfiles[profileKey] || loadedProfiles["Default"]; // Usar un perfil por defecto si no se encuentra
+
+    // 2. Generar la escena detallada usando el perfil de contexto
+    const sceneResponse = await detailedScenePrompt({
+      ...input,
+      contextProfile,
+    });
     const detailedScene = sceneResponse.text;
 
-    // Step 2: Use the detailed scene to generate the final, platform-specific prompts
+    // 3. Usar la escena detallada para generar los prompts finales específicos de la plataforma
     const finalPromptsResponse = await finalPromptGenerator({ scene: detailedScene });
     
     return finalPromptsResponse.output!;

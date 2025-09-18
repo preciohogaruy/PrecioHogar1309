@@ -1,0 +1,64 @@
+
+{
+  "Default": {
+    "style": "Fotografía profesional de producto, limpia y moderna.",
+    "composition": "Composición equilibrada con espacio negativo, enfocado en el producto.",
+    "lighting": "Iluminación de estudio brillante y uniforme, sin sombras duras.",
+    "mood": "Aspiracional, limpio y de alta calidad."
+  },
+  "Hero Section": {
+    "style": "Cinematográfico y evocador. Estilo fotográfico editorial de alta gama.",
+    "composition": "Plano amplio (wide shot) que muestre un ambiente completo. Puede usar una profundidad de campo suave (soft focus).",
+    "lighting": "Luz natural que entra por una ventana, creando una atmósfera cálida y acogedora. Puede tener destellos de lente sutiles.",
+    "mood": "Inspirador, cálido, hogareño pero elegante.",
+    "extras": "Incluir elementos humanos de forma sutil (una mano con una taza, etc.) puede añadir calidez."
+  },
+  "Product Card": {
+    "style": "Fotografía de producto ultra-realista y detallada sobre un fondo contextual.",
+    "composition": "Plano detalle (close-up) o plano medio del producto. El producto debe ser el héroe claro de la imagen.",
+    "lighting": "Iluminación de estudio perfecta que resalte las texturas y materiales del producto. Sin distracciones.",
+    "mood": "Directo, informativo y de alta calidad.",
+    "extras": "El fondo debe complementar al producto, no competir con él (ej. una herramienta sobre madera rústica, una toalla sobre mármol)."
+  },
+  "Category Banner": {
+    "style": "Estilo de vida (lifestyle) y aspiracional.",
+    "composition": "Composición dinámica que agrupe varios productos de la misma categoría de forma artística y atractiva.",
+    "lighting": "Luz brillante y alegre, que transmita energía positiva.",
+    "mood": "Organizado, abundante y deseable.",
+    "extras": "Jugar con la disposición de los productos (en estantes, apilados, en uso)."
+  },
+  "CTA Section": {
+    "style": "Abstracto, gráfico y moderno.",
+    "composition": "Composición minimalista con formas geométricas y degradados suaves.",
+    "lighting": "Iluminación suave y difusa que resalte los colores de la marca.",
+    "mood": "Energético, moderno y limpio.",
+    "extras": "Puede incluir formas que representen sutilmente productos del hogar."
+  },
+  "Newsletter Background": {
+    "style": "Sutil, texturizado y minimalista.",
+    "composition": "Un patrón abstracto o una textura de fondo con mucho espacio negativo para colocar texto encima.",
+    "lighting": "Iluminación muy suave y uniforme.",
+    "mood": "Calmado, sofisticado y limpio.",
+    "extras": "Debe ser visualmente interesante pero no distraer del contenido principal."
+  },
+  "Product Detail Gallery": {
+    "style": "Fotografía de producto en contexto y plano detalle.",
+    "composition": "Variedad de ángulos: plano general del producto en un ambiente, plano detalle de una característica específica, y una toma de estilo de vida con el producto en uso.",
+    "lighting": "Consistente a través de todas las tomas, generalmente iluminación de estudio clara y profesional.",
+    "mood": "Informativo, detallado y confiable."
+  },
+  "Shopping Cart Empty State": {
+    "style": "Ilustración vectorial simple y amigable.",
+    "composition": "Un ícono o ilustración central (como un carrito de compras triste o un estante vacío) con mucho espacio alrededor.",
+    "lighting": "N/A (para ilustraciones). Usar colores planos y sombras sutiles.",
+    "mood": "Un poco melancólico pero con un toque de humor, que invite a la acción.",
+    "extras": "Puede incluir una burbuja de diálogo o un pequeño personaje."
+  },
+  "Login/Register Page Banner": {
+    "style": "Fotografía de estilo de vida, cálida y acogedora.",
+    "composition": "Una escena que represente el resultado final de usar los productos: un hogar feliz y bien decorado.",
+    "lighting": "Luz suave y cálida, como la de un atardecer o una mañana tranquila.",
+    "mood": "Acogedor, seguro y aspiracional.",
+    "extras": "La escena debe sentirse vivida y personal."
+  }
+}
