@@ -1,16 +1,12 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
-}
 
 datasource db {
   provider  = "sqlite"
   url       = "file:./dev.db"
-  // uncomment for Prisma Accelerate
-  // directUrl = env("DATABASE_URL_UNPOOLED")
+  directUrl = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
 }
 
 model Category {
@@ -18,32 +14,36 @@ model Category {
   name        String    @unique
   description String?
   tag         String    @unique
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   products    Product[]
 }
 
 model Product {
-  id           Int       @id @default(autoincrement())
-  productId    String    @unique
-  title        String
-  description  String?
-  price        Float
-  quantity     Int
-  image        String?
-  rating       Float     @default(0)
-  badge        String?
-  isActive     Boolean   @default(true)
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  category     Category  @relation(fields: [categoryId], references: [id])
-  categoryId   Int
-  // reviews    Json?
+  id          Int      @id @default(autoincrement())
+  productId   String   @unique
+  title       String
+  description String?
+  price       Float
+  quantity    Int      @default(0)
+  image       String?
+  rating      Float    @default(0)
+  badge       String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            Int       @id @default(autoincrement())
+  email         String    @unique
+  name          String
+  password      String
+  phone         String?
+  address       String?
+  deliveryNotes String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }

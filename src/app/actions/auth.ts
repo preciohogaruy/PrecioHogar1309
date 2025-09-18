@@ -9,9 +9,12 @@ export async function registerUser(formData: FormData) {
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
+    const phone = formData.get('phone') as string | null;
+    const address = formData.get('address') as string | null;
+    const deliveryNotes = formData.get('deliveryNotes') as string | null;
 
     if (!name || !email || !password) {
-        return { success: false, error: 'Todos los campos son requeridos.' };
+        return { success: false, error: 'Los campos de nombre, email y contraseña son requeridos.' };
     }
 
     try {
@@ -22,6 +25,9 @@ export async function registerUser(formData: FormData) {
                 name,
                 email,
                 password: hashedPassword,
+                phone,
+                address,
+                deliveryNotes,
             },
         });
 
