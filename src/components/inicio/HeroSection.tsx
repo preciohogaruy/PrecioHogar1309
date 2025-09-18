@@ -9,7 +9,7 @@ export function HeroSection() {
         <section className="relative pt-32 sm:pt-48 pb-24 sm:pb-32 text-center text-white overflow-hidden bg-gray-900">
             <div className="absolute inset-0 z-0 opacity-40">
                 <Image 
-                    src="/banners/banner_1.jpg"
+                    src="/banners/banner_1.png"
                     alt="Fondo de productos para el hogar"
                     fill
                     className="object-cover"

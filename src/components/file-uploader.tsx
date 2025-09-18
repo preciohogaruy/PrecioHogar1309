@@ -18,14 +18,14 @@ const FileUploader = ({ onFiles, isConverting }: FileUploaderProps) => {
   const handleFileSelect = (files: FileList | null) => {
     if (!files) return;
     const acceptedFiles = Array.from(files).filter(
-      file => file.type === 'image/jpeg' || file.type === 'image/png'
+      file => file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/webp'
     );
 
     if (acceptedFiles.length !== files.length) {
       toast({
         variant: 'destructive',
         title: 'Formato no válido',
-        description: 'Por favor, sube solo imágenes en formato PNG o JPG.',
+        description: 'Por favor, sube solo imágenes en formato PNG, JPG o WEBP.',
       });
     }
 
@@ -77,7 +77,7 @@ const FileUploader = ({ onFiles, isConverting }: FileUploaderProps) => {
         ref={inputRef}
         type="file"
         multiple
-        accept="image/png, image/jpeg"
+        accept="image/png, image/jpeg, image/webp"
         className="hidden"
         onChange={(e) => handleFileSelect(e.target.files)}
         disabled={isConverting}
@@ -95,7 +95,7 @@ const FileUploader = ({ onFiles, isConverting }: FileUploaderProps) => {
             Arrastra y suelta tus imágenes aquí
           </p>
           <p className="text-muted-foreground">o haz clic para seleccionarlas</p>
-          <p className="text-xs text-muted-foreground mt-2">Soporta PNG y JPG</p>
+          <p className="text-xs text-muted-foreground mt-2">Soporta PNG, JPG y WEBP</p>
         </div>
       )}
     </div>
